@@ -1,0 +1,74 @@
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:f="sap.f" xmlns="sap.m" xmlns:card="sap.f.cards"
+	xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:upload="sap.m.upload">
+	<Dialog showHeader="false" stretch="{device>/system/phone}" id="idForeignLanguageChangeRequestDialog"
+		contentWidth="{= ${device>/resize/width} * 0.9 > 700 ? '700px' : String(parseInt(${device>/resize/width} * 0.9)).concat('px') }"
+		class="sapUiNoContentPadding" afterClose=".onAfterDialogClose" beforeOpen=".onBeforeDialogOpen" busy="{foreignLanguageModel>/busy}"
+		busyIndicatorDelay="0">
+		<content>
+			<f:Card class="sapUiNoMargin" width="100%">
+				<f:header>
+					<card:Header title="{i18n>foreignLanguageChangeRequestTitle}" subtitle="{i18n>foreignLanguageChangeRequestSubtitle}"
+						iconSrc="sap-icon://discussion"/>
+				</f:header>
+				<f:content>
+					<form:SimpleForm id="ForeignLanguageChangeRequestForm" maxContainerCols="2" editable="true" layout="ResponsiveGridLayout" columnsXL="2"
+						labelSpanL="3" emptySpanL="0" columnsL="2" labelSpanM="3" emptySpanM="0" columnsM="2" labelSpanS="12" emptySpanS="0" adjustLabelSpan="false"
+						singleContainerFullSize="true">
+						<form:content>
+							<Toolbar ariaLabelledBy="forLangCrInfoTitle">
+								<Title id="forLangCrInfoTitle" text="{i18n>foreignLanguageInfoTitle}"/>
+								<ToolbarSpacer/>
+							</Toolbar>
+							<!-- Language -->
+							<Label text="{/#ForeignLanguage/LanguageName/@sap:label}" id="lblForeignLanguageName" labelFor="inpForeignLanguage"/>
+							<ComboBox id="inpForeignLanguage"
+								items="{ path: '/ValueHelpSet', filters : [ { path : 'Id', operator : 'EQ', value1 : 'ForeignLanguage'} ] }"
+								selectedKey="{foreignLanguageModel>/changeRequest/Language}">
+								<core:Item key="{Key}" text="{Value}"/>
+								<layoutData>
+									<l:GridData span="XL4 L4 M4 S12"/>
+								</layoutData>
+							</ComboBox>
+							<!-- Levels -->
+							<Label text="{/#ForeignLanguage/ReadingLevel/@sap:label}" id="lblForeignLanguageReadingLevel" labelFor="inpForeignLanguageReadingLevel"/>
+							<ComboBox id="inpForeignLanguageReadingLevel"
+								items="{ path: '/ValueHelpSet', filters : [ { path : 'Id', operator : 'EQ', value1 : 'ForeignLanguageLevel'} ] }"
+								selectedKey="{foreignLanguageModel>/changeRequest/ReadingLevel}">
+								<core:Item key="{Key}" text="{Value}"/>
+								<layoutData>
+									<l:GridData span="XL4 L4 M4 S12"/>
+								</layoutData>
+							</ComboBox>
+							<Label text="{/#ForeignLanguage/WritingLevel/@sap:label}" id="lblForeignLanguageWritingLevel" labelFor="inpForeignLanguageWritingLevel"/>
+							<ComboBox id="inpForeignLanguageWritingLevel"
+								items="{ path: '/ValueHelpSet', filters : [ { path : 'Id', operator : 'EQ', value1 : 'ForeignLanguageLevel'} ] }"
+								selectedKey="{foreignLanguageModel>/changeRequest/WritingLevel}">
+								<core:Item key="{Key}" text="{Value}"/>
+								<layoutData>
+									<l:GridData span="XL4 L4 M4 S12"/>
+								</layoutData>
+							</ComboBox>
+							<Label text="{/#ForeignLanguage/SpeakingLevel/@sap:label}" id="lblForeignLanguageSpeakingLevel" labelFor="inpForeignLanguageSpeakingLevel"/>
+							<ComboBox id="inpForeignLanguageSpeakingLevel"
+								items="{ path: '/ValueHelpSet', filters : [ { path : 'Id', operator : 'EQ', value1 : 'ForeignLanguageLevel'} ] }"
+								selectedKey="{foreignLanguageModel>/changeRequest/SpeakingLevel}">
+								<core:Item key="{Key}" text="{Value}"/>
+								<layoutData>
+									<l:GridData span="XL4 L4 M4 S12"/>
+								</layoutData>
+							</ComboBox>
+							<!-- PlaceOfLearning -->
+							<Label text="{/#ForeignLanguage/PlaceOfLearning/@sap:label}" id="lblForeignLanguagePlaceOfLearning"
+								labelFor="inpForeignLanguagePlaceOfLearning"/>
+							<Input id="inpForeignLanguagePlaceOfLearning" value="{foreignLanguageModel>/changeRequest/PlaceOfLearning}" maxLength="60"/>
+						</form:content>
+					</form:SimpleForm>
+				</f:content>
+			</f:Card>
+		</content>
+		<buttons>
+			<Button text="{i18n>saveAction}" press=".onSaveChange" type="Accept"/>
+			<Button text="{i18n>cancelAction}" press=".onCloseDialog" type="Reject"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

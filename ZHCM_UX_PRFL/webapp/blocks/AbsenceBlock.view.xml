@@ -1,0 +1,25 @@
+<!--
+
+    Copyright (C) 2009-2018 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View controllerName="com.sedef.hcm.ux.myprofile.blocks.AbsenceBlockController" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m">
+	<Title id="absenceLabel" text="{i18n>absenceSubSectionTitle}" level="H4" titleStyle="H4" class="sapUiSmallMarginBottom"/>
+	<ObjectListItem id="absenceItem" title="{= !!${AbsenceType} ? ${AbsenceTypeText} : ${i18n>noAbsencesTxt} }" intro=""
+		icon="sap-icon://general-leave-request"
+		number="{= !!${AbsenceType} ? ${path: 'AbsenceDays', formatter: '.formatter.formatObjectNumber' } : null }"
+		numberUnit="{= !!${AbsenceType} ? ${parts: [ {path: 'AbsenceDays'}, {path: 'i18n>unitDays'}, {path: 'i18n>unitDay'} ], formatter: '.formatter.formatObjectNumberUnitDays'} : null }"
+		busy="{AbsenceView>/busy}" visible="{= !${appProperties>/isAppBusy}}">
+		<firstStatus>
+			<ObjectStatus id="absenceFirstStat" text="{= !!${AbsenceType} ? ${StatusText} : ${i18n>noPlannedAbsencesTxt}}"
+				state="{path: 'Status', formatter: '.formatter.formatListItemState'}"/>
+		</firstStatus>
+		<secondStatus>
+			<ObjectStatus id="absenceSecondStat" visible="{= !${AbsenceView>/busy}}"
+				text="{parts: [ 'AbsenceType', 'StartDate', 'EndDate', 'i18n>untilTxt' ], formatter: '.formatAbsenceDateRangeSecondStat'}"/>
+		</secondStatus>
+	</ObjectListItem>
+	<Button id="navToMyLeaveReqBtn" text="{i18n>navToLeaveReqBtn}" type="Emphasized" press="onNavToMyLeave" enabled="{= !${AbsenceView>/busy}}"
+		visible="{= ${appProperties>/isMyLeaveRequestAvailable} &amp;&amp; !${appProperties>/isAppBusy}}" class="sapUiTinyMarginTop"/>
+</mvc:View>

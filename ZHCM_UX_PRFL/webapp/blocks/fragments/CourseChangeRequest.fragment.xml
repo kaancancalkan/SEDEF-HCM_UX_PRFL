@@ -1,0 +1,56 @@
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:f="sap.f" xmlns="sap.m" xmlns:card="sap.f.cards"
+	xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:upload="sap.m.upload">
+	<Dialog showHeader="false" stretch="{device>/system/phone}" id="idCourseChangeRequestDialog"
+		contentWidth="{= ${device>/resize/width} * 0.9 > 700 ? '700px' : String(parseInt(${device>/resize/width} * 0.9)).concat('px') }"
+		class="sapUiNoContentPadding" afterClose=".onAfterDialogClose" beforeOpen=".onBeforeDialogOpen" busy="{courseModel>/busy}"
+		busyIndicatorDelay="0">
+		<content>
+			<f:Card class="sapUiNoMargin" width="100%">
+				<f:header>
+					<card:Header title="{i18n>courseChangeRequestTitle}" subtitle="{i18n>courseChangeRequestSubtitle}" iconSrc="sap-icon://course-program"/>
+				</f:header>
+				<f:content>
+					<form:SimpleForm id="CourseChangeRequestForm" maxContainerCols="2" editable="true" layout="ResponsiveGridLayout" columnsXL="2"
+						labelSpanL="3" emptySpanL="0" columnsL="2" labelSpanM="3" emptySpanM="0" columnsM="2" labelSpanS="12" emptySpanS="0" adjustLabelSpan="false"
+						singleContainerFullSize="true">
+						<form:content>
+							<Toolbar ariaLabelledBy="courseInfoTitle">
+								<Title id="courseInfoTitle" text="{i18n>courseInfoTitle}"/>
+								<ToolbarSpacer/>
+							</Toolbar>
+							<!-- Course Name -->
+							<Label text="{/#Course/CourseName/@sap:label}" id="lblCourseCourseName" labelFor="inpCourseCourseName"/>
+							<Input id="inpCourseCourseName" value="{courseModel>/changeRequest/CourseName}" maxLength="50"/>
+							<!-- Institute -->
+							<Label text="{/#Course/InstituteName/@sap:label}" id="lblCourseInstituteName" labelFor="inpCourseInstituteName"/>
+							<Input id="inpCourseInstituteName" value="{courseModel>/changeRequest/InstituteName}" maxLength="60"/>
+							<!-- Dates -->
+							<Label text="{/#Course/CourseDate/@sap:label}" id="lblCourseCourseDate" labelFor="inpCourseCourseDate"/>
+							<DatePicker id="inpCourseCourseDate" dateValue="{path:'courseModel>/changeRequest/CourseDate', formatOptions: {UTC:true}}"
+								displayFormat="dd.MM.yyyy">
+								<layoutData>
+									<l:GridData span="XL3 L3 M3 S12"/>
+								</layoutData>
+							</DatePicker>
+							<!-- Duration -->
+							<Label text="{/#Course/Duration/@sap:label}" id="lblCourseDuration" labelFor="inpCourseDuration"/>
+							<HBox>
+								<Input id="inpCourseDuration" value="{courseModel>/changeRequest/Duration}" type="Number" textAlign="Right"/>
+								<ComboBox id="inpCourseDurationUnit"
+									items="{ path: '/ValueHelpSet', filters : [ { path : 'Id', operator : 'EQ', value1 : 'CourseDurationUnit'} ] }"
+									selectedKey="{courseModel>/changeRequest/DurationUnit}"
+									class="sapUiTinyMarginBegin">
+									<core:Item key="{Key}" text="{Value}"/>
+								</ComboBox>
+							</HBox>
+						</form:content>
+					</form:SimpleForm>
+				</f:content>
+			</f:Card>
+		</content>
+		<buttons>
+			<Button text="{i18n>saveAction}" press=".onSaveChange" type="Accept"/>
+			<Button text="{i18n>cancelAction}" press=".onCloseDialog" type="Reject"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

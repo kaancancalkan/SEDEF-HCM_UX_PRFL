@@ -1,0 +1,35 @@
+<!--
+
+    Copyright (C) 2009-2018 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<QuickView id="managerQuickView" placement="Auto">
+		<QuickViewPage id="managerCard" header="{i18n>managerHeading}"
+			icon="{path: 'toManagerDetail/toEmployeePicture/__metadata/media_src', formatter: '.formatter.formatImageURL'}"
+			title="{parts: [{path: 'ManagerName'},{path: 'ManagerNumber'}], formatter:'.formatter.formatObjectTitle'}"
+			crossAppNavCallback="{path: 'ManagerNumber', formatter: '.formatter.crossAppResolver'}" description="{toManagerDetail/EmployeeJobtitleLongtext}">
+			<QuickViewGroup heading="{i18n>contactDataHeading}"
+				visible="{= !!${toManagerDetail/WorkPhone} || !!${toManagerDetail/WorkMobile} || !!${toManagerDetail/WorkEmail}}">
+				<QuickViewGroupElement id="managerPhone" label="{/#EmployeeDetail/WorkPhone/@sap:label}" value="{toManagerDetail/WorkPhone}" type="phone"
+					tooltip="{/#EmployeeDetail/WorkPhone/@sap:label}" visible="{= !!${toManagerDetail/WorkPhone}}"/>
+				<QuickViewGroupElement id="managerMobile" label="{/#EmployeeDetail/WorkMobile/@sap:label}" value="{toManagerDetail/WorkMobile}" type="phone"
+					tooltip="{/#EmployeeDetail/WorkMobile/@sap:label}" visible="{= !!${toManagerDetail/WorkMobile}}"/>
+				<QuickViewGroupElement id="managerEmail" label="{/#EmployeeDetail/WorkEmail/@sap:label}" value="{toManagerDetail/WorkEmail}" type="email"
+					tooltip="{/#EmployeeDetail/WorkEmail/@sap:label}" visible="{= !!${toManagerDetail/WorkEmail}}"/>
+			</QuickViewGroup>
+			<QuickViewGroup heading="{i18n>orgInfoHeading}"
+				visible="{= !!${toManagerDetail/OfficeAddress/OfficeAddressFormatted} || !!${toManagerDetail/ManagerName}}">
+				<QuickViewGroupElement id="officeAddress" label="{/#EmployeeDetail/OfficeAddress/OfficeAddressFormatted/@sap:label}"
+					value="{toManagerDetail/OfficeAddress/OfficeAddressFormatted}" tooltip="{/#EmployeeDetail/OfficeAddress/OfficeAddressFormatted/@sap:label}"
+					visible="{= !!${toManagerDetail/OfficeAddress/OfficeAddressFormatted}}"/>
+				<QuickViewGroupElement id="reportsTo" label="{i18n>reportsToLabel}"
+					value="{parts: [{path: 'toManagerDetail/ManagerName'},{path: 'toManagerDetail/ManagerNumber'}], formatter:'.formatter.formatObjectTitle'}"
+					url="{path: 'toManagerDetail/ManagerNumber', formatter:'.formatter.formatManagerLink'}" target="_self" tooltip="{i18n>showManagerInfo}"
+					visible="{= !!${toManagerDetail/ManagerName}}" type="{= ${appProperties>/isEmployeeLookupAvailable} ? 'link' : 'text' }"/>
+			</QuickViewGroup>
+			<!--Allow adding additional elements to the Manager Quickview -->
+			<core:ExtensionPoint name="extensionManagerQuickview"/>
+		</QuickViewPage>
+	</QuickView>
+</core:FragmentDefinition>

@@ -1,0 +1,20 @@
+<!--
+
+    Copyright (C) 2009-2018 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View controllerName="com.sedef.hcm.ux.myprofile.blocks.CareerProgressBlockController" xmlns="sap.suite.ui.commons"
+	xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:m="sap.m" xmlns:l="sap.ui.layout" busy="{CareerProgressView>/busy}">
+	<Timeline id="careerProgressTimeline" axisOrientation="{= ${device>/system/phone} ? 'Vertical' : 'Horizontal'}" alignment="Left"
+		showIcons="false" sort="true" sortOldestFirst="true" showHeaderBar="false" enableAllInFilterItem="false" groupBy="BeginDate" growing="false"
+		growingThreshold="0" enableBackendFilter="false" enableScroll="{= ${device>/system/phone} ? false : true}" enableDoubleSided="true"
+		content="{ path: 'toCareerProgress', sorter : {path : 'BeginDate', descending : true}, templateShareable: false }"
+		visible="{appEmployeeData>/bCareerProgressExist}">
+		<content>
+			<TimelineItem id="careerProgressTemplateItem" icon="{= ${IsManagerPosition} ? 'sap-icon://manager' : 'sap-icon://employee'}"
+				dateTime="{ path: 'BeginDate', formatter: '.formatDate'}" title="{PositionLongtext}" text="{OrgunitLongtext}"/>
+		</content>
+	</Timeline>
+	<m:MessageStrip id="noCareerProgressStrip" text="{i18n>noCareerProgressTxt}" type="Information" showIcon="true"
+		tooltip="{i18n>noCareerProgressTxt}" visible="{= !${appEmployeeData>/bCareerProgressExist}}"/>
+</mvc:View>

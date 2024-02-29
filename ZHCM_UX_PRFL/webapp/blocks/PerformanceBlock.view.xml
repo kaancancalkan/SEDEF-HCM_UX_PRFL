@@ -1,0 +1,13 @@
+<!--
+
+    Copyright (C) 2009-2018 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View controllerName="com.sedef.hcm.ux.myprofile.blocks.PerformanceBlockController" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	xmlns:layout="sap.ui.layout">
+	<layout:VerticalLayout id="performanceVertLayout" width="100%" visible="{= !${appProperties>/isAppBusy}}">
+		<layout:content>
+			<!--VizFrame charts added dynamically in PerformanceBlockController.controller.js -->
+		</layout:content>
+	</layout:VerticalLayout>
+</mvc:View>

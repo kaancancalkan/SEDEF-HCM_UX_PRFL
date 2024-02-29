@@ -1,0 +1,29 @@
+<!--
+
+    Copyright (C) 2009-2018 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View controllerName="com.sedef.hcm.ux.myprofile.blocks.PaystubsBlockController" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" xmlns:l="sap.ui.layout" busy="{PaystubsView>/busy}">
+	<l:Grid id="paystubsContainer" content="{ path: 'toPaystubs', templateShareable: true, length: 4 }" containerQuery="false" hSpacing="0"
+		visible="{appEmployeeData>/bPaystubsExist}">
+		<l:content>
+			<ObjectListItem id="paystubTemplateItem" title="" intro="{i18n>takeHomePayTxt}" icon="sap-icon://monitor-payments"
+				number="{ path: 'NetpayAmount', type: 'sap.ui.model.type.Float' }"
+				numberState="{= parseFloat(${NetpayAmount}) &gt; 0 ? 'Success' : 'Error' }" numberUnit="{Currency}" class="sapUiSmallMarginEnd">
+				<firstStatus>
+					<ObjectStatus id="payrollTypeStatus" text="{PayrollTypeText}"/>
+				</firstStatus>
+				<secondStatus>
+					<ObjectStatus id="payDateStatus"
+						text="{ path: 'PayDate', type: 'sap.ui.model.odata.type.DateTime', formatOptions: { UTC: true, style: 'long' }, constraints: { displayFormat: 'Date' } }"/>
+				</secondStatus>
+			</ObjectListItem>
+		</l:content>
+	</l:Grid>
+	<MessageStrip id="noPaystubsStrip" text="{path: 'i18n>noPaystubsTxtDate', formatter: '.formatNoPaystubsText' }" type="Information"
+		showIcon="true" tooltip="{path: 'i18n>noPaystubsTxtDate', formatter: '.formatNoPaystubsText' }"
+		visible="{= !${appEmployeeData>/bPaystubsExist}}"/>
+	<Button id="navToPaystubsBtn" text="{i18n>navToPaystubsTxt}" type="Emphasized" press="onNavToPaystubsPress"
+		visible="{appProperties>/isMyPaystubsAvailable}" class="sapUiTinyMarginTop"/>
+</mvc:View>

@@ -1,0 +1,68 @@
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:f="sap.f" xmlns="sap.m" xmlns:card="sap.f.cards"
+	xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:upload="sap.m.upload"
+	>
+	<Dialog showHeader="false" stretch="{device>/system/phone}" id="idWorkExperienceChangeRequestDialog"
+		contentWidth="{= ${device>/resize/width} * 0.9 > 700 ? '700px' : String(parseInt(${device>/resize/width} * 0.9)).concat('px') }"
+		class="sapUiNoContentPadding" afterClose=".onAfterDialogClose" beforeOpen=".onBeforeDialogOpen" busy="{workExperienceModel>/busy}"
+		busyIndicatorDelay="0">
+		<content>
+			<f:Card class="sapUiNoMargin" width="100%">
+				<f:header>
+					<card:Header title="{i18n>workExperienceChangeRequestTitle}" subtitle="{i18n>workExperienceChangeRequestSubtitle}"
+						iconSrc="sap-icon://offsite-work"/>
+				</f:header>
+				<f:content>
+					<form:SimpleForm id="WorkExperienceChangeRequestForm" maxContainerCols="2" editable="true" layout="ResponsiveGridLayout" columnsXL="2"
+						labelSpanL="3" emptySpanL="0" columnsL="2" labelSpanM="3" emptySpanM="0" columnsM="2" labelSpanS="12" emptySpanS="0" adjustLabelSpan="false"
+						singleContainerFullSize="true">
+						<form:content>
+							<Toolbar ariaLabelledBy="workExpInfoTitle">
+								<Title id="workExpInfoTitle" text="{i18n>workExperienceInfoTitle}"/>
+								<ToolbarSpacer/>
+							</Toolbar>
+							<!-- Company -->
+							<Label text="{/#WorkExperience/CompanyName/@sap:label}" id="lblWorkExperienceCompanyName" labelFor="inpWorkExperienceCompanyName"/>
+							<Input id="inpWorkExperienceCompanyName" value="{workExperienceModel>/changeRequest/CompanyName}" maxLength="60"/>
+							<!-- Sector -->
+							<Label text="{/#WorkExperience/SectorName/@sap:label}" id="lblWorkExperienceSectorName" labelFor="inpWorkExperienceSectorName"/>
+							<ComboBox id="inpWorkExperienceSectorName"
+								items="{ path: '/ValueHelpSet', filters : [ { path : 'Id', operator : 'EQ', value1 : 'SectorId'} ] }"
+								selectedKey="{workExperienceModel>/changeRequest/SectorId}">
+								<core:Item key="{Key}" text="{Value}"/>
+							</ComboBox>
+							<!--<Input id="inpWorkExperienceSectorName" value="{workExperienceModel>/changeRequest/Sector}"/>-->
+							<!-- Position -->
+							<Label text="{/#WorkExperience/Position/@sap:label}" id="lblWorkExperiencePosition" labelFor="inpWorkExperiencePosition"/>
+							<Input id="inpWorkExperiencePosition" value="{workExperienceModel>/changeRequest/Position}" maxLength="60"/>
+							<!--Working Type  -->
+							<Label text="{/#WorkExperience/WorkingTypeText/@sap:label}" id="lblWorkExperienceWorkingType" labelFor="inpWorkExperienceWorkingType"/>
+							<ComboBox id="inpWorkExperienceWorkingType"
+								items="{ path: '/ValueHelpSet', filters : [ { path : 'Id', operator : 'EQ', value1 : 'WorkingType'} ] }"
+								selectedKey="{workExperienceModel>/changeRequest/WorkingType}">
+								<core:Item key="{Key}" text="{Value}"/>
+							</ComboBox>
+							<!--<Input id="inpWorkExperienceWorkingType" value="{workExperienceModel>/changeRequest/WorkingType}"/>-->
+							<!-- Dates -->
+							<Label text="{/#WorkExperience/HireDate/@sap:label}" id="lblWorkExperienceHireDate" labelFor="inpWorkExperienceHireDate"/>
+							<DatePicker id="inpWorkExperienceHireDate" dateValue="{path:'workExperienceModel>/changeRequest/HireDate', formatOptions: {UTC:true}}" displayFormat="dd.MM.yyyy">
+								<layoutData>
+									<l:GridData span="XL3 L3 M3 S12"/>
+								</layoutData>
+							</DatePicker>
+							<Label text="{/#WorkExperience/FireDate/@sap:label}" id="lblWorkExperienceFireDate" labelFor="inpWorkExperienceFireDate"/>
+							<DatePicker id="inpWorkExperienceFireDate" dateValue="{path:'workExperienceModel>/changeRequest/FireDate', formatOptions: {UTC:true}}" displayFormat="dd.MM.yyyy">
+								<layoutData>
+									<l:GridData span="XL3 L3 M3 S12"/>
+								</layoutData>
+							</DatePicker>
+						</form:content>
+					</form:SimpleForm>
+				</f:content>
+			</f:Card>
+		</content>
+		<buttons>
+			<Button text="{i18n>saveAction}" press=".onSaveChange" type="Accept"/>
+			<Button text="{i18n>cancelAction}" press=".onCloseDialog" type="Reject"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

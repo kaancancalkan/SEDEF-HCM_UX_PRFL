@@ -1,0 +1,167 @@
+<!--
+
+    Copyright (C) 2009-2018 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.uxap" xmlns:blocks="com.sedef.hcm.ux.myprofile.blocks" xmlns:m="sap.m">
+	<!--Personal Information-->
+	<ObjectPageSection id="personalInformationSection" title="{i18n>persInfoSectionTitle}" titleUppercase="true"
+		visible="{ConfigView>/showPersInfoSection}">
+		<subSections>
+			<ObjectPageSubSection id="personalDataSubSection"
+				title="{parts: [ 'ConfigView>/sPersonalDataSubSectionTitle', 'i18n>persInfoPersonalDataSubSectionTitle' ], formatter: '.formatter.formatPersInfoSubSectionTitle' }"
+				titleUppercase="false" visible="{ConfigView>/showPersonalData}">
+				<blocks>
+					<blocks:PersInfoPersonalDataBlock id="personalDataBlock" showSubSectionMore="false"/>
+				</blocks>
+			</ObjectPageSubSection>
+			<ObjectPageSubSection id="addressesSubSection"
+				title="{parts: [ 'ConfigView>/sAddressSubSectionTitle', 'i18n>persInfoAddressesSubSectionTitle' ], formatter: '.formatter.formatPersInfoSubSectionTitle' }"
+				titleUppercase="false" visible="{ConfigView>/showAddressData}">
+				<blocks>
+					<blocks:PersInfoAddressBlock id="addressesBlock" showSubSectionMore="false"/>
+				</blocks>
+			</ObjectPageSubSection>
+			<ObjectPageSubSection id="bankSubSection"
+				title="{parts: [ 'ConfigView>/sBankDetailsSubSectionTitle', 'i18n>persInfoBankDetailsSubSectionTitle' ], formatter: '.formatter.formatPersInfoSubSectionTitle' }"
+				titleUppercase="false"
+				visible="{= ${ConfigView>/showBankData} &amp;&amp; ${appProperties>/defaultEmployeeId} === ${appProperties>/employeeId} }">
+				<blocks>
+					<blocks:PersInfoBankBlock id="bankBlock" showSubSectionMore="false"/>
+				</blocks>
+			</ObjectPageSubSection>
+			<ObjectPageSubSection id="educationDataSubSection"
+				title="{parts: [ 'ConfigView>/sEducationSubSectionTitle', 'i18n>persInfoEductionSubSectionTitle' ], formatter: '.formatter.formatPersInfoSubSectionTitle' }"
+				titleUppercase="false" visible="{ConfigView>/showEducationData}">
+				<blocks>
+					<blocks:EducationBlock id="educationDataBlock" showSubSectionMore="false"/>
+				</blocks>
+			</ObjectPageSubSection>
+			<ObjectPageSubSection id="workExperienceSubSection" title="{path:'i18n>persInfoWorkExperienceSubSectionTitle'}" titleUppercase="false"
+				visible="{ConfigView>/showWorkExperienceData}">
+				<blocks>
+					<blocks:WorkExperienceBlock id="workExperienceDataBlock" showSubSectionMore="false"/>
+				</blocks>
+				<actions>
+					<m:Button icon="sap-icon://add" text="{i18n>addNewAction}" press=".onNewWorkExperience" visible="{ConfigView>/bAuthEditWorkExperience}"/>
+				</actions>
+			</ObjectPageSubSection>
+			<ObjectPageSubSection id="foreignLanguageSubSection" title="{path:'i18n>persInfoForeignLanguageSubSectionTitle'}" titleUppercase="false"
+				visible="{ConfigView>/showForeignLanguageData}">
+				<blocks>
+					<blocks:ForeignLanguageBlock id="foreignLanguageDataBlock" showSubSectionMore="false"/>
+				</blocks>
+				<actions>
+					<m:Button icon="sap-icon://add" text="{i18n>addNewAction}" press=".onNewForeignLanguage" visible="{ConfigView>/bAuthEditForeignLanguage}"/>
+				</actions>
+			</ObjectPageSubSection>
+			<ObjectPageSubSection id="courseSubSection" title="{path:'i18n>persInfoCourseSubSectionTitle'}" titleUppercase="false"
+				visible="{ConfigView>/showCourseData}">
+				<blocks>
+					<blocks:CourseBlock id="courseDataBlock" showSubSectionMore="false"/>
+				</blocks>
+				<actions>
+					<m:Button icon="sap-icon://add" text="{i18n>addNewAction}" press=".onNewCourse" visible="{ConfigView>/bAuthEditCourse}"/>
+				</actions>
+			</ObjectPageSubSection>
+			<ObjectPageSubSection id="certificateSubSection" title="{path:'i18n>persInfoCertificateSubSectionTitle'}" titleUppercase="false"
+				visible="{ConfigView>/showCertificateData}">
+				<blocks>
+					<blocks:CertificateBlock id="certificateDataBlock" showSubSectionMore="false"/>
+				</blocks>
+				<actions>
+					<m:Button icon="sap-icon://add" text="{i18n>addNewAction}" press=".onNewCertificate" visible="{ConfigView>/bAuthEditCertificate}"/>
+				</actions>
+			</ObjectPageSubSection>
+			<ObjectPageSubSection id="familyMembersSubSection"
+				title="{parts: [ 'ConfigView>/sFamilyMembersSubSectionTitle', 'i18n>persInfoFamilyMembersSubSectionTitle' ], formatter: '.formatter.formatPersInfoSubSectionTitle' }"
+				titleUppercase="false"
+				visible="{= ${ConfigView>/showFamilyMembersData} &amp;&amp; ${appProperties>/defaultEmployeeId} === ${appProperties>/employeeId} }">
+				<blocks>
+					<blocks:PersInfoFamilyMembersBlock id="familyMembersBlock" showSubSectionMore="false"/>
+				</blocks>
+			</ObjectPageSubSection>
+			<ObjectPageSubSection id="communicationDataSubSection"
+				title="{parts: [ 'ConfigView>/sCommunicationDataSubSectionTitle', 'i18n>persInfoCommunicationDataSubSectionTitle' ], formatter: '.formatter.formatPersInfoSubSectionTitle' }"
+				titleUppercase="false" visible="{ConfigView>/showCommunicationData}">
+				<blocks>
+					<blocks:PersInfoCommunicationDataBlock id="communicationDataBlock" showSubSectionMore="false"/>
+				</blocks>
+			</ObjectPageSubSection>
+			<ObjectPageSubSection id="internalDataSubSection"
+				title="{parts: [ 'ConfigView>/sInternalDataSubSectionTitle', 'i18n>persInfoInternalDataSubSectionTitle' ], formatter: '.formatter.formatPersInfoSubSectionTitle' }"
+				titleUppercase="false" visible="{ConfigView>/showInternalData}">
+				<blocks>
+					<blocks:PersInfoInternalDataBlock id="internalDataBlock" showSubSectionMore="false"/>
+				</blocks>
+			</ObjectPageSubSection>
+		</subSections>
+	</ObjectPageSection>
+	<!--Time Management-->
+	<ObjectPageSection id="timeSection" title="{i18n>timeSectionTitle}" titleUppercase="true" visible="{ConfigView>/showTimeSection}">
+		<subSections>
+			<ObjectPageSubSection id="timeSubSection" title="{i18n>timeSectionTitle}" titleUppercase="false" visible="{ConfigView>/showTimeSection}">
+				<blocks>
+					<blocks:AbsenceBlock id="absenceBlock" columnLayout="1"/>
+					<blocks:TimeRecordingBlock id="timeRecordingBlock" columnLayout="1"/>
+					<blocks:TimeBalanceBlock id="timeBalanceBlock" columnLayout="1"/>
+				</blocks>
+			</ObjectPageSubSection>
+		</subSections>
+	</ObjectPageSection>
+	<!--Talent-->
+	<ObjectPageSection id="talentSection" title="{i18n>talentSectionTitle}" titleUppercase="true" visible="{ConfigView>/showTalentSection}">
+		<subSections>
+			<ObjectPageSubSection id="trainingsSubSection" title="{i18n>trainingsSubSectionTitle}" titleUppercase="false"
+				visible="{ConfigView>/showTrainings}">
+				<blocks>
+					<blocks:TrainingsBlock id="trainingsBlock"/>
+				</blocks>
+			</ObjectPageSubSection>
+			<ObjectPageSubSection id="qualificationsSubSection" title="{i18n>qualificationsSubSectionTitle}" titleUppercase="false"
+				visible="{ConfigView>/showQualifications}">
+				<blocks>
+					<blocks:QualificationsBlock id="qualificationsBlock"/>
+				</blocks>
+			</ObjectPageSubSection>
+			<ObjectPageSubSection id="performanceSubSection" title="{i18n>performanceRatingSubSectionTitle}" titleUppercase="false"
+				visible="{ConfigView>/showPerformanceRatings}">
+				<blocks>
+					<blocks:PerformanceBlock id="performanceBlock"/>
+				</blocks>
+			</ObjectPageSubSection>
+			<ObjectPageSubSection id="careerProgressSubSection" title="{i18n>careerProgressSubSectionTitle}" titleUppercase="false"
+				visible="{ConfigView>/showCareerProgress}">
+				<blocks>
+					<blocks:CareerProgressBlock id="careerProgressBlock"/>
+				</blocks>
+			</ObjectPageSubSection>
+			<ObjectPageSubSection id="multipleSkillsProgressSubSection"
+				title="{path: 'i18n>multipleSkillsProgressSubSectionTitle', formatter:'.formatter.formatMultipleSkillsTableTitle'}" titleUppercase="false"
+				visible="true">
+				<blocks>
+					<blocks:MultipleSkillsBlock id="multipleSkillsBlock"/>
+				</blocks>
+			</ObjectPageSubSection>
+		</subSections>
+	</ObjectPageSection>
+	<!--Compensation-->
+	<ObjectPageSection id="compensationSection" title="{i18n>compensationSectionTitle}" titleUppercase="true"
+		visible="{ConfigView>/showCompensationSection}">
+		<subSections>
+			<ObjectPageSubSection id="paystubsSubSection" title="{i18n>paystubsSubSectionTitle}" titleUppercase="false"
+				visible="{ConfigView>/showPaystubs}" mode="Expanded">
+				<blocks>
+					<blocks:PaystubsBlock id="paystubsBlock" showSubSectionMore="false"/>
+				</blocks>
+			</ObjectPageSubSection>
+			<ObjectPageSubSection id="salarySubSection" title="{i18n>salarySubSectionTitle}" titleUppercase="false" visible="{ConfigView>/showSalary}">
+				<blocks>
+					<blocks:SalaryBlock id="salaryBlock"/>
+				</blocks>
+			</ObjectPageSubSection>
+		</subSections>
+	</ObjectPageSection>
+	<!--Allow adding sections to the Profile ObjectPage -->
+	<core:ExtensionPoint name="extensionProfileSections"/>
+</core:FragmentDefinition>

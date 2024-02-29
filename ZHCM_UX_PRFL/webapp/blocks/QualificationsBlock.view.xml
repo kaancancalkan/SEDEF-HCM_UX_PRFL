@@ -1,0 +1,36 @@
+<!--
+
+    Copyright (C) 2009-2018 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View controllerName="com.sedef.hcm.ux.myprofile.blocks.QualificationsBlockController" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.suite.ui.microchart" xmlns:m="sap.m" xmlns:l="sap.ui.layout" busy="{QualificationsView>/busy}">
+	<l:Grid id="qualiContainer" content="{ path: 'toQualifications', templateShareable: true }" containerQuery="false" hSpacing="0"
+		visible="{appEmployeeData>/bQualificationsExist}" class="sapUiResponsiveContentPadding">
+		<l:content>
+			<m:CustomListItem id="qualiCustItem" visible="true" type="Inactive" unread="false" selected="false" class="sapMObjLItem sapUiSmallMarginEnd">
+				<m:content>
+					<m:VBox id="qualiVbox" displayInline="false" direction="Column" fitContainer="false" renderType="Bare" justifyContent="Start"
+						alignItems="Stretch" wrap="NoWrap" alignContent="Stretch">
+						<m:items>
+							<BulletMicroChart id="qualiChart" size="Responsive" scale="" targetValue="{= parseInt(${TargetRating}) }" isResponsive="true"
+								showActualValue="true" actualValueLabel="{ActualRatingText}" showDeltaValue="false" showTargetValue="true"
+								targetValueLabel="{TargetRatingText}" showValueMarker="true" minValue="{= parseInt(${MinScaleLevel}) }"
+								maxValue="{= parseInt(${MaxScaleLevel}) }">
+								<actual>
+									<BulletMicroChartData value="{= parseInt(${ActualRating}) }"
+										color="{= parseInt(${ActualRating}) &lt; parseInt(${TargetRating}) ? 'Error' : 'Good' }"/>
+								</actual>
+							</BulletMicroChart>
+							<m:ObjectIdentifier id="qualiIdent" title="{QualificationText}"
+								text="{parts: [ {path: 'i18n>validUntilTxt'}, { path: 'EndDate', type: 'sap.ui.model.odata.type.DateTime', formatOptions: { UTC: true, style: 'long' }, constraints: { displayFormat: 'Date' } }], formatter: 'jQuery.sap.formatMessage'}"/>
+						</m:items>
+					</m:VBox>
+				</m:content>
+			</m:CustomListItem>
+		</l:content>
+	</l:Grid>
+	<m:MessageStrip id="noQualisStrip" text="{path: 'i18n>noQualificationsTxtDate', formatter: '.formatNoQualificationsText'}"
+		type="Information" showIcon="true" tooltip="{path: 'i18n>noQualificationsTxtDate', formatter: '.formatNoQualificationsText'}"
+		visible="{= !${appEmployeeData>/bQualificationsExist}}"/>
+</mvc:View>

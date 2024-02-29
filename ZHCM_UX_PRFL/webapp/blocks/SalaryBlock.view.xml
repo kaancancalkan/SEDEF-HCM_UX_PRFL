@@ -1,0 +1,26 @@
+<!--
+
+    Copyright (C) 2009-2018 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View controllerName="com.sedef.hcm.ux.myprofile.blocks.SalaryBlockController" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.viz.ui5.controls" xmlns:data="sap.viz.ui5.data" xmlns:m="sap.m" xmlns:feeds="sap.viz.ui5.controls.common.feeds"
+	busy="{SalaryView>/busy}">
+	<Popover id="idPopOver"/>
+	<VizFrame id="salaryVizFrame" uiConfig="{ applicationSet: 'fiori' }" vizType="stacked_column" width="100%"
+		visible="{appEmployeeData>/bSalaryExists}">
+		<dataset>
+			<data:FlattenedDataset id="dataset" data="{}">
+				<data:dimensions>
+					<data:DimensionDefinition id="yearDim" name="Year" value="{PayYear}"/>
+				</data:dimensions>
+				<data:measures>
+					<data:MeasureDefinition id="salaryMeas" name="GrossSalary" value="{GrossSalary}"/>
+					<data:MeasureDefinition id="bonusMeas" name="NetSalary" value="{NetSalary}"/>
+				</data:measures>
+			</data:FlattenedDataset>
+		</dataset>
+	</VizFrame>
+	<m:MessageStrip id="noSalaryStrip" text="{path: 'i18n>noSalaryTxtDate', formatter: '.formatNoSalaryText'}" type="Information"
+		showIcon="true" tooltip="{i18n>noSalaryTxt}" visible="{= !${appEmployeeData>/bSalaryExists}}"/>
+</mvc:View>

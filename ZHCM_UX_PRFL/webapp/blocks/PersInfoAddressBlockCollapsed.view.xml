@@ -1,0 +1,38 @@
+<!--
+
+    Copyright (C) 2009-2018 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View controllerName="com.sedef.hcm.ux.myprofile.blocks.PersInfoAddressBlockController"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:form="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout">
+	<l:Grid id="addressContainer" content="{ path: 'toAddresses', templateShareable: false}" containerQuery="false" hSpacing="0" defaultSpan="XL3 L4 M6 S12" visible="{appEmployeeData>/bPersInfoAddressExists}">
+		<l:content>
+			<form:SimpleForm id="addressForm" maxContainerCols="2" editable="false" layout="ResponsiveGridLayout" labelSpanXL="-1" emptySpanXL="-1" columnsXL="-1" labelSpanL="4" emptySpanL="3" columnsL="2" labelSpanM="4" emptySpanM="2" columnsM="2" labelSpanS="12" emptySpanS="0" adjustLabelSpan="false" singleContainerFullSize="false">
+				<form:content>
+					<!--Subtype -->
+					<core:Title text="{SubtypeText}"/>
+					<!--Street and HouseNumber -->
+					<Label id="lblStreet" labelFor="txtStreet" text="{parts: [ 'i18n>postalCodeCityLabel', '/#Address/Street/@sap:label', '/#Address/HouseNumber/@sap:label', 'VersionId' ], formatter: '.reuseHandler.getStreetHouseNoLabel'}" visible="{parts: [ '/#Address/Street/@name', 'toPersInfoMetaData', 'Street' ], formatter: '.getVisibility'}"/>
+					<Text id="txtStreet" text="{parts: [ 'i18n>postalCodeCity', 'Street', 'HouseNumber' ], formatter: 'jQuery.sap.formatMessage'}" visible="{parts: [ '/#Address/Street/@name', 'toPersInfoMetaData', 'Street' ], formatter: '.getVisibility'}"/>
+					<!--PostalCode and City -->
+					<Label id="lblCity" labelFor="txtCity" text="{parts: [ 'i18n>postalCodeCityLabel', '/#Address/PostalCode/@name', '/#Address/City/@name', 'toPersInfoMetaData' ], formatter: '.formatPostalCodeCityLabel'}" visible="{parts: [ '/#Address/PostalCode/@name', 'toPersInfoMetaData', 'PostalCode' ], formatter: '.getVisibility'}"/>
+					<Text id="txtCity" text="{parts: [ 'i18n>postalCodeCity', 'PostalCode', 'City' ], formatter: 'jQuery.sap.formatMessage'}" visible="{parts: [ '/#Address/PostalCode/@name', 'toPersInfoMetaData', 'PostalCode' ], formatter: '.getVisibility'}"/>
+					<!--State -->
+					<Label id="lblStateId" text="{parts: [ '/#Address/StateId/@name', 'toPersInfoMetaData', '/#Address/StateId/@sap:label'], formatter: '.getPersinfoLabel'}" labelFor="txtStateId" visible="{parts: [ '/#Address/StateId/@name', 'toPersInfoMetaData', 'StateText' ], formatter: '.getVisibility'}"/>
+					<Text id="txtStateId" text="{StateText}" visible="{parts: [ '/#Address/StateId/@name', 'toPersInfoMetaData', 'StateText' ], formatter: '.getVisibility'}"/>
+					<!--Country -->
+					<Label text="{parts: [ '/#Address/CountryId/@name', 'toPersInfoMetaData', '/#Address/CountryId/@sap:label'], formatter: '.getPersinfoLabel'}" id="lblCountryText" labelFor="txtCountryText" visible="{parts: [ '/#Address/CountryId/@name', 'toPersInfoMetaData', 'CountryText' ], formatter: '.getVisibility'}"/>
+					<Text id="txtCountryText" text="{CountryText}" visible="{parts: [ '/#Address/CountryId/@name', 'toPersInfoMetaData', 'CountryText' ], formatter: '.getVisibility'}"/>
+					<!--Allows you to add additional elements to the addresses form-->
+					<core:ExtensionPoint name="extensionAddressForm"/>
+				</form:content>
+			</form:SimpleForm>
+		</l:content>
+	</l:Grid>
+	<MessageStrip id="noAddressesStrip" text="{path: 'i18n>noAddressesTxt'}" type="Information" showIcon="true" tooltip="{path: 'i18n>noAddressesTxt'}" visible="{= !${appEmployeeData>/bPersInfoAddressExists}}"/>
+	<Button id="navToAddressesBtn" text="{i18n>navToAddressesBtn}" type="Emphasized" press="onNavToAddressesPress" visible="{appProperties>/isMyAddressesAvailable}" class="sapUiTinyMarginTop"/>
+</mvc:View>

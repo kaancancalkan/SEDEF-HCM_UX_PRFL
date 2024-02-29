@@ -1,0 +1,21 @@
+<!--
+
+    Copyright (C) 2009-2018 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<QuickView id="officeInfoQuickView" placement="PreferredRightOrFlip">
+		<QuickViewPage id="officeInfoCard" header="{i18n>officeInfoHeading}" icon="sap-icon://building" title="{EmployeeOrgunitLongtext}">
+			<QuickViewGroup>
+				<QuickViewGroupElement id="costCenterElem" label="{/#EmployeeDetail/CostCenterText/@sap:label}"
+					value="{parts: [{path: 'CostCenterText'},{path: 'CostCenterId'}], formatter:'.formatter.formatObjectTextWithBrackets'}"/>
+				<QuickViewGroupElement id="officeLocationElem" label="{i18n>officeLocation}"
+					value="{parts: [{path: 'OfficeAddress/OfficeBuilding'},{path: 'OfficeAddress/OfficeRoom'}], formatter:'.formatter.formatOfficeLocation'}"/>
+				<QuickViewGroupElement id="officeAddressElem" label="{/#EmployeeDetail/OfficeAddress/OfficeAddressFormatted/@sap:label}"
+					value="{OfficeAddress/OfficeAddressFormatted}"/>
+			</QuickViewGroup>
+			<!--Allow adding additional elements to the OfficeInfo Quickview -->
+			<core:ExtensionPoint name="extensionOfficeInfoQuickview"/>
+		</QuickViewPage>
+	</QuickView> 
+</core:FragmentDefinition>

@@ -1,0 +1,233 @@
+{
+    "_version": "1.4.0",
+    "sap.app": {
+        "id": "com.sedef.hcm.ux.myprofile",
+        "type": "application",
+        "resources": "resources.json",
+        "i18n": "i18n/i18n.properties",
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "applicationVersion": {
+            "version": "1.1.26"
+        },
+        "tags": {
+            "keywords": [
+                "{{keyWord1}}",
+                "{{keyWord2}}",
+                "{{keyWord3}}"
+            ]
+        },
+        "ach": "PA-FIO-PRO",
+        "dataSources": {
+            "mainService": {
+                "uri": "/sap/opu/odata/sap/ZHCMFAB_MYPROFILE_SRV/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "2.0",
+                    "localUri": "localService/metadata.xml"
+                }
+            }
+        },
+        "crossNavigation": {
+            "inbounds": {
+                "profileDisplay": {
+                    "semanticObject": "PersonnelProfile",
+                    "action": "display",
+                    "icon": "sap-icon://personnel-view",
+                    "title": "{{appTitle}}",
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "ignored"
+                    },
+                    "info": "{{appDescription}}"
+                }
+            },
+            "outbounds": {
+                "mytimeevents": {
+                    "semanticObject": "TimeEntry",
+                    "action": "change"
+                },
+                "myleaverequests": {
+                    "semanticObject": "LeaveRequest",
+                    "action": "manage"
+                },
+                "mytimesheet": {
+                    "semanticObject": "TimeEntry",
+                    "action": "manageTimesheet"
+                },
+                "myaddresses": {
+                    "semanticObject": "Employee",
+                    "action": "manageAddressData"
+                },
+                "mypersonaldata": {
+                    "semanticObject": "Employee",
+                    "action": "managePersonalData"
+                },
+                "mybankdetails": {
+                    "semanticObject": "Employee",
+                    "action": "manageBankData"
+                },
+                "myfamilymembers": {
+                    "semanticObject": "Employee",
+                    "action": "manageFamilyMembers"
+                },
+                "mycommunicationdata": {
+                    "semanticObject": "Employee",
+                    "action": "manageCommunicationData"
+                },
+                "myinternaldata": {
+                    "semanticObject": "Employee",
+                    "action": "manageInternalData"
+                }
+            }
+        },
+        "sourceTemplate": {
+            "id": "servicecatalog.connectivityComponent",
+            "version": "0.0.0",
+            "toolsId": "1322340b-246f-4ceb-a1cf-fea43078dfee"
+        }
+    },
+    "sap.fiori": {
+        "registrationIds": [
+            "F3129"
+        ],
+        "archeType": "transactional"
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "sap-icon://business-card",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        },
+        "supportedThemes": [
+            "sap_hcb",
+            "sap_belize"
+        ]
+    },
+    "sap.ui5": {
+        "rootView": {
+            "viewName": "com.sedef.hcm.ux.myprofile.view.App",
+            "type": "XML",
+            "id": "app"
+        },
+        "dependencies": {
+            "minUI5Version": "1.71.50",
+            "libs": {
+                "sap.f": {
+                    "minVersion": ""
+                },
+                "sap.fiori": {
+                    "minVersion": ""
+                },
+                "sap.m": {},
+                "sap.suite.ui.commons": {},
+                "sap.suite.ui.microchart": {},
+                "sap.ui.core": {},
+                "sap.ui.layout": {},
+                "sap.uxap": {},
+                "sap.viz": {}
+            }
+        },
+        "config": {
+            "sapFiori2Adaptation": true
+        },
+        "handleValidation": true,
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "com.sedef.hcm.ux.myprofile.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": false,
+                "settings": {
+                    "useBatch": false,
+                    "disableHeadRequestForToken": true,
+                    "defaultOperationMode": "Auto",
+                    "defaultCountMode": "None",
+                    "defaultBindingMode": "TwoWay"
+                }
+            }
+        },
+        "services": {
+            "ShellUIService": {
+                "factoryName": "sap.ushell.ui5service.ShellUIService",
+                "lazy": false,
+                "settings": {
+                    "setHierarchy": "auto",
+                    "setTitle": "auto"
+                }
+            }
+        },
+        "resources": {
+            "js": [
+                {
+                    "uri": "ext/lodash.js"
+                },
+                {
+                    "uri": "ext/ApexCharts.js"
+                }
+            ],
+            "css": [
+                {
+                    "uri": "ext/customStyles.css"
+                },
+                {
+                    "uri": "ext/ApexCharts.css"
+                },
+                {
+                    "uri": "css/custom.css"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "viewPath": "com.sedef.hcm.ux.myprofile.view",
+                "controlId": "app",
+                "controlAggregation": "pages",
+                "bypassed": {
+                    "target": []
+                },
+                "async": true
+            },
+            "routes": [
+                {
+                    "pattern": "",
+                    "name": "profileOverview",
+                    "target": [
+                        "profileOverview"
+                    ]
+                }
+            ],
+            "targets": {
+                "profileOverview": {
+                    "viewName": "ProfileOverview",
+                    "viewId": "ProfileOverview",
+                    "viewLevel": 1,
+                    "title": "{i18n>appTitle}"
+                }
+            }
+        }
+    },
+    "sap.platform.abap": {
+        "uri": "/sap/bc/ui5_ui5/sap/zhcm_ux_prfl",
+        "_version": "1.1.0"
+    }
+}

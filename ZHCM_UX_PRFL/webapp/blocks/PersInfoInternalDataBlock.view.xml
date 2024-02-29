@@ -1,0 +1,40 @@
+<!--
+
+    Copyright (C) 2009-2018 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View controllerName="com.sedef.hcm.ux.myprofile.blocks.PersInfoInternalDataBlockController" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout">
+	<l:Grid id="internalDataContainer" content="{ path: 'toInternalData', templateShareable: false }" containerQuery="false" hSpacing="0"
+		defaultSpan="XL12 L12 M12 S12" visible="{appEmployeeData>/bPersInfoInternalDataExists}">
+		<l:content>
+			<form:SimpleForm id="InternalDataForm" maxContainerCols="1" editable="false" layout="ResponsiveGridLayout" labelSpanXL="-1" emptySpanXL="-1"
+				columnsXL="-1" labelSpanL="12" emptySpanL="0" columnsL="1" labelSpanM="12" emptySpanM="0" columnsM="1" labelSpanS="12" emptySpanS="0"
+				adjustLabelSpan="false" singleContainerFullSize="false">
+				<form:content>
+					<!-- BuildingNumber -->
+					<Label text="{/#InternalData/BuildingNumber/@sap:label}" id="lblBuildingNumber" labelFor="txtBuildingNumber"
+						visible="{parts: [ '/#InternalData/BuildingNumber/@name', 'toPersInfoMetaData', 'BuildingNumber'], formatter: '.getVisibility'}"/>
+					<Text id="txtBuildingNumber" text="{BuildingNumber}"
+						visible="{parts: [ '/#InternalData/BuildingNumber/@name', 'toPersInfoMetaData', 'BuildingNumber' ], formatter: '.getVisibility'}"/>
+					<!-- RoomNumber -->
+					<Label text="{/#InternalData/RoomNumber/@sap:label}" id="lblRoomNumber" labelFor="txtRoomNumber"
+						visible="{parts: [ '/#InternalData/RoomNumber/@name', 'toPersInfoMetaData', 'RoomNumber' ], formatter: '.getVisibility'}"/>
+					<Text id="txtRoomNumber" text="{RoomNumber}"
+						visible="{parts: [ '/#InternalData/RoomNumber/@name', 'toPersInfoMetaData', 'RoomNumber' ], formatter: '.getVisibility'}"/>
+					<!-- LicensePlateNumber -->
+					<Label text="{/#InternalData/LicensePlateNumber/@sap:label}" id="lblLicensePlateNumber" labelFor="txtLicensePlateNumber"
+						visible="{parts: [ '/#InternalData/LicensePlateNumber/@name', 'toPersInfoMetaData', 'LicensePlateNumber' ], formatter: '.getVisibility'}"/>
+					<Text id="txtLicensePalteNumber" text="{LicensePlateNumber}"
+						visible="{parts: [ '/#InternalData/LicensePlateNumber/@name', 'toPersInfoMetaData', 'LicensePlateNumber' ], formatter: '.getVisibility'}"/>
+					<!--Allows you to add additional elements to the internal data form-->
+					<core:ExtensionPoint name="extensionInternalDataForm"/>
+				</form:content>
+			</form:SimpleForm>
+		</l:content>
+	</l:Grid>
+	<MessageStrip id="noInternalDataStrip" text="{path: 'i18n>noInternalDataTxt'}" type="Information" showIcon="true"
+		tooltip="{path: 'i18n>noInternalDataTxt'}" visible="{= !${appEmployeeData>/bPersInfoInternalDataExists}}"/>
+	<Button id="navToInternalDataBtn" text="{i18n>navToInternalDataBtn}" type="Emphasized" press="onNavToInternalDataPress"
+		visible="{appProperties>/isMyInternalDataAvailable}" class="sapUiTinyMarginTop"/>
+</mvc:View>

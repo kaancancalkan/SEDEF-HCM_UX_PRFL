@@ -1,0 +1,24 @@
+<!--
+
+    Copyright (C) 2009-2018 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View controllerName="com.sedef.hcm.ux.myprofile.blocks.TimeBalanceBlockController" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" xmlns:l="sap.ui.layout">
+	<Title id="timeBalLabel" text="{i18n>timeBalanceSubSectionTitle}" level="H4" titleStyle="H4" class="sapUiSmallMarginBottom"/>
+	<ObjectListItem id="timeBalItem" title="{BalanceText}" intro="" icon="sap-icon://create-entry-time"
+		number="{ path: 'BalanceValue', type: 'sap.ui.model.type.Float' }" numberUnit="{BalanceUnit}" numberState="None"
+		busy="{TimeBalanceView>/busy}" visible="{= !${appProperties>/isAppBusy}}">
+		<firstStatus>
+			<ObjectStatus id="timeBalSecondStat" text="{path: 'BalanceValue', formatter: '.formatTimeBalanceStatusText'}"
+				state="{path: 'BalanceValue', formatter: '.formatTimeBalanceStatus'}"/>
+		</firstStatus>
+		<secondStatus>
+			<ObjectStatus id="timeBalFirstStat" visible="{= !${TimeBalanceView>/busy} }"
+				text="{parts: [ {path: 'i18n>asOfTxt'}, { path: 'BalanceAsofDate', type: 'sap.ui.model.odata.type.DateTime', formatOptions: { UTC: true, style: 'long', relative: true }, constraints: { displayFormat: 'Date' } }], formatter: 'jQuery.sap.formatMessage'}"/>
+		</secondStatus>
+	</ObjectListItem>
+	<Button id="navToTimeEventsBtn" text="{i18n>navToTimeEventsBtn}" type="Emphasized" press="onNavToMyTimeEvents"
+		enabled="{= !${TimeBalanceView>/busy}}" visible="{= ${appProperties>/isMyTimeEventsAvailable} &amp;&amp; !${appProperties>/isAppBusy}}"
+		class="sapUiTinyMarginTop"/>
+</mvc:View>

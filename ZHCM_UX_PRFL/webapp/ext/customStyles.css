@@ -1,0 +1,10 @@
+.centeredMessage{
+	display: flex;
+    align-items: center;
+}
+
+.smodBoxIndicator{
+	line-height: 2rem;
+	border: 1px solid #e8e8e8;
+	border-radius:3px;
+}

@@ -1,0 +1,151 @@
+<!--
+
+    Copyright (C) 2009-2018 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View controllerName="com.sedef.hcm.ux.myprofile.blocks.PersInfoPersonalDataBlockController" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout">
+	<l:Grid id="personalDataContainer" content="{ path: 'toPersonalData', templateShareable: false }" containerQuery="false" hSpacing="0"
+		defaultSpan="XL12 L12 M12 S12" visible="{appEmployeeData>/bPersInfoPersonalDataExists}">
+		<l:content>
+			<form:SimpleForm id="PersonalDataForm" maxContainerCols="2" editable="false" layout="ResponsiveGridLayout" labelSpanXL="12" emptySpanXL="0"
+				columnsXL="4" labelSpanL="12" emptySpanL="0" columnsL="4" labelSpanM="12" emptySpanM="0" columnsM="2" labelSpanS="12" emptySpanS="0"
+				adjustLabelSpan="false" singleContainerFullSize="false">
+				<form:content>
+					<!-- Name group -->
+					<!--<core:Title text="{i18n>persNameTitle}"/>-->
+					<core:Title text=""/>
+					<!-- Form Of Address -->
+					<Label
+						text="{parts: [ '/#PersonalData/FormOfAdressId/@name', 'toPersInfoMetaData', '/#PersonalData/FormOfAdressId/@sap:label'], formatter: '.getPersinfoLabel'}"
+						id="lblFormattedName" labelFor="txtFormattedName"
+						visible="{parts: [ '/#PersonalData/FormOfAdressId/@name', 'toPersInfoMetaData', 'FormOfAdressText' ], formatter: '.getVisibility'}"/>
+					<Text id="txtFormattedName" text="{FormOfAdressText}"
+						visible="{parts: [ '/#PersonalData/FormOfAdressId/@name', 'toPersInfoMetaData', 'FormOfAdressText' ], formatter: '.getVisibility'}"/>
+					<!-- First Name -->
+					<Label
+						text="{parts: [ '/#PersonalData/FirstName/@name', 'toPersInfoMetaData', '/#PersonalData/FirstName/@sap:label'], formatter: '.getPersinfoLabel'}"
+						id="lblFirstName" labelFor="txtFirstName"
+						visible="{parts: [ '/#PersonalData/FirstName/@name', 'toPersInfoMetaData', 'FirstName' ], formatter: '.getVisibility'}"/>
+					<Text id="txtFirstName" text="{FirstName}"
+						visible="{parts: [ '/#PersonalData/FirstName/@name', 'toPersInfoMetaData', 'FirstName' ], formatter: '.getVisibility'}"/>
+					<!-- Last Name -->
+					<Label
+						text="{parts: [ '/#PersonalData/LastName/@name', 'toPersInfoMetaData', '/#PersonalData/LastName/@sap:label'], formatter: '.getPersinfoLabel'}"
+						id="lblLastName" labelFor="txtLastName"
+						visible="{parts: [ '/#PersonalData/LastName/@name', 'toPersInfoMetaData', 'LastName' ], formatter: '.getVisibility'}"/>
+					<Text id="txtLastName" text="{LastName}"
+						visible="{parts: [ '/#PersonalData/LastName/@name', 'toPersInfoMetaData', 'LastName' ], formatter: '.getVisibility'}"/>
+					<!-- Initials -->
+					<Label
+						text="{parts: [ '/#PersonalData/Initials/@name', 'toPersInfoMetaData', '/#PersonalData/Initials/@sap:label'], formatter: '.getPersinfoLabel'}"
+						id="lblInitials" labelFor="txtInitials"
+						visible="{parts: [ '/#PersonalData/Initials/@name', 'toPersInfoMetaData', 'Initials' ], formatter: '.getVisibility'}"/>
+					<Text id="txtInitials" text="{Initials}"
+						visible="{parts: [ '/#PersonalData/Initials/@name', 'toPersInfoMetaData', 'Initials' ], formatter: '.getVisibility'}"/>
+					<!-- Academic Title -->
+					<Label
+						text="{parts: [ '/#PersonalData/AcademicTitle/@name', 'toPersInfoMetaData', '/#PersonalData/AcademicTitle/@sap:label'], formatter: '.getPersinfoLabel'}"
+						id="lblAcademicTitle" labelFor="txtAcademicTitle"
+						visible="{parts: [ '/#PersonalData/AcademicTitle/@name', 'toPersInfoMetaData', 'AcademicTitle' ], formatter: '.getVisibility'}"/>
+					<Text id="txtAcademicTitle" text="{AcademicTitle}"
+						visible="{parts: [ '/#PersonalData/AcademicTitle/@name', 'toPersInfoMetaData', 'AcademicTitle' ], formatter: '.getVisibility'}"/>
+					<!-- DateOfBirth group-->
+					<!--<core:Title text="{i18n>persBirthTitle}"/>-->
+					<core:Title text=""/>
+					<!-- DateOfBirth -->
+					<Label
+						text="{parts: [ '/#PersonalData/DateOfBirth/@name', 'toPersInfoMetaData', '/#PersonalData/DateOfBirth/@sap:label'], formatter: '.getPersinfoLabel'}"
+						id="lblDateOfBirth" labelFor="txtDateOfBirth"
+						visible="{parts: [ '/#PersonalData/DateOfBirth/@name', 'toPersInfoMetaData', 'DateOfBirth' ], formatter: '.getVisibility'}"/>
+					<Text id="txtDateOfBirth"
+						text="{ path: 'DateOfBirth', type: 'sap.ui.model.odata.type.DateTime', formatOptions: { UTC: true }, constraints: { displayFormat: 'Date' }}"
+						visible="{parts: [ '/#PersonalData/DateOfBirth/@name', 'toPersInfoMetaData', 'DateOfBirth' ], formatter: '.getVisibility'}"/>
+					<!--<Text id="txtDateOfBirth"-->
+					<!--	text="{ path: 'DateOfBirth',formatter: '.formatter.formatDate'}"-->
+					<!--	visible="{parts: [ '/#PersonalData/DateOfBirth/@name', 'toPersInfoMetaData', 'DateOfBirth' ], formatter: '.getVisibility'}"/>-->
+			
+					<!-- Birthplace -->
+					<Label
+						text="{parts: [ '/#PersonalData/CityOfBirth/@name', 'toPersInfoMetaData', '/#PersonalData/CityOfBirth/@sap:label'], formatter: '.getPersinfoLabel'}"
+						id="lblCityOfBirth" labelFor="txtCityOfBirth"
+						visible="{parts: [ '/#PersonalData/CityOfBirth/@name', 'toPersInfoMetaData', 'CityOfBirth' ], formatter: '.getVisibility'}"/>
+					<Text id="txtCityOfBirth" text="{CityOfBirth}"
+						visible="{parts: [ '/#PersonalData/CityOfBirth/@name', 'toPersInfoMetaData', 'CityOfBirth' ], formatter: '.getVisibility'}"/>
+					<!-- Country of Birth -->
+					<Label
+						text="{parts: [ '/#PersonalData/CountryOfBirthId/@name', 'toPersInfoMetaData', '/#PersonalData/CountryOfBirthId/@sap:label'], formatter: '.getPersinfoLabel'}"
+						id="lblCountryOfBirth" labelFor="txtCountryOfBirth"
+						visible="{parts: [ '/#PersonalData/CountryOfBirthId/@name', 'toPersInfoMetaData', 'CountryOfBirthText' ], formatter: '.getVisibility'}"/>
+					<Text id="txtCountryOfBirth" text="{CountryOfBirthText}"
+						visible="{parts: [ '/#PersonalData/CountryOfBirthId/@name', 'toPersInfoMetaData', 'CountryOfBirthText' ], formatter: '.getVisibility'}"/>
+					<!-- Name at Birth -->
+					<Label
+						text="{parts: [ '/#PersonalData/NameAtBirth/@name', 'toPersInfoMetaData', '/#PersonalData/NameAtBirth/@sap:label'], formatter: '.getPersinfoLabel'}"
+						id="lblNameAtBirth" labelFor="txtNameAtBirth"
+						visible="{parts: [ '/#PersonalData/NameAtBirth/@name', 'toPersInfoMetaData', 'NameAtBirth' ], formatter: '.getVisibility'}"/>
+					<Text id="txtNameAtBirth" text="{NameAtBirth}"
+						visible="{parts: [ '/#PersonalData/NameAtBirth/@name', 'toPersInfoMetaData', 'NameAtBirth' ], formatter: '.getVisibility'}"/>
+					<!-- Other Data group -->
+					<!--<core:Title text="{i18n>persOtherTitle}"/>-->
+					<core:Title text=""/>
+					<!-- Language -->
+					<Label
+						text="{parts: [ '/#PersonalData/CommunicationLanguageId/@name', 'toPersInfoMetaData', '/#PersonalData/CommunicationLanguageId/@sap:label'], formatter: '.getPersinfoLabel'}"
+						id="lblCommunicationLanguage" labelFor="txtCommunicationLanguage"
+						visible="{parts: [ '/#PersonalData/CommunicationLanguageId/@name', 'toPersInfoMetaData', 'CommunicationLanguageText' ], formatter: '.getVisibility'}"/>
+					<Text id="txtCommunicationLanguage" text="{CommunicationLanguageText}"
+						visible="{parts: [ '/#PersonalData/CommunicationLanguageId/@name', 'toPersInfoMetaData', 'CommunicationLanguageText' ], formatter: '.getVisibility'}"/>
+					<!-- Nationality -->
+					<Label
+						text="{parts: [ '/#PersonalData/NationalityId/@name', 'toPersInfoMetaData', '/#PersonalData/NationalityId/@sap:label'], formatter: '.getPersinfoLabel'}"
+						id="lblNationality" labelFor="txtNationality"
+						visible="{parts: [ '/#PersonalData/NationalityId/@name', 'toPersInfoMetaData', 'NationalityText' ], formatter: '.getVisibility'}"/>
+					<Text id="txtNationality" text="{NationalityText}"
+						visible="{parts: [ '/#PersonalData/NationalityId/@name', 'toPersInfoMetaData', 'NationalityText' ], formatter: '.getVisibility'}"/>
+					<!-- Second Nationality -->
+					<Label
+						text="{parts: [ '/#PersonalData/SecondNationalityId/@name', 'toPersInfoMetaData', '/#PersonalData/SecondNationalityId/@sap:label'], formatter: '.getPersinfoLabel'}"
+						id="lblSecondNationality" labelFor="txtSecondNationality"
+						visible="{parts: [ '/#PersonalData/SecondNationalityId/@name', 'toPersInfoMetaData', 'SecondNationalityText' ], formatter: '.getVisibility'}"/>
+					<Text id="txtSecondNationality" text="{SecondNationalityText}"
+						visible="{parts: [ '/#PersonalData/SecondNationalityId/@name', 'toPersInfoMetaData', 'SecondNationalityText' ], formatter: '.getVisibility'}"/>
+					<!-- Third Nationality -->
+					<Label
+						text="{parts: [ '/#PersonalData/ThirdNationalityId/@name', 'toPersInfoMetaData', '/#PersonalData/ThirdNationalityId/@sap:label'], formatter: '.getPersinfoLabel'}"
+						id="lblThirdNationality" labelFor="txtThirdNationality"
+						visible="{parts: [ '/#PersonalData/ThirdNationalityId/@name', 'toPersInfoMetaData', 'ThirdNationalityText' ], formatter: '.getVisibility'}"/>
+					<Text id="txtThirdNationality" text="{ThirdNationalityText}"
+						visible="{parts: [ '/#PersonalData/ThirdNationalityId/@name', 'toPersInfoMetaData', 'ThirdNationalityText' ], formatter: '.getVisibility'}"/>
+					<!-- Relegion -->
+					<Label
+						text="{parts: [ '/#PersonalData/ReligiousDenominationId/@name', 'toPersInfoMetaData', '/#PersonalData/ReligiousDenominationId/@sap:label'], formatter: '.getPersinfoLabel'}"
+						id="lblRelegion" labelFor="txtRelegion"
+						visible="{parts: [ '/#PersonalData/ReligiousDenominationId/@name', 'toPersInfoMetaData', 'ReligiousDenominationTextLong' ], formatter: '.getVisibility'}"/>
+					<Text id="txtRelegion" text="{ReligiousDenominationTextLong}"
+						visible="{parts: [ '/#PersonalData/ReligiousDenominationId/@name', 'toPersInfoMetaData', 'ReligiousDenominationTextLong' ], formatter: '.getVisibility'}"/>
+					<!-- MaritalStatus group -->
+					<!--<core:Title text="{i18n>persMaritalStatusTitle}"/>-->
+					<core:Title text=""/>
+					<!-- Marital Status / Marital Status Since -->
+					<Label text="{/#PersonalData/MaritalStatusId/@sap:label}" id="lblMaritalStatusText" labelFor="txtMaritalStatusText"
+						visible="{parts: [ '/#PersonalData/MaritalStatusId/@name', 'toPersInfoMetaData', 'MaritalStatusText' ], formatter: '.getVisibility'}"/>
+					<Text id="txtMaritalStatusText"
+						text="{parts: [ {path: 'i18n>maritalStatusSinceTxt'}, {path: 'MaritalStatusText'}, { path: 'MaritalStatusBeginDate', type: 'sap.ui.model.odata.type.DateTime', formatOptions: { UTC: true, style: 'medium' }, constraints: { displayFormat: 'Date' }}], formatter: '.formatter.formatMaritalStatus'}"
+						visible="{parts: [ '/#PersonalData/MaritalStatusId/@name', 'toPersInfoMetaData', 'MaritalStatusText' ], formatter: '.getVisibility'}"/>
+					<!-- Number of Children -->
+					<Label text="{/#PersonalData/NumberOfChildren/@sap:label}" id="lblNumberOfChildren" labelFor="txtNumberOfChildren"
+						visible="{parts: [ '/#PersonalData/NumberOfChildren/@name', 'toPersInfoMetaData', 'NumberOfChildren' ], formatter: '.getVisibility'}"/>
+					<Text id="txtNumberOfChildren" text="{NumberOfChildren}"
+						visible="{parts: [ '/#PersonalData/NumberOfChildren/@name', 'toPersInfoMetaData', 'NumberOfChildren' ], formatter: '.getVisibility'}"/>
+					<!--Allows you to add additional elements to the personal data form  -->
+					<core:ExtensionPoint name="extensionPersonalDataForm"/>
+				</form:content>
+			</form:SimpleForm>
+		</l:content>
+	</l:Grid>
+	<MessageStrip id="noPersonalDataStrip" text="{path: 'i18n>noPersonalDataTxt'}" type="Information" showIcon="true"
+		tooltip="{path: 'i18n>noPersonalDataTxt'}" visible="{= !${appEmployeeData>/bPersInfoPersonalDataExists}}"/>
+	<Button id="navToPersonalDataBtn" text="{i18n>navToPersonalDataBtn}" type="Emphasized" press="onNavToPersonalDataPress"
+		visible="{appProperties>/isMyPersonalDataAvailable}" class="sapUiTinyMarginTop"/>
+</mvc:View>

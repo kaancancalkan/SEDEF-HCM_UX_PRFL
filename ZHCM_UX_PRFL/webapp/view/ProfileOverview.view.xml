@@ -1,0 +1,108 @@
+<!--
+
+    Copyright (C) 2009-2018 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View controllerName="com.sedef.hcm.ux.myprofile.controller.ProfileOverview" xmlns="sap.uxap" xmlns:m="sap.m"
+	xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:semantic="sap.m.semantic" xmlns:blocks="com.sedef.hcm.ux.myprofile.blocks"
+	xmlns:forms="sap.ui.layout.form" xmlns:layout="sap.ui.layout" xmlns:common="hcm.fab.lib.common.controls" height="100%">
+	<semantic:FullscreenPage id="page" navButtonPress="onNavBack" showNavButton="true" title="{i18n>appTitle}" showFooter="false"
+		class="sapUiResponsiveContentPadding sapUiFioriObjectPage">
+		<semantic:content>
+			<!-- lazyLoading disabled! reason: only first 2 subSections are connected to the UI5-models; others not -->
+			<ObjectPageLayout id="profileOverviewLayout" enableLazyLoading="false" showTitleInHeaderContent="false" flexEnabled="true"
+				showAnchorBar="true" selectedSection="talentSection" subSectionLayout="TitleOnTop" upperCaseAnchorBar="false" showAnchorBarPopover="true"
+				useTwoColumnsForLargeScreen="false">
+				<headerTitle>
+					<!--objectTitle="{parts: [{path: 'EmployeeName/FormattedName'},{path: 'EmployeeNumber'}], formatter:'.formatter.formatObjectTitle'}"-->
+					<ObjectPageHeader id="pageHeader" objectTitle="{EmployeeName/FormattedName}" objectSubtitle="{EmployeePositionLongtext}"
+						showTitleSelector="true" showMarkers="false" showPlaceholder="true" markFavorite="false" markFlagged="false" markChanges="false"
+						titleSelectorPress="onTitleSelectorPress"
+						objectImageURI="{path: 'toEmployeePicture/__metadata/media_src', formatter: '.formatter.formatImageURL'}" objectImageShape="Square"
+						isObjectIconAlwaysVisible="false" isObjectTitleAlwaysVisible="true" isObjectSubtitleAlwaysVisible="true" isActionAreaAlwaysVisible="true">
+						<actions>
+							<!--<ObjectPageHeaderActionButton id="otherEmployeeButton" text="{i18n>employeeLookupBtn}" hideText="true" hideIcon="false"-->
+							<!--	icon="sap-icon://employee-lookup" tooltip="{i18n>employeeLookupBtn}" press=".onChangeEmployee"-->
+							<!--	visible="{appProperties>/isOtherEmployeeLookupAvailable}"/>-->
+							<core:Fragment fragmentName="com.sedef.hcm.ux.myprofile.view.fragment.EmployeeSearch" type="XML"/>
+							<ObjectPageHeaderActionButton id="employeeLookupBtn" text="{i18n>employeeLookupBtn}" hideText="true" hideIcon="false"
+								icon="sap-icon://employee-lookup" tooltip="{i18n>employeeLookupBtn}" press=".onNavToEmployeeLookup"
+								visible="{appProperties>/isEmployeeLookupAvailable}"/>
+							<common:ConcurrentEmploymentObjectPageHeaderActionButton id="assignmentSwitchBtn" hideText="true" hideIcon="false"
+								assignmentChange=".onAssignmentChange"/>
+							<!--Allow adding actions to the Profile ObjectPageHeader -->
+							<core:ExtensionPoint name="extensionProfileHeaderActions"/>
+						</actions>
+					</ObjectPageHeader>
+				</headerTitle>
+				<headerContent>
+					<!--Central Employee Data-->
+					<m:Image id="employeePicture" src="{path: 'toEmployeePicture/__metadata/media_src', formatter: '.formatter.formatImageURL'}" width="5rem"
+						height="5rem" decorative="true" densityAware="false" alt="{i18n>employeeImage}"/>
+					<!-- Organizational Data -->
+					<layout:VerticalLayout width="{= ${device>/system/phone} ? '100%' : null }">
+						<!--Sicil no-->
+						<m:ObjectAttribute id="employeeNumberAttr" title="{i18n>employeeNumber}" 
+						text="{= parseInt(${EmployeeNumber},10) }" tooltip="{i18n>employeeNumber}"
+							visible="{= ${device>/system/desktop} &amp;&amp; !!${EmployeeNumber}}"/>
+						<!--Direktörlük-->
+						<m:ObjectAttribute id="directorateAttr" title="{i18n>directorate}" text="{DirectorateText}" tooltip="{i18n>directorate}"
+							visible="{= ${device>/system/desktop} &amp;&amp; !!${DirectorateText}}"/>
+						<!--Departman-->
+						<m:ObjectAttribute id="departmentAttr" title="{i18n>department}" text="{DepartmentText}" tooltip="{i18n>department}"
+							visible="{= ${device>/system/desktop} &amp;&amp; !!${DepartmentText}}"/>
+						<!--Org.Unit-->
+						<m:ObjectAttribute id="orgunitAttr" title="{i18n>orgUnit}"
+							text="{DivisionText}" tooltip="{i18n>orgUnit}"
+							visible="{= ${device>/system/desktop} &amp;&amp; !!${DivisionText}}"/>
+						<!--Unvan-->
+						<!-- <m:ObjectAttribute id="jobTitleAttr" title="{i18n>jobTitle}" text="{EmployeeJobtitleLongtext}" tooltip="{i18n>jobTitle}"
+							visible="{= ${device>/system/desktop} &amp;&amp; !!${EmployeeJobtitleLongtext}}"/> -->
+					</layout:VerticalLayout>
+					<layout:VerticalLayout width="{= ${device>/system/phone} ? '100%' : null }">
+						<!--Work Phone-->
+						<m:HBox id="workPhoneBox" justifyContent="Start" alignItems="Center" alignContent="Center" class="sapMObjectAttributeDiv"
+							visible="{= !!${WorkPhone}}">
+							<core:Icon id="workPhoneIcon" src="sap-icon://phone" tooltip="{/#EmployeeDetail/WorkPhone/@sap:label}" useIconTooltip="true"
+								class="sapUiTinyMarginEnd" visible="{= !!${WorkPhone}}"/>
+							<m:ObjectAttribute id="workPhoneAttr" text="{WorkPhone}" active="true" press=".onPhoneClick"
+								tooltip="{/#EmployeeDetail/WorkPhone/@sap:label}"/>
+						</m:HBox>
+						<!--Work Mobile-->
+						<m:HBox id="workMobileBox" justifyContent="Start" alignItems="Center" alignContent="Center" class="sapMObjectAttributeDiv"
+							visible="{= !!${WorkMobile}}">
+							<core:Icon id="workMobileIcon" src="sap-icon://iphone" tooltip="{/#EmployeeDetail/WorkMobile/@sap:label}" useIconTooltip="true"
+								class="sapUiTinyMarginEnd" visible="{= !!${WorkMobile}}"/>
+							<m:ObjectAttribute id="workMobileAttr" text="{WorkMobile}" active="true" press=".onPhoneClick"
+								tooltip="{/#EmployeeDetail/WorkMobile/@sap:label}"/>
+						</m:HBox>
+						<!--Work Email-->
+						<m:HBox id="workEmailBox" justifyContent="Start" alignItems="Center" alignContent="Center" class="sapMObjectAttributeDiv"
+							visible="{= !!${WorkEmail}}">
+							<core:Icon id="workMailIcon" src="sap-icon://email" tooltip="{/#EmployeeDetail/WorkEmail/@sap:label}" useIconTooltip="true"
+								class="sapUiTinyMarginEnd" visible="{= !!${WorkEmail}}"/>
+							<m:ObjectAttribute id="workEmailAttr" text="{WorkEmail}" active="true" press=".onEmailClick"
+								tooltip="{/#EmployeeDetail/WorkEmail/@sap:label}"/>
+						</m:HBox>
+					</layout:VerticalLayout>
+					<!-- Manager Data -->
+					<layout:VerticalLayout width="{= ${device>/system/phone} ? '100%' : null }">
+						<m:HBox id="reportsToHBox" justifyContent="Start" alignItems="Center" alignContent="Center"
+							visible="{= !!${ManagerName} &amp;&amp; !${ProfileView>/showOnlyObjAttrRepTo}}" class="sapMObjectAttributeDiv">
+							<m:ObjectAttribute id="reportsToManagerAttr" title="{i18n>reportsToLabel}" tooltip="{i18n>reportsToLabel}" active="false"
+								class="sapUiTinyMarginEnd"/>
+							<m:Link id="reportsToLink" text="{ManagerName}" press="onManagerPress" tooltip="{i18n>showManagerInfo}"/>
+						</m:HBox>
+						<m:ObjectAttribute id="reportsToManagerAttrActive" title="{i18n>reportsToLabel}" text="{ManagerName}" tooltip="{i18n>showManagerInfo}"
+							active="true" press="onManagerPress" visible="{= !!${ManagerName} &amp;&amp; ${ProfileView>/showOnlyObjAttrRepTo}}"/>
+					</layout:VerticalLayout>
+					<!--Allow adding fields to the Profile ObjectPageHeader -->
+					<core:ExtensionPoint name="extensionProfileHeaderContent"/>
+				</headerContent>
+				<sections>
+					<!-- filled dynamically in ProfileOverview.controller -->
+				</sections>
+			</ObjectPageLayout>
+		</semantic:content>
+	</semantic:FullscreenPage>
+</mvc:View>

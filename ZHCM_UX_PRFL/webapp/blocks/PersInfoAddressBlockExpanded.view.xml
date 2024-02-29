@@ -1,0 +1,72 @@
+<!--
+
+    Copyright (C) 2009-2018 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View controllerName="com.sedef.hcm.ux.myprofile.blocks.PersInfoAddressBlockController"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:form="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout"
+	xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<l:Grid id="addressContainer" content="{ path: 'toAddresses', templateShareable: false }" containerQuery="false" hSpacing="0" defaultSpan="XL3 L4 M6 S12" visible="{appEmployeeData>/bPersInfoAddressExists}">
+		<l:content>
+			<VBox renderType="Bare">
+				<form:SimpleForm id="addressForm" maxContainerCols="2" editable="false" layout="ResponsiveGridLayout" labelSpanXL="-1" emptySpanXL="-1" columnsXL="-1" labelSpanL="4" emptySpanL="3" columnsL="2" labelSpanM="4" emptySpanM="2" columnsM="2" labelSpanS="12" emptySpanS="0" adjustLabelSpan="false" singleContainerFullSize="false">
+					<form:content>
+						<!--Subtype -->
+						<core:Title text="{SubtypeText}"/>
+						<!--ContactName -->
+						<Label id="lblContactName" text="{parts: [ '/#Address/ContactName/@name', 'toPersInfoMetaData', '/#Address/ContactName/@sap:label'], formatter: '.getPersinfoLabel'}" labelFor="txtContactName" visible="{parts: [ '/#Address/ContactName/@name', 'toPersInfoMetaData', 'ContactName' ], formatter: '.getVisibility'}"/>
+						<Text id="txtContactName" text="{ContactName}" visible="{parts: [ '/#Address/ContactName/@name', 'toPersInfoMetaData', 'ContactName' ], formatter: '.getVisibility'}"/>
+						<!--Street and HouseNumber -->
+						<Label id="lblStreet" labelFor="txtStreet" text="{parts: [ 'i18n>postalCodeCityLabel', '/#Address/Street/@sap:label', '/#Address/HouseNumber/@sap:label', 'VersionId' ], formatter: '.reuseHandler.getStreetHouseNoLabel'}" visible="{parts: [ '/#Address/Street/@name', 'toPersInfoMetaData', 'Street' ], formatter: '.getVisibility'}"/>
+						<Text id="txtStreet" text="{parts: [ 'i18n>postalCodeCity', 'Street', 'HouseNumber' ], formatter: 'jQuery.sap.formatMessage'}" visible="{parts: [ '/#Address/Street/@name', 'toPersInfoMetaData', 'Street' ], formatter: '.getVisibility'}"/>
+						<!--ApartmentId-->
+						<Label id="lblApartmentId" text="{parts: [ '/#Address/ApartmentId/@name', 'toPersInfoMetaData', '/#Address/ApartmentId/@sap:label'], formatter: '.getPersinfoLabel'}" labelFor="txtApartmentId" visible="{parts: [ '/#Address/ApartmentId/@name', 'toPersInfoMetaData', 'ApartmentId' ], formatter: '.getVisibility'}"/>
+						<Text id="txtApartmentId" text="{ApartmentId}" visible="{parts: [ '/#Address/ApartmentId/@name', 'toPersInfoMetaData', 'ApartmentId' ], formatter: '.getVisibility'}"/>
+						<!--SupplementalAddressLine -->
+						<Label text="{parts: [ '/#Address/SupplementalAddressLine/@name', 'toPersInfoMetaData', '/#Address/SupplementalAddressLine/@sap:label'], formatter: '.getPersinfoLabel'}" id="lblSupplementalAddressLine" labelFor="txtSupplementalAddressLine" visible="{parts: [ '/#Address/SupplementalAddressLine/@name', 'toPersInfoMetaData', 'SupplementalAddressLine' ], formatter: '.getVisibility'}"/>
+						<Text id="txtSupplementalAddressLine" text="{SupplementalAddressLine}" visible="{parts: [ '/#Address/SupplementalAddressLine/@name', 'toPersInfoMetaData', 'SupplementalAddressLine' ], formatter: '.getVisibility'}"/>
+						<!--PostalCode and City -->
+						<Label id="lblCity" labelFor="txtCity" text="{parts: [ 'i18n>postalCodeCityLabel', '/#Address/PostalCode/@name', '/#Address/City/@name', 'toPersInfoMetaData' ], formatter: '.formatPostalCodeCityLabel'}" visible="{parts: [ '/#Address/PostalCode/@name', 'toPersInfoMetaData', 'PostalCode' ], formatter: '.getVisibility'}"/>
+						<Text id="txtCity" text="{parts: [ 'i18n>postalCodeCity', 'PostalCode', 'City' ], formatter: 'jQuery.sap.formatMessage'}" visible="{parts: [ '/#Address/PostalCode/@name', 'toPersInfoMetaData', 'PostalCode' ], formatter: '.getVisibility'}"/>
+						<!--District-->
+						<Label id="lblDistrict" text="{parts: [ '/#Address/District/@name', 'toPersInfoMetaData', '/#Address/District/@sap:label'], formatter: '.getPersinfoLabel'}" labelFor="txtDistrict" visible="{parts: [ '/#Address/District/@name', 'toPersInfoMetaData', 'District' ], formatter: '.getVisibility'}"/>
+						<Text id="txtDistrict" text="{District}" visible="{parts: [ '/#Address/District/@name', 'toPersInfoMetaData', 'District' ], formatter: '.getVisibility'}"/>
+						<!--State -->
+						<Label id="lblStateId" text="{parts: [ '/#Address/StateId/@name', 'toPersInfoMetaData', '/#Address/StateId/@sap:label'], formatter: '.getPersinfoLabel'}" labelFor="txtStateId" visible="{parts: [ '/#Address/StateId/@name', 'toPersInfoMetaData', 'StateText' ], formatter: '.getVisibility'}"/>
+						<Text id="txtStateId" text="{StateText}" visible="{parts: [ '/#Address/StateId/@name', 'toPersInfoMetaData', 'StateText' ], formatter: '.getVisibility'}"/>
+						<!--Country -->
+						<Label text="{parts: [ '/#Address/CountryId/@name', 'toPersInfoMetaData', '/#Address/CountryId/@sap:label'], formatter: '.getPersinfoLabel'}" id="lblCountryText" labelFor="txtCountryText" visible="{parts: [ '/#Address/CountryId/@name', 'toPersInfoMetaData', 'CountryText' ], formatter: '.getVisibility'}"/>
+						<Text id="txtCountryText" text="{CountryText}" visible="{parts: [ '/#Address/CountryId/@name', 'toPersInfoMetaData', 'CountryText' ], formatter: '.getVisibility'}"/>
+						<!--TelephoneNumber -->
+						<Label text="{parts: [ '/#Address/TelephoneNumber/@name', 'toPersInfoMetaData', '/#Address/TelephoneNumber/@sap:label'], formatter: '.getPersinfoLabel'}" id="lblTelephoneNumber" labelFor="txtTelephoneNumber" visible="{parts: [ '/#Address/TelephoneNumber/@name', 'toPersInfoMetaData', 'TelephoneNumber' ], formatter: '.getVisibility'}"/>
+						<Text id="txtTelephoneNumber" text="{TelephoneNumber}" visible="{parts: [ '/#Address/TelephoneNumber/@name', 'toPersInfoMetaData', 'TelephoneNumber' ], formatter: '.getVisibility'}"/>
+						<!--MobilePhoneNumber -->
+						<Label text="{parts: [ '/#Address/MobilePhoneNumber/@name', 'toPersInfoMetaData', '/#Address/MobilePhoneNumber/@sap:label'], formatter: '.getPersinfoLabel'}" id="lblMobilePhoneNumber" labelFor="txtMobilePhoneNumber" visible="{parts: [ '/#Address/MobilePhoneNumber/@name', 'toPersInfoMetaData', 'MobilePhoneNumber' ], formatter: '.getVisibility'}"/>
+						<Text id="txtMobilePhoneNumber" text="{MobilePhoneNumber}" visible="{parts: [ '/#Address/MobilePhoneNumber/@name', 'toPersInfoMetaData', 'MobilePhoneNumber' ], formatter: '.getVisibility'}"/>
+						<!--Distance-->
+						<Label id="lblWorkDistance" text="{parts: [ '/#Address/WorkDistance/@name', 'toPersInfoMetaData', '/#Address/WorkDistance/@sap:label'], formatter: '.getPersinfoLabel'}" labelFor="txtWorkDistance" visible="{parts: [ '/#Address/WorkDistance/@name', 'toPersInfoMetaData', 'WorkDistance' ], formatter: '.getVisibility'}"/>
+						<Text id="txtWorkDistance" text="{WorkDistance}" visible="{parts: [ '/#Address/WorkDistance/@name', 'toPersInfoMetaData', 'WorkDistance' ], formatter: '.getVisibility'}"/>
+						<!--Company Housing-->
+						<Label id="lblCompanyHousing" text="{parts: [ '/#Address/CompanyHousing/@name', 'toPersInfoMetaData', '/#Address/CompanyHousing/@sap:label'], formatter: '.getPersinfoLabel'}" labelFor="txtCompanyHousing" visible="{parts: [ '/#Address/CompanyHousing/@name', 'toPersInfoMetaData', 'CompanyHousing' ], formatter: '.getVisibility'}"/>
+						<Text id="txtCompanyHousing" text="{CompanyHousing}" visible="{parts: [ '/#Address/CompanyHousing/@name', 'toPersInfoMetaData', 'CompanyHousing' ], formatter: '.getVisibility'}"/>
+						<!--Bus Route-->
+						<Label id="lblBusRoute" text="{parts: [ '/#Address/BusRoute/@name', 'toPersInfoMetaData', '/#Address/BusRoute/@sap:label'], formatter: '.getPersinfoLabel'}" labelFor="txtBusRoute" visible="{parts: [ '/#Address/BusRoute/@name', 'toPersInfoMetaData', 'BusRoute' ], formatter: '.getVisibility'}"/>
+						<Text id="txtBusRoute" text="{BusRoute}" visible="{parts: [ '/#Address/BusRoute/@name', 'toPersInfoMetaData', 'BusRoute' ], formatter: '.getVisibility'}"/>
+
+						<Button text="{= ${toAddressChangeRequest/ApprovalStatus} === 'P' ? ${i18n>displayChangeRequestAction} : ${i18n>addChangeRequestAction} }" icon="{path:'toAddressChangeRequest/ApprovalStatus', formatter: '.getAddressRequestButtonIcon'}" press=".onChangeRequest" type="{path:'toAddressChangeRequest/ApprovalStatus', formatter: '.getAddressRequestButtonType'}" cd:changeRequest="{path:'toAddressChangeRequest'}">
+							<layoutData>
+								<l:GridData span="XL6 L6 M8 S12" />
+							</layoutData>
+						</Button>
+					</form:content>
+				</form:SimpleForm>
+			</VBox>
+		</l:content>
+	</l:Grid>
+	<MessageStrip id="noAddressesStrip" text="{path: 'i18n>noAddressesTxt'}" type="Information" showIcon="true" tooltip="{path: 'i18n>noAddressesTxt'}" visible="{= !${appEmployeeData>/bPersInfoAddressExists}}"/>
+	<Button id="navToAddressesBtn" text="{i18n>navToAddressesBtn}" type="Emphasized" press="onNavToAddressesPress" visible="{appProperties>/isMyAddressesAvailable}" class="sapUiTinyMarginTop"/>
+</mvc:View>

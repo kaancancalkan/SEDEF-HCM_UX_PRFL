@@ -1,0 +1,53 @@
+<!--
+
+    Copyright (C) 2009-2018 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View controllerName="com.sedef.hcm.ux.myprofile.blocks.ForeignLanguageBlockController" xmlns="sap.m" xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc" xmlns:m="sap.m" xmlns:l="sap.ui.layout" xmlns:form="sap.ui.layout.form"
+	xmlns:smod="com.sedef.hcm.ux.myprofile.controls"
+	xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<l:Grid id="ForeignLanguageDataContainer" content="{ path: 'toForeignLanguages', templateShareable: false }" containerQuery="false"
+		hSpacing="0" defaultSpan="XL3 L4 M6 S12" visible="{appEmployeeData>/bForeignLanguageExist}">
+		<l:content>
+			<smod:ActionCard containerHeight="370px">
+				<smod:face>
+					<form:SimpleForm id="ForeignLanguageDataForm" maxContainerCols="2" editable="false" layout="ResponsiveGridLayout" labelSpanXL="-1"
+						emptySpanXL="-1" columnsXL="-1" labelSpanL="4" emptySpanL="3" columnsL="2" labelSpanM="4" emptySpanM="2" columnsM="2" labelSpanS="12"
+						emptySpanS="0" adjustLabelSpan="false" singleContainerFullSize="false">
+						<form:content>
+							<!-- Subtype -->
+							<core:Title level="H3" text="{LanguageName}"/>
+							<!-- Reading Level -->
+							<Label text="{/#ForeignLanguage/ReadingLevel/@sap:label}" labelFor="txtReadingLevel"/>
+							<RatingIndicator id="txtReadingLevel" maxValue="4" value="{= parseInt(${ReadingLevel},10) }" iconSize="22px" 
+							tooltip="{ReadingLevelDescription}" enabled="false"/>
+							<!-- Writing Level -->
+							<Label text="{/#ForeignLanguage/WritingLevel/@sap:label}" labelFor="txtWritingLevel"/>
+							<RatingIndicator id="txtWritingLevel" maxValue="4" value="{= parseInt(${WritingLevel},10) }" iconSize="22px" 
+							tooltip="{WritingLevelDescription}" enabled="false"/>
+								<!-- Speaking Level -->
+							<Label text="{/#ForeignLanguage/SpeakingLevel/@sap:label}" labelFor="txtSpeakingLevel"/>
+							<RatingIndicator id="txtSpeakingLevel" maxValue="4" value="{= parseInt(${SpeakingLevel},10) }" iconSize="22px" 
+							tooltip="{SpeakingLevelDescription}" enabled="false"/>
+							<!-- PlaceOfLearning -->
+							<Label text="{/#ForeignLanguage/PlaceOfLearning/@sap:label}" id="lblForeignLanguagePlaceOfLearning"
+								labelFor="txtForeignLanguagePlaceOfLearning"/>
+							<Text id="txtForeignLanguagePlaceOfLearning" text="{PlaceOfLearning}"/>
+						</form:content>
+					</form:SimpleForm>
+				</smod:face>
+				<smod:actionBar>
+					<FlexBox width="100%" height="100%" alignContent="Stretch" alignItems="Center" justifyContent="Center">
+						<Button icon="sap-icon://delete" type="Reject" class="sapUiTinyMarginEnd" press=".onDeleteRecord" />
+						<Button icon="sap-icon://edit" type="Accept" class="sapUiTinyMarginEnd" press=".onEditRecord" />
+					</FlexBox>
+				</smod:actionBar>
+			</smod:ActionCard>
+		</l:content>
+	</l:Grid>
+	<MessageStrip id="noForeignLanguageStrip" text="{i18n>noForeignLanguageTxt}" type="Information" showIcon="true"
+		tooltip="{i18n>noForeignLanguageTxt}" visible="{= !${appEmployeeData>/bForeignLanguageExist}}"/>
+</mvc:View>
+
+

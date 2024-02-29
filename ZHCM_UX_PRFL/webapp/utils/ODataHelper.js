@@ -1,0 +1,5 @@
+/*
+ * Copyright (C) 2009-2018 SAP SE or an SAP affiliate company. All rights reserved.
+ */
+sap.ui.define(["sap/ui/base/Object","sap/ui/model/json/JSONModel","com/sedef/hcm/ux/myprofile/controller/ErrorHandler"],function(e,t,o){"use strict";return e.extend("com.sedef.hcm.ux.myprofile.utils.ODataHelper",{constructor:function(e){this._oResourceBundle=e.getModel("i18n").getResourceBundle();this._oODataModel=e.getModel();this._oMetaModel=this._oODataModel.getMetaModel();this._oApplicationProperties=e.getModel("appProperties");this._oApplicationController=this._oApplicationProperties.getProperty("/applicationController")},getObjectPath:function(e,t){return this._oODataModel.createKey(t,{EmployeeNumber:e})},getMetaModel:function(){return this._oMetaModel},read:function(e,t,o){this._oODataModel.read(e,{filters:o,success:t})}})});
+//# sourceMappingURL=ODataHelper.js.map

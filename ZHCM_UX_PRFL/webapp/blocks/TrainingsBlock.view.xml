@@ -1,0 +1,27 @@
+<!--
+
+    Copyright (C) 2009-2018 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View controllerName="com.sedef.hcm.ux.myprofile.blocks.TrainingsBlockController" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" xmlns:l="sap.ui.layout" busy="{TrainingView>/busy}">
+	<l:Grid id="trainingsContainer" defaultSpan="XL6 L6 M6 S12" containerQuery="false" hSpacing="0"
+		content="{ path: 'toTrainings', templateShareable: true }" visible="{appEmployeeData>/bTrainingsExist}">
+		<l:content>
+			<ObjectListItem id="trainingTemplateItem" title="{TrainingTitle}" icon="sap-icon://course-book" intro="{TrainingDelivery}"
+				number="{ path: 'TrainingDuration', formatter: '.formatter.formatObjectNumber' }"
+				numberUnit="{parts: [ {path: 'TrainingDuration'}, {path: 'i18n>unitHours'}, {path: 'i18n>unitHour'} ], formatter: '.formatter.formatObjectNumberUnitDays'}"
+				class="sapUiSmallMarginEnd">
+				<firstStatus>
+					<ObjectStatus
+						text="{parts: [ 'TrainingStartDate', 'TrainingEndDate', 'TrainingView>/sDateRangeStyle', 'TrainingView>/sDateRangeFormat' ], formatter: '.formatter.formatDateRange'}"/>
+				</firstStatus>
+				<secondStatus>
+					<ObjectStatus text="{TrainingLocation}"/>
+				</secondStatus>
+			</ObjectListItem>
+		</l:content>
+	</l:Grid>
+	<MessageStrip id="noTrainingsStrip" text="{path: 'i18n>noTrainingsTxtDate', formatter: '.formatNoTrainingsText'}" type="Information"
+		showIcon="true" tooltip="{i18n>noTrainingsTxt}" visible="{= !${appEmployeeData>/bTrainingsExist}}"/>
+</mvc:View>

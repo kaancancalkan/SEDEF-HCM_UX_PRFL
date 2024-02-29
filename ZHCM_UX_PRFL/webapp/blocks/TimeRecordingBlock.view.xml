@@ -1,0 +1,27 @@
+<!--
+
+    Copyright (C) 2009-2018 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View controllerName="com.sedef.hcm.ux.myprofile.blocks.TimeRecordingBlockController" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" xmlns:l="sap.ui.layout">
+	<Title id="timeRecLabel" text="{i18n>timeRecordingSubSectionTitle}" level="H4" titleStyle="H4" class="sapUiSmallMarginBottom"/>
+	<ObjectListItem id="timeRecItem" title="{= parseInt(${IncompleteDays}) &gt; 0 ? ${i18n>incompleteDaysTxt} : ${i18n>noIncDaysTxt} }" intro=""
+		icon="sap-icon://time-entry-request" number="{= parseInt(${IncompleteDays}) &gt; 0 ? ${IncompleteDays} : null }"
+		numberUnit="{= parseInt(${IncompleteDays}) &gt; 0 ? ${parts: [ {path: 'IncompleteDays'}, {path: 'i18n>unitDays'}, {path: 'i18n>unitDay'} ], formatter: '.formatter.formatObjectNumberUnitDays'} : null }"
+		numberState="None" busy="{TimeRecordingView>/busy}"
+		visible="{= !${appProperties>/isAppBusy}}">
+		<firstStatus>
+			<ObjectStatus id="timeRecFirstStat"
+				text="{parts: [ { path: 'IncompleteDays'}, { path: 'i18n>timeRecMissing'}, { path: 'i18n>timeRecComplete' }], formatter: '.formatter.formatTimeRecStatusText'}"
+				state="{= parseInt(${IncompleteDays}) &gt; 0 ? 'Warning' : 'Success' }"/>
+		</firstStatus>
+		<secondStatus>
+			<ObjectStatus id="timeRecSecondStat" visible="{= !${TimeRecordingView>/busy}}"
+				text="{parts: [ {path: 'i18n>sinceTxt'}, { path: 'AsofDate', type: 'sap.ui.model.odata.type.DateTime', formatOptions: { UTC: true, style: 'long', relative: true }, constraints: { displayFormat: 'Date' } }], formatter: 'jQuery.sap.formatMessage'}"/>
+		</secondStatus>
+	</ObjectListItem>
+	<Button id="navToMyTimesheetBtn" text="{i18n>navToTimesheetBtn}" type="Emphasized" press="onNavToMyTimesheet"
+		enabled="{= !${TimeRecordingView>/busy}}" visible="{= ${appProperties>/isMyTimesheetAvailable} &amp;&amp; !${appProperties>/isAppBusy}}"
+		class="sapUiTinyMarginTop"/>
+</mvc:View>

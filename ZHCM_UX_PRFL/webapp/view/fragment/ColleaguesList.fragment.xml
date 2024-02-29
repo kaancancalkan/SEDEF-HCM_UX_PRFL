@@ -1,0 +1,17 @@
+<!--
+
+    Copyright (C) 2009-2018 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<ResponsivePopover id="colleaguesPopover" title="{i18n>employeeListTitle}" placement="Bottom" showHeader="{= ${device>/system/phone} ? true : false}" horizontalScrolling="false">
+		<content>
+			<List id="colleaguesList" mode="None" headerText="" items="{ path: 'toColleagues', sorter: [ { path: 'EmployeeCategory', group: '._groupByEmployeeCategory', descending: false }, { path: 'EmployeeSortname', descending: false, group: false } ], groupHeaderFactory: '._getGroupHeader', templateShareable: false }">
+				<items>
+					<StandardListItem title="{parts: [{path: 'EmployeeName'},{path: 'EmployeeNumber'}], formatter:'.formatter.formatObjectTitle'}" description="" info="" icon="{path: 'toEmployeePicture/__metadata/media_src', formatter: '.formatter.formatImageURL'}" iconDensityAware="false" iconInset="false" type="{= ${EmployeeCategory} === 'DIRECTREPORT' || ${appProperties>/defaultEmployeeId} ===  ${EmployeeNumber} ? 'Navigation' : 'Inactive' }" press="onColleaguesPress"/>
+				</items>
+			</List>
+		</content>
+	</ResponsivePopover>
+</core:FragmentDefinition>

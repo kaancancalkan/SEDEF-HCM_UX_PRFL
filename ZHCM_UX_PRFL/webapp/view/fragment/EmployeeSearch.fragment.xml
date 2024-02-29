@@ -1,0 +1,10 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SearchField visible="{ConfigView>/otherEmployeeProfiles}" id="idEmployeeSearchField" width="100%" placeholder="Ad soyad veya sicil..." enableSuggestions="true" search=".onSearchEmployee" suggest=".onSuggestEmployee" suggestionItems="{
+					path: '/EmployeeSearchSet'
+				}">
+		<suggestionItems>
+			<SuggestionItem text="{Ename}" description="{path:'Plstx'} - {path:'Orgtx'}" key="{Pernr}"/>
+		</suggestionItems>
+	</SearchField>
+</core:FragmentDefinition>

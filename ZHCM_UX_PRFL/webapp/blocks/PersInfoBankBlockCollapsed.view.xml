@@ -1,0 +1,53 @@
+<!--
+
+    Copyright (C) 2009-2018 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View controllerName="com.sedef.hcm.ux.myprofile.blocks.PersInfoBankBlockController" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout">
+	<l:Grid id="bankContainer" content="{ path: 'toBankDetails', templateShareable: false}" containerQuery="false" hSpacing="0"
+		defaultSpan="XL3 L4 M6 S12" visible="{appEmployeeData>/bPersInfoBankDataExists}">
+		<l:content>
+			<form:SimpleForm id="bankForm" maxContainerCols="2" editable="false" layout="ResponsiveGridLayout" labelSpanXL="-1" emptySpanXL="-1"
+				columnsXL="-1" labelSpanL="4" emptySpanL="3" columnsL="2" labelSpanM="4" emptySpanM="2" columnsM="2" labelSpanS="12" emptySpanS="0"
+				adjustLabelSpan="false" singleContainerFullSize="false">
+				<form:content>
+					<!-- Subtype -->
+					<core:Title text="{BankDetailsTypeText}"/>
+					<!-- Payee Name -->
+					<Label
+						text="{parts: [ '/#BankDetail/PayeeName/@name', 'toPersInfoMetaData', '/#BankDetail/PayeeName/@sap:label'], formatter: '.getPersinfoLabel'}"
+						id="lblPayeeName" labelFor="txtPayeeName"
+						visible="{parts: [ '/#BankDetail/PayeeName/@name', 'toPersInfoMetaData', 'PayeeName' ], formatter: '.getVisibility'}"/>
+					<Text id="txtPayeeName" text="{PayeeName}"
+						visible="{parts: [ '/#BankDetail/PayeeName/@name', 'toPersInfoMetaData', 'PayeeName' ], formatter: '.getVisibility'}"/>
+					<!-- IBAN -->
+					<Label id="lblIban"
+						text="{parts: [ '/#BankDetail/Iban/@name', 'toPersInfoMetaData', '/#BankDetail/Iban/@sap:label'], formatter: '.getPersinfoLabel'}"
+						labelFor="txtIban" visible="{parts: [ '/#BankDetail/Iban/@name', 'toPersInfoMetaData', 'IbanPart1' ], formatter: '.getVisibility'}"/>
+					<Text id="txtIban"
+						text="{parts: [ 'IbanPart1', 'IbanPart2', 'IbanPart3', 'IbanPart4', 'IbanPart5', 'IbanPart6', 'IbanPart7', 'IbanPart8', 'IbanPart9' ], formatter: '.formatter.formatIBAN' }"
+						visible="{parts: [ '/#BankDetail/Iban/@name', 'toPersInfoMetaData', 'IbanPart1' ], formatter: '.getVisibility'}"/>
+					<!-- BankAccountNumber -->
+					<Label id="lblBankAccountNumber"
+						text="{parts: [ '/#BankDetail/BankAccountNumber/@name', 'toPersInfoMetaData', '/#BankDetail/BankAccountNumber/@sap:label'], formatter: '.getPersinfoLabel'}"
+						visible="{= !!${IbanPart1} ? false : ${parts: [ {path: '/#BankDetail/BankAccountNumber/@name'}, {path: 'toPersInfoMetaData'}, {path: 'BankAccountNumber'} ], formatter: '.getVisibility'}}"/>
+					<Text id="txtBankAccountNumber" text="{BankAccountNumber}"
+						visible="{= !!${IbanPart1} ? false : ${parts: [ {path: '/#BankDetail/BankAccountNumber/@name'}, {path: 'toPersInfoMetaData'}, {path: 'BankAccountNumber'} ], formatter: '.getVisibility'}}"/>
+					<!-- Bank Name -->
+					<Label
+						text="{parts: [ '/#BankDetail/BankText/@name', 'toPersInfoMetaData', '/#BankDetail/BankText/@sap:label'], formatter: '.getPersinfoLabel'}"
+						id="lblBankText" labelFor="txtBankText"
+						visible="{parts: [ '/#BankDetail/BankId/@name', 'toPersInfoMetaData', 'BankText' ], formatter: '.getVisibility'}"/>
+					<Text id="txtBankText" text="{BankText}"
+						visible="{parts: [ '/#BankDetail/BankId/@name', 'toPersInfoMetaData', 'BankText' ], formatter: '.getVisibility'}"/>
+
+				</form:content>
+			</form:SimpleForm>
+		</l:content>
+	</l:Grid>
+	<MessageStrip id="noBankDataStrip" text="{path: 'i18n>noBankDetailsTxt'}" type="Information" showIcon="true"
+		tooltip="{path: 'i18n>noBankDetailsTxt'}" visible="{= !${appEmployeeData>/bPersInfoBankDataExists}}"/>
+	<Button id="navToBankDetailsBtn" text="{i18n>navToBankDetailsBtn}" type="Emphasized" press="onNavToBankDetailsPress"
+		visible="{appProperties>/isMyBankDetailsAvailable}" class="sapUiTinyMarginTop"/>
+</mvc:View>

@@ -1,0 +1,1249 @@
+<edmx:Edmx
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZHCMFAB_MYPROFILE_SRV" xml:lang="en" sap:schema-version="1">
+            <EntityType Name="EmployeePicture" m:HasStream="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="EmployeeNumber"/>
+                </Key>
+                <Property Name="EmployeeNumber" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Personnel Number" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="MimeType" Type="Edm.String" MaxLength="128" sap:unicode="false" sap:label="MIME Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="Training" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="EmployeeNumber"/>
+                    <PropertyRef Name="TrainingId"/>
+                    <PropertyRef Name="TrainingStartDate"/>
+                </Key>
+                <Property Name="EmployeeNumber" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Personnel Number" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="TrainingType" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:label="Training Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TrainingId" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Training ID" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="TrainingTitle" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Training Title" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TrainingTitleShort" Type="Edm.String" MaxLength="12" sap:unicode="false" sap:label="Training Title Short" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TrainingStartDate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Start Date" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="TrainingEndDate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="End Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TrainingDelivery" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Delivery Method" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TrainingDeliveryShort" Type="Edm.String" MaxLength="20" sap:unicode="false" sap:label="Delivery Method Short" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TrainingLocation" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Location" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TrainingLocationShort" Type="Edm.String" MaxLength="12" sap:unicode="false" sap:label="Location Short" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TrainingDuration" Type="Edm.Decimal" Precision="8" Scale="2" sap:unicode="false" sap:label="Duration/hours" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TrainingPart" Type="Edm.Int16" sap:unicode="false" sap:label="Training Part" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="TimeRecording" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="EmployeeNumber"/>
+                </Key>
+                <Property Name="EmployeeNumber" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Personnel Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="IncompleteDays" Type="Edm.Int32" sap:unicode="false" sap:label="Incomplete Days" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AsofDate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="As-Of Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="CareerProgress" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="EmployeeNumber"/>
+                    <PropertyRef Name="BeginDate"/>
+                </Key>
+                <Property Name="EmployeeNumber" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Personnel Number" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="BeginDate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Start Date" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="EndDate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="End Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="OrgunitId" Type="Edm.String" MaxLength="8" sap:unicode="false" sap:label="Organisational Unit ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="OrgunitText" Type="Edm.String" MaxLength="25" sap:unicode="false" sap:label="Organisational Unit Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="OrgunitLongtext" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Organisational Unit Long Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PositionId" Type="Edm.String" MaxLength="8" sap:unicode="false" sap:label="Position ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PositionText" Type="Edm.String" MaxLength="25" sap:unicode="false" sap:label="Position Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PositionLongtext" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Position Long Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="IsManagerPosition" Type="Edm.Boolean" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="JobtitleId" Type="Edm.String" MaxLength="8" sap:unicode="false" sap:label="Job Title ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="JobtitleText" Type="Edm.String" MaxLength="25" sap:unicode="false" sap:label="Job Title" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="JobtitleLongtext" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Job Title Long" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="Compensation" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="EmployeeNumber"/>
+                    <PropertyRef Name="PayYear"/>
+                </Key>
+                <Property Name="EmployeeNumber" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Personnel Number" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Salary" Type="Edm.Decimal" Precision="16" Scale="3" sap:unicode="false" sap:unit="Currency" sap:label="Salary" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Bonus" Type="Edm.Decimal" Precision="16" Scale="3" sap:unicode="false" sap:unit="Currency" sap:label="Bonus" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Currency" Type="Edm.String" MaxLength="5" sap:unicode="false" sap:label="Currency" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="currency-code"/>
+                <Property Name="PayYear" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Pay Year" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+            </EntityType>
+            <EntityType Name="Performance" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="EmployeeNumber"/>
+                    <PropertyRef Name="BeginDate"/>
+                </Key>
+                <Property Name="EmployeeNumber" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Personnel Number" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="BeginDate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Start Date" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="EndDate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="End Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PerformanceRating" Type="Edm.Decimal" Precision="15" Scale="3" sap:unicode="false" sap:label="Numeric Value" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PerformanceRatingText" Type="Edm.String" MaxLength="60" sap:unicode="false" sap:label="Performance Rating Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ScaleArt" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Scale type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ScaleId" Type="Edm.String" MaxLength="8" sap:unicode="false" sap:label="Scale" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ScaleText" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Scale Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MinScaleLevel" Type="Edm.Decimal" Precision="15" Scale="3" sap:unicode="false" sap:label="Minimum Scale Level" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MaxScaleLevel" Type="Edm.Decimal" Precision="15" Scale="3" sap:unicode="false" sap:label="Maximum Scale Level" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="UnitOfMeasurement" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Unit of measurement" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="toScaleProficiency" Relationship="ZHCMFAB_MYPROFILE_SRV.fromPerformanceToScaleProficiency" FromRole="FromRole_fromPerformanceToScaleProficiency" ToRole="ToRole_fromPerformanceToScaleProficiency"/>
+            </EntityType>
+            <EntityType Name="Absence" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="EmployeeNumber"/>
+                </Key>
+                <Property Name="EmployeeNumber" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Personnel Number" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="AbsenceType" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Att./abs. type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AbsenceTypeText" Type="Edm.String" MaxLength="25" sap:unicode="false" sap:label="A/A type text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StartDate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Start Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EndDate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="End Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StartTime" Type="Edm.Time" Precision="0" sap:unicode="false" sap:label="Start time" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EndTime" Type="Edm.Time" Precision="0" sap:unicode="false" sap:label="End time" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AbsenceDays" Type="Edm.Decimal" Precision="6" Scale="2" sap:unicode="false" sap:label="Att./abs. days" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AbsenceHours" Type="Edm.Decimal" Precision="7" Scale="2" sap:unicode="false" sap:label="Absence hrs" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Status" Type="Edm.String" MaxLength="12" sap:unicode="false" sap:label="Status ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StatusText" Type="Edm.String" MaxLength="60" sap:unicode="false" sap:label="Status" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="Address" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="EmployeeNumber"/>
+                    <PropertyRef Name="InfotypeId"/>
+                    <PropertyRef Name="SubtypeId"/>
+                    <PropertyRef Name="ObjectId"/>
+                    <PropertyRef Name="LockIndicator"/>
+                    <PropertyRef Name="EndDate"/>
+                    <PropertyRef Name="BeginDate"/>
+                    <PropertyRef Name="SequenceNumber"/>
+                </Key>
+                <Property Name="EmployeeNumber" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Personnel Number" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="InfotypeId" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Infotype" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="SubtypeId" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Subtype" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ObjectId" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Object ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LockIndicator" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:label="Lock indicator" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EndDate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="End Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BeginDate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Start Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SequenceNumber" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="IT record no." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AddressRecordType" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Address type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ApartmentId" Type="Edm.String" MaxLength="6" sap:unicode="false" sap:label="Apartment ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BusRoute" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="Bus route" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ChangedBy" Type="Edm.String" MaxLength="12" sap:unicode="false" sap:label="Changed by" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ChangedOn" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Changed On" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="City" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="City" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CompanyHousing" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Company housing" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ContactName" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CountryId" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="Country" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CountryText" Type="Edm.String" MaxLength="15" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CountryTextLong" Type="Edm.String" MaxLength="50" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="District" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="District" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="HouseNumber" Type="Edm.String" MaxLength="6" sap:unicode="false" sap:label="House Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LockIndicatorText" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Lock Indicator Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PostalCode" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="Postal Code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StateId" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="Region" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StateText" Type="Edm.String" MaxLength="20" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Street" Type="Edm.String" MaxLength="60" sap:unicode="false" sap:label="Street" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SubtypeText" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SupplementalAddressLine" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TelephoneNumber" Type="Edm.String" MaxLength="14" sap:unicode="false" sap:label="Telephone" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VersionId" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:label="Screen control" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="WorkDistance" Type="Edm.Decimal" Precision="3" Scale="0" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="WorkDistanceUnit" Type="Edm.String" MaxLength="5" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="toPersInfoMetaData" Relationship="ZHCMFAB_MYPROFILE_SRV.fromAddressToPersInfoMetaData" FromRole="FromRole_fromAddressToPersInfoMetaData" ToRole="ToRole_fromAddressToPersInfoMetaData"/>
+            </EntityType>
+            <EntityType Name="BankDetail" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="EmployeeNumber"/>
+                    <PropertyRef Name="InfotypeId"/>
+                    <PropertyRef Name="SubtypeId"/>
+                    <PropertyRef Name="ObjectId"/>
+                    <PropertyRef Name="LockIndicator"/>
+                    <PropertyRef Name="EndDate"/>
+                    <PropertyRef Name="BeginDate"/>
+                    <PropertyRef Name="SequenceNumber"/>
+                </Key>
+                <Property Name="EmployeeNumber" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Personnel Number" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="InfotypeId" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Infotype" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="SubtypeId" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Subtype" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ObjectId" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Object ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LockIndicator" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:label="Lock indicator" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EndDate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="End Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BeginDate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Start Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SequenceNumber" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="IT record no." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BankAccountNumber" Type="Edm.String" MaxLength="18" sap:unicode="false" sap:label="Bank Account" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BankControlKey" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BankCountryId" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="Bank Country" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BankCountryText" Type="Edm.String" MaxLength="15" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BankDetailsTypeId" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BankDetailsTypeText" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BankId" Type="Edm.String" MaxLength="15" sap:unicode="false" sap:label="Bank Key" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BankReferenceDetails" Type="Edm.String" MaxLength="20" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BankText" Type="Edm.String" MaxLength="60" sap:unicode="false" sap:label="Bank name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BankTransferPurpose" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ChangedBy" Type="Edm.String" MaxLength="12" sap:unicode="false" sap:label="Changed by" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ChangedOn" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Changed On" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CurrencyId" Type="Edm.String" MaxLength="5" sap:unicode="false" sap:label="Currency" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="currency-code"/>
+                <Property Name="Iban" Type="Edm.String" MaxLength="42" sap:unicode="false" sap:label="IBAN" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="IbanPart1" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="IbanPart2" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="IbanPart3" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="IbanPart4" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="IbanPart5" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="IbanPart6" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="IbanPart7" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="IbanPart8" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="IbanPart9" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="IbanValidityBeginDate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="IBAN valid from" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LockIndicatorText" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Lock Indicator Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="OffCyclePayrollPaymentDate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Payment date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PayeeCity" Type="Edm.String" MaxLength="25" sap:unicode="false" sap:label="City" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PayeeCountryId" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="Country" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PayeeCountryText" Type="Edm.String" MaxLength="15" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PayeeName" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Payee" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PayeePostalCode" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="Postal Code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PayeeStateId" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="Region" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PayeeStateText" Type="Edm.String" MaxLength="20" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PayeeStreet" Type="Edm.String" MaxLength="30" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PayidPayrollIdentifier" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Payroll Identifier" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PaymentCurrency" Type="Edm.String" MaxLength="5" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="currency-code"/>
+                <Property Name="PaymentCurrencyText" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PaymentMethodId" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Payment Method" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PaymentMethodText" Type="Edm.String" MaxLength="50" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PayrollType" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Payroll type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PBSTransferTypeId" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PBSTransferTypeText" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PercentageAmount" Type="Edm.Decimal" Precision="6" Scale="3" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ReasonForOffCyclePayrollId" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Off-cycle reas." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ReasonForOffCyclePayrollText" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SwiftCode" Type="Edm.String" MaxLength="11" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TransferValue" Type="Edm.Decimal" Precision="14" Scale="3" sap:unicode="false" sap:unit="CurrencyId" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="toPersInfoMetaData" Relationship="ZHCMFAB_MYPROFILE_SRV.fromBankDetailToPersInfoMetaData" FromRole="FromRole_fromBankDetailToPersInfoMetaData" ToRole="ToRole_fromBankDetailToPersInfoMetaData"/>
+            </EntityType>
+            <EntityType Name="PersonalData" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="EmployeeNumber"/>
+                    <PropertyRef Name="InfotypeId"/>
+                    <PropertyRef Name="SubtypeId"/>
+                    <PropertyRef Name="ObjectId"/>
+                    <PropertyRef Name="LockIndicator"/>
+                    <PropertyRef Name="EndDate"/>
+                    <PropertyRef Name="BeginDate"/>
+                    <PropertyRef Name="SequenceNumber"/>
+                </Key>
+                <Property Name="EmployeeNumber" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Personnel Number" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="InfotypeId" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Infotype" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="SubtypeId" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Subtype" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ObjectId" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Object ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LockIndicator" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:label="Lock indicator" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EndDate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="End Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BeginDate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Start Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SequenceNumber" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="IT record no." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AcademicTitle" Type="Edm.String" MaxLength="15" sap:unicode="false" sap:label="Title" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ChangedBy" Type="Edm.String" MaxLength="12" sap:unicode="false" sap:label="Changed by" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ChangedOn" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Changed On" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CityOfBirth" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Birthplace" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CommunicationLanguageId" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Communication L" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CommunicationLanguageText" Type="Edm.String" MaxLength="16" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CountryOfBirthId" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="Country of Birth" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CountryOfBirthText" Type="Edm.String" MaxLength="15" sap:unicode="false" sap:label="Country of Birth Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DateOfBirth" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Date of Birth" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FirstName" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="First name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FormattedName" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FormOfAdressId" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Form-of-Address" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FormOfAdressText" Type="Edm.String" MaxLength="5" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Initials" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="Initials" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LastName" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Last name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LockIndicatorText" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Lock Indicator Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MaritalStatusBeginDate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MaritalStatusId" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Marital stat." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MaritalStatusText" Type="Edm.String" MaxLength="6" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NameAtBirth" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Name at Birth" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NameAtBirthNameAffix" Type="Edm.String" MaxLength="15" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NameAtBirthNamePrefix" Type="Edm.String" MaxLength="15" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NameFormatIndicator" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:label="Name Format" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NameFormatIndicatorText" Type="Edm.String" MaxLength="60" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NamePrefix" Type="Edm.String" MaxLength="15" sap:unicode="false" sap:label="Name prefix" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NationalityId" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="Nationality" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NationalityText" Type="Edm.String" MaxLength="15" sap:unicode="false" sap:label="Nationality Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Nickname" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Nickname" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NumberOfChildren" Type="Edm.Decimal" Precision="3" Scale="0" sap:unicode="false" sap:label="No.of children" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="OtherTitle" Type="Edm.String" MaxLength="15" sap:unicode="false" sap:label="Other title" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ReligiousDenominationId" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:label="Religion" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ReligiousDenominationText" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ReligiousDenominationTextLong" Type="Edm.String" MaxLength="25" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SecondNationalityId" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="2nd Nationality" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SecondNationalityText" Type="Edm.String" MaxLength="15" sap:unicode="false" sap:label="2nd Nationality Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SecondTitle" Type="Edm.String" MaxLength="15" sap:unicode="false" sap:label="Second Title" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StateOfBirthId" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StateOfBirthText" Type="Edm.String" MaxLength="20" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ThirdNationalityId" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="3rd Nationality" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ThirdNationalityText" Type="Edm.String" MaxLength="15" sap:unicode="false" sap:label="3rd Nationality Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="toPersInfoMetaData" Relationship="ZHCMFAB_MYPROFILE_SRV.fromPersonalDataToPersInfoMetaData" FromRole="FromRole_fromPersonalDataToPersInfoMetaData" ToRole="ToRole_fromPersonalDataToPersInfoMetaData"/>
+            </EntityType>
+            <EntityType Name="InternalData" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="EmployeeNumber"/>
+                    <PropertyRef Name="InfotypeId"/>
+                    <PropertyRef Name="SubtypeId"/>
+                    <PropertyRef Name="ObjectId"/>
+                    <PropertyRef Name="LockIndicator"/>
+                    <PropertyRef Name="EndDate"/>
+                    <PropertyRef Name="BeginDate"/>
+                    <PropertyRef Name="SequenceNumber"/>
+                </Key>
+                <Property Name="EmployeeNumber" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Personnel Number" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="InfotypeId" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Infotype" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="SubtypeId" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Subtype" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ObjectId" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Object ID" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="LockIndicator" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:label="Lock indicator" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="EndDate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="End Date" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="BeginDate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Start Date" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="SequenceNumber" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="IT record no." sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Asset" Type="Edm.String" MaxLength="12" sap:unicode="false" sap:label="Asset" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AssetNumber" Type="Edm.String" MaxLength="20" sap:unicode="false" sap:label="Asset Number" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AssetSubNumber" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AssetSubNumberText" Type="Edm.String" MaxLength="50" sap:unicode="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BuildingNumber" Type="Edm.String" MaxLength="6" sap:unicode="false" sap:label="Building Number" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CarRegulation" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Car Regulation" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CarValue" Type="Edm.Decimal" Precision="10" Scale="3" sap:unicode="false" sap:unit="Currency" sap:label="Car Value" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ChangedBy" Type="Edm.String" MaxLength="12" sap:unicode="false" sap:label="Changed by" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ChangedOn" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Changed On" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CompanyCode" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Company Code" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CompanyId" Type="Edm.String" MaxLength="12" sap:unicode="false" sap:label="Company ID" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Currency" Type="Edm.String" MaxLength="5" sap:unicode="false" sap:label="Currency" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="currency-code"/>
+                <Property Name="InhouseTelephoneNumber1" Type="Edm.String" MaxLength="5" sap:unicode="false" sap:label="In-House Tel.No" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="InhouseTelephoneNumber2" Type="Edm.String" MaxLength="5" sap:unicode="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LicensePlateNumber" Type="Edm.String" MaxLength="20" sap:unicode="false" sap:label="License Plate Number" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LockIndicatorText" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Lock Indicator Text" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PreviousPersonnelNumber" Type="Edm.String" MaxLength="12" sap:unicode="false" sap:label="Prev. Personnel No." sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RoomNumber" Type="Edm.String" MaxLength="6" sap:unicode="false" sap:label="Room Number" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="toPersInfoMetaData" Relationship="ZHCMFAB_MYPROFILE_SRV.fromInternalDataToPersInfoMetaData" FromRole="FromRole_fromInternalDataToPersInfoMetaData" ToRole="ToRole_fromInternalDataToPersInfoMetaData"/>
+            </EntityType>
+            <EntityType Name="Communication" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="EmployeeNumber"/>
+                    <PropertyRef Name="InfotypeId"/>
+                    <PropertyRef Name="SubtypeId"/>
+                    <PropertyRef Name="ObjectId"/>
+                    <PropertyRef Name="LockIndicator"/>
+                    <PropertyRef Name="EndDate"/>
+                    <PropertyRef Name="BeginDate"/>
+                    <PropertyRef Name="SequenceNumber"/>
+                </Key>
+                <Property Name="EmployeeNumber" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Personnel Number" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="InfotypeId" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Infotype" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="SubtypeId" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Subtype" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ObjectId" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Object ID" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="LockIndicator" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:label="Lock indicator" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="EndDate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="End Date" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="BeginDate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Start Date" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="SequenceNumber" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="IT record no." sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ChangedBy" Type="Edm.String" MaxLength="12" sap:unicode="false" sap:label="Changed by" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ChangedOn" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Changed On" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CommunicationTypeId" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Communication Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CommunicationTypeText" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Communication Type Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Listfield" Type="Edm.String" MaxLength="30" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LockIndicatorText" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Lock Indicator Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TelephoneExtension" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="Extension" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TelephoneNumber" Type="Edm.String" MaxLength="30" sap:unicode="false" sap:label="Telephone" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="UserId" Type="Edm.String" MaxLength="30" sap:unicode="false" sap:label="System ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="UserIdLong" Type="Edm.String" MaxLength="241" sap:unicode="false" sap:label="Long ID/Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="toPersInfoMetaData" Relationship="ZHCMFAB_MYPROFILE_SRV.fromCommunicationDataToPersInfoMetaData" FromRole="FromRole_fromCommunicationDataToPersInfoMetaData" ToRole="ToRole_fromCommunicationDataToPersInfoMetaData"/>
+            </EntityType>
+            <EntityType Name="PersInfoMetaData" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="EmployeeNumber"/>
+                    <PropertyRef Name="InfotypeId"/>
+                    <PropertyRef Name="SubtypeId"/>
+                    <PropertyRef Name="ObjectId"/>
+                    <PropertyRef Name="LockIndicator"/>
+                    <PropertyRef Name="EndDate"/>
+                    <PropertyRef Name="BeginDate"/>
+                    <PropertyRef Name="SequenceNumber"/>
+                    <PropertyRef Name="VersionId"/>
+                    <PropertyRef Name="FieldName"/>
+                </Key>
+                <Property Name="EmployeeNumber" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Personnel Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="InfotypeId" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Infotype" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SubtypeId" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Subtype" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ObjectId" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Object ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LockIndicator" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:label="Lock indicator" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EndDate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="End Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BeginDate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Start Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SequenceNumber" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="IT record no." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VersionId" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FieldName" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Field Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="IsVisible" Type="Edm.Boolean" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="IsEditable" Type="Edm.Boolean" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="IsRequired" Type="Edm.Boolean" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BackendLabel" Type="Edm.String" MaxLength="60" sap:unicode="false" sap:label="Label" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="EmployeeDetail" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="EmployeeNumber"/>
+                </Key>
+                <Property Name="OfficeAddress" Type="ZHCMFAB_MYPROFILE_SRV.OfficeAddress" Nullable="false"/>
+                <Property Name="EmployeeName" Type="ZHCMFAB_MYPROFILE_SRV.EmployeeName" Nullable="false"/>
+                <Property Name="EmployeeNumber" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Personnel Number" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="UserId" Type="Edm.String" MaxLength="12" sap:unicode="false" sap:label="User" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CostCenterId" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="Cost Center ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CostCenterText" Type="Edm.String" MaxLength="20" sap:unicode="false" sap:label="Cost Center" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CompanyCodeId" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Company Code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CompanyCodeText" Type="Edm.String" MaxLength="25" sap:unicode="false" sap:label="Company Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PersonnelAreaId" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Personnel Area ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PersonnelAreaText" Type="Edm.String" MaxLength="30" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PersonnelSubareaId" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Personnel Subarea ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PersonnelSubareaText" Type="Edm.String" MaxLength="15" sap:unicode="false" sap:label="Personnel Subarea" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BusinessAreaId" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Business Area ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BusinessAreaText" Type="Edm.String" MaxLength="30" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="WorkPhone" Type="Edm.String" MaxLength="30" sap:unicode="false" sap:label="Telephone" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="tel;type=work"/>
+                <Property Name="WorkFax" Type="Edm.String" MaxLength="30" sap:unicode="false" sap:label="Fax" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="tel;type=fax"/>
+                <Property Name="WorkMobile" Type="Edm.String" MaxLength="30" sap:unicode="false" sap:label="Mobile" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="tel;type=cell"/>
+                <Property Name="WorkEmail" Type="Edm.String" MaxLength="241" sap:unicode="false" sap:label="Email" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="email;type=work"/>
+                <Property Name="EmployeeOrgunitId" Type="Edm.String" MaxLength="8" sap:unicode="false" sap:label="Organisational Unit ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="org-unit"/>
+                <Property Name="EmployeeOrgunitText" Type="Edm.String" MaxLength="25" sap:unicode="false" sap:label="Organisational Unit Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="org"/>
+                <Property Name="EmployeeOrgunitLongtext" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Organisational Unit Long Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="org"/>
+                <Property Name="EmployeePositionId" Type="Edm.String" MaxLength="8" sap:unicode="false" sap:label="Position ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EmployeePositionText" Type="Edm.String" MaxLength="25" sap:unicode="false" sap:label="Position Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EmployeePositionLongtext" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Position Long Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EmployeeJobtitleId" Type="Edm.String" MaxLength="8" sap:unicode="false" sap:label="Job Title ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EmployeeJobtitleText" Type="Edm.String" MaxLength="25" sap:unicode="false" sap:label="Job Title" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="title"/>
+                <Property Name="EmployeeJobtitleLongtext" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Job Title Long" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="title"/>
+                <Property Name="ManagerNumber" Type="Edm.String" MaxLength="8" sap:unicode="false" sap:label="Manager Personnel Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ManagerName" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Manager Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LocalTimezoneOffset" Type="Edm.Time" Precision="0" sap:unicode="false" sap:label="Local Timezone Difference from UTC" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LocalTimezoneOffsetSign" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Sign of Difference from UTC" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LocalTimezoneOffsetIsDst" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Local Timezone Difference from UTC  is Summertime" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LocalTimezoneId" Type="Edm.String" MaxLength="6" sap:unicode="false" sap:label="Timezone ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LocalTimezoneText" Type="Edm.String" MaxLength="30" sap:unicode="false" sap:label="Timezone" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="toFamilyMember" Relationship="ZHCMFAB_MYPROFILE_SRV.fromEmployeeDetailToFamilyMember" FromRole="FromRole_fromEmployeeDetailToFamilyMember" ToRole="ToRole_fromEmployeeDetailToFamilyMember"/>
+                <NavigationProperty Name="toEmployeePicture" Relationship="ZHCMFAB_MYPROFILE_SRV.fromEmployeeDetailToEmployeePicture" FromRole="FromRole_fromEmployeeDetailToEmployeePicture" ToRole="ToRole_fromEmployeeDetailToEmployeePicture"/>
+                <NavigationProperty Name="toColleagues" Relationship="ZHCMFAB_MYPROFILE_SRV.fromEmployeeDetailToColleagues" FromRole="FromRole_fromEmployeeDetailToColleagues" ToRole="ToRole_fromEmployeeDetailToColleagues"/>
+                <NavigationProperty Name="toManagerDetail" Relationship="ZHCMFAB_MYPROFILE_SRV.fromEmployeeDetailToManagerDetail" FromRole="FromRole_fromEmployeeDetailToManagerDetail" ToRole="ToRole_fromEmployeeDetailToManagerDetail"/>
+                <NavigationProperty Name="toAbsence" Relationship="ZHCMFAB_MYPROFILE_SRV.fromEmployeeDetailToAbsence" FromRole="FromRole_fromEmployeeDetailToAbsence" ToRole="ToRole_fromEmployeeDetailToAbsence"/>
+                <NavigationProperty Name="toCareerProgress" Relationship="ZHCMFAB_MYPROFILE_SRV.fromEmployeeDetailToCareerProgress" FromRole="FromRole_fromEmployeeDetailToCareerProgress" ToRole="ToRole_fromEmployeeDetailToCareerProgress"/>
+                <NavigationProperty Name="toCommunication" Relationship="ZHCMFAB_MYPROFILE_SRV.fromEmployeeDetailToCommunication" FromRole="FromRole_fromEmployeeDetailToCommunication" ToRole="ToRole_fromEmployeeDetailToCommunication"/>
+                <NavigationProperty Name="toTimeRecording" Relationship="ZHCMFAB_MYPROFILE_SRV.fromEmployeeDetailToTimeRecording" FromRole="FromRole_fromEmployeeDetailToTimeRecording" ToRole="ToRole_fromEmployeeDetailToTimeRecording"/>
+                <NavigationProperty Name="toTimeBalance" Relationship="ZHCMFAB_MYPROFILE_SRV.fromEmployeeDetailToTimeBalance" FromRole="FromRole_fromEmployeeDetailToTimeBalance" ToRole="ToRole_fromEmployeeDetailToTimeBalance"/>
+                <NavigationProperty Name="toTrainings" Relationship="ZHCMFAB_MYPROFILE_SRV.fromEmployeeDetailToTrainings" FromRole="FromRole_fromEmployeeDetailToTrainings" ToRole="ToRole_fromEmployeeDetailToTrainings"/>
+                <NavigationProperty Name="toInternalData" Relationship="ZHCMFAB_MYPROFILE_SRV.fromEmployeeDetailToInternalData" FromRole="FromRole_fromEmployeeDetailToInternalData" ToRole="ToRole_fromEmployeeDetailToInternalData"/>
+                <NavigationProperty Name="toPerformance" Relationship="ZHCMFAB_MYPROFILE_SRV.fromEmployeeDetailToPerformance" FromRole="FromRole_fromEmployeeDetailToPerformance" ToRole="ToRole_fromEmployeeDetailToPerformance"/>
+                <NavigationProperty Name="toQualifications" Relationship="ZHCMFAB_MYPROFILE_SRV.fromEmployeeDetailToQualifications" FromRole="FromRole_fromEmployeeDetailToQualifications" ToRole="ToRole_fromEmployeeDetailToQualifications"/>
+                <NavigationProperty Name="toPaystubs" Relationship="ZHCMFAB_MYPROFILE_SRV.fromEmployeeDetailToPaystubs" FromRole="FromRole_fromEmployeeDetailToPaystubs" ToRole="ToRole_fromEmployeeDetailToPaystubs"/>
+                <NavigationProperty Name="toPersonalData" Relationship="ZHCMFAB_MYPROFILE_SRV.fromEmployeeDetailToPersonalData" FromRole="FromRole_fromEmployeeDetailToPersonalData" ToRole="ToRole_fromEmployeeDetailToPersonalData"/>
+                <NavigationProperty Name="toCompensation" Relationship="ZHCMFAB_MYPROFILE_SRV.fromEmployeeDetailToCompensation" FromRole="FromRole_fromEmployeeDetailToCompensation" ToRole="ToRole_fromEmployeeDetailToCompensation"/>
+                <NavigationProperty Name="toAddresses" Relationship="ZHCMFAB_MYPROFILE_SRV.fromEmployeeDetailToAddresses" FromRole="FromRole_fromEmployeeDetailToAddresses" ToRole="ToRole_fromEmployeeDetailToAddresses"/>
+                <NavigationProperty Name="toBankDetails" Relationship="ZHCMFAB_MYPROFILE_SRV.fromEmployeeDetailToBankDetails" FromRole="FromRole_fromEmployeeDetailToBankDetails" ToRole="ToRole_fromEmployeeDetailToBankDetails"/>
+                <NavigationProperty Name="toEducations" Relationship="ZHCMFAB_MYPROFILE_SRV.fromEmployeeDetailToEducations" FromRole="FromRole_fromEmployeeDetailToEducations" ToRole="ToRole_fromEmployeeDetailToEducations"/>
+            </EntityType>
+            <EntityType Name="Configuration" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="EmployeeNumber"/>
+                </Key>
+                <Property Name="TrainingsDuration" Type="ZHCMFAB_MYPROFILE_SRV.TrainingsDuration" Nullable="false"/>
+                <Property Name="PerformanceDuration" Type="ZHCMFAB_MYPROFILE_SRV.PerformanceDuration" Nullable="false"/>
+                <Property Name="TimerecordingDuration" Type="ZHCMFAB_MYPROFILE_SRV.TimerecordingDuration" Nullable="false"/>
+                <Property Name="SalaryDuration" Type="ZHCMFAB_MYPROFILE_SRV.SalaryDuration" Nullable="false"/>
+                <Property Name="AbsenceDuration" Type="ZHCMFAB_MYPROFILE_SRV.AbsenceDuration" Nullable="false"/>
+                <Property Name="PaystubsDuration" Type="ZHCMFAB_MYPROFILE_SRV.PaystubsDuration" Nullable="false"/>
+                <Property Name="QuallificationsDuration" Type="ZHCMFAB_MYPROFILE_SRV.QualificationsDuration" Nullable="false"/>
+                <Property Name="EmployeeNumber" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Personnel Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ShowPerformanceRatings" Type="Edm.Boolean" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ShowTimebalance" Type="Edm.Boolean" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ShowTimerecording" Type="Edm.Boolean" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ShowAbsence" Type="Edm.Boolean" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ShowSalary" Type="Edm.Boolean" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ShowPaystubs" Type="Edm.Boolean" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ShowTrainings" Type="Edm.Boolean" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ShowQualifications" Type="Edm.Boolean" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ShowCareerProgress" Type="Edm.Boolean" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ShowPersonalData" Type="Edm.Boolean" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ShowBankData" Type="Edm.Boolean" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ShowAddressData" Type="Edm.Boolean" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ShowFamilymembersData" Type="Edm.Boolean" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ShowCommunicationData" Type="Edm.Boolean" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ShowInternalData" Type="Edm.Boolean" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PersonalDataSubsectionTitle" Type="Edm.String" MaxLength="45" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AddressSubsectionTitle" Type="Edm.String" MaxLength="45" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BankdetailsSubsectionTitle" Type="Edm.String" MaxLength="45" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FamilymembersSubsectionTitle" Type="Edm.String" MaxLength="45" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="InternaldataSubsectionTitle" Type="Edm.String" MaxLength="45" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CommunicationSubsectionTitle" Type="Edm.String" MaxLength="45" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="Paystub" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="EmployeeNumber"/>
+                    <PropertyRef Name="PayDate"/>
+                </Key>
+                <Property Name="EmployeeNumber" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Personnel Number" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="NetpayAmount" Type="Edm.Decimal" Precision="16" Scale="3" sap:unicode="false" sap:unit="Currency" sap:label="Take Home Pay" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Currency" Type="Edm.String" MaxLength="5" sap:unicode="false" sap:label="Currency" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="currency-code"/>
+                <Property Name="PayDate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Pay Date" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="PayrollType" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Payroll Type ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PayrollTypeText" Type="Edm.String" MaxLength="60" sap:unicode="false" sap:label="Payroll Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="TimeBalance" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="EmployeeNumber"/>
+                </Key>
+                <Property Name="EmployeeNumber" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Personnel Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BalanceValue" Type="Edm.Decimal" Precision="7" Scale="2" sap:unicode="false" sap:label="Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BalanceText" Type="Edm.String" MaxLength="60" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BalanceUnit" Type="Edm.String" MaxLength="20" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BalanceAsofDate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="As-Of Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="Qualification" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="EmployeeNumber"/>
+                    <PropertyRef Name="QualificationId"/>
+                    <PropertyRef Name="BeginDate"/>
+                </Key>
+                <Property Name="EmployeeNumber" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Personnel Number" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="QualificationId" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Qualification Id" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="QualificationText" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Qualification" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BeginDate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Start Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EndDate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="End Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="QualificationgroupId" Type="Edm.String" MaxLength="8" sap:unicode="false" sap:label="Qualification Group ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="QualificationgroupText" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Qualification group" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="IsEssential" Type="Edm.Boolean" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ScaleId" Type="Edm.String" MaxLength="8" sap:unicode="false" sap:label="Scale" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ScaleText" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Scale Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ActualRating" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Actual Rating" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ActualRatingText" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Actual Rating Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TargetRating" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Target Rating" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TargetRatingText" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Target Rating Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ThresholdRating" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Threshold Rating" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ThresholdRatingText" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Threshold Rating Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MinScaleLevel" Type="Edm.Decimal" Precision="15" Scale="3" sap:unicode="false" sap:label="Minimum Scale Level" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MinScaleLevelText" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Minimum Scale Level Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MaxScaleLevel" Type="Edm.Decimal" Precision="15" Scale="3" sap:unicode="false" sap:label="Maximum Scale Level" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MaxScaleLevelText" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Maximum Scale Level Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="Colleague" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="EmployeeNumber"/>
+                </Key>
+                <Property Name="EmployeeNumber" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Colleague Personnel Number" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="EmployeeSortname" Type="Edm.String" MaxLength="30" sap:unicode="false" sap:label="Colleague Sortable Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EmployeeName" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Colleague Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EmployeeCategory" Type="Edm.String" MaxLength="20" sap:unicode="false" sap:label="Employee Category" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RequesterNumber" Type="Edm.String" MaxLength="8" sap:unicode="false" sap:label="Personnel Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RequesterName" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Employee Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="toEmployeePicture" Relationship="ZHCMFAB_MYPROFILE_SRV.fromColleagueToEmployeePicture" FromRole="FromRole_fromColleagueToEmployeePicture" ToRole="ToRole_fromColleagueToEmployeePicture"/>
+            </EntityType>
+            <EntityType Name="ScaleProficiency" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ScaleId"/>
+                    <PropertyRef Name="Proficiency"/>
+                </Key>
+                <Property Name="ScaleId" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Scale" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Proficiency" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Proficiency" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ProficiencyText" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Proficiency" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="FamilyMember" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="EmployeeNumber"/>
+                    <PropertyRef Name="InfotypeId"/>
+                    <PropertyRef Name="SubtypeId"/>
+                    <PropertyRef Name="ObjectId"/>
+                    <PropertyRef Name="LockIndicator"/>
+                    <PropertyRef Name="EndDate"/>
+                    <PropertyRef Name="BeginDate"/>
+                    <PropertyRef Name="SequenceNumber"/>
+                </Key>
+                <Property Name="EmployeeNumber" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Personnel Number" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="InfotypeId" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Infotype" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="SubtypeId" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Subtype" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ObjectId" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Object ID" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="LockIndicator" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:label="Lock indicator" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="EndDate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="End Date" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="BeginDate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Start Date" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="SequenceNumber" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="IT record no." sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ChangedBy" Type="Edm.String" MaxLength="12" sap:unicode="false" sap:label="Changed by" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ChangedOn" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Changed On" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CityOfBirth" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Birthplace" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CountryOfBirthId" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="Country of Birth" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CountryOfBirthText" Type="Edm.String" MaxLength="60" sap:unicode="false" sap:label="Country of Birth Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DateOfBirth" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Date of Birth" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FamilyMemberTypeId" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FamilyMemberTypeText" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FirstName" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="First name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FormattedName" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="GenderId" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Gender" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="GenderText" Type="Edm.String" MaxLength="30" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Initials" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="Initials" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LastName" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Last name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LockIndicatorText" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Lock Indicator Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NameAffix" Type="Edm.String" MaxLength="15" sap:unicode="false" sap:label="Other title" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NameAtBirth" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Name at Birth" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NameFormatIndicatorId" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:label="Name Format" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NameFormatIndicatorText" Type="Edm.String" MaxLength="60" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NamePrefixFirst" Type="Edm.String" MaxLength="15" sap:unicode="false" sap:label="Name prefix" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NamePrefixSecond" Type="Edm.String" MaxLength="15" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NationalityId" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="Nationality" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NationalityText" Type="Edm.String" MaxLength="15" sap:unicode="false" sap:label="Nationality Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SecondNationalityId" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="2nd Nationality" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SecondNationalityText" Type="Edm.String" MaxLength="15" sap:unicode="false" sap:label="2nd Nationality Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ThirdNationalityId" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="3rd Nationality" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ThirdNationalityText" Type="Edm.String" MaxLength="15" sap:unicode="false" sap:label="3rd Nationality Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="toPersInfoMetaData" Relationship="ZHCMFAB_MYPROFILE_SRV.fromFamilyMemberToPersInfoMetaData" FromRole="FromRole_fromFamilyMemberToPersInfoMetaData" ToRole="ToRole_fromFamilyMemberToPersInfoMetaData"/>
+            </EntityType>
+            <EntityType Name="Education" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="EmployeeNumber"/>
+                    <PropertyRef Name="InfotypeId"/>
+                    <PropertyRef Name="SubtypeId"/>
+                    <PropertyRef Name="ObjectId"/>
+                    <PropertyRef Name="LockIndicator"/>
+                    <PropertyRef Name="EndDate"/>
+                    <PropertyRef Name="BeginDate"/>
+                    <PropertyRef Name="SequenceNumber"/>
+                </Key>
+                <Property Name="EmployeeNumber" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Personnel No." sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="InfotypeId" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Infotype" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="SubtypeId" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Subtype" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ObjectId" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Object ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LockIndicator" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:label="Lock indicator" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EndDate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="End Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BeginDate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Start Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SequenceNumber" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="IT record no." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SchoolType" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SchoolTypeText" Type="Edm.String" MaxLength="20" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="InstitutionName" Type="Edm.String" MaxLength="80" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Country" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="Country" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Department" Type="Edm.String" MaxLength="8" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DepartmentName" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Slabs" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:label="Certificate" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FacultyCode" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="Faculty code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FacultyName" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Faculty" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SchoolBeginDate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Start Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SchoolEndDate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="End Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="IsEditable" Type="Edm.Boolean" sap:unicode="false" sap:label="TRUE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="IsDeletable" Type="Edm.Boolean" sap:unicode="false" sap:label="TRUE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DisplayScreen" Type="Edm.String" MaxLength="30" sap:unicode="false" sap:label="UI Screen" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EditScreen" Type="Edm.String" MaxLength="30" sap:unicode="false" sap:label="UI Screen" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="toPersInfoMetaData" Relationship="ZHCMFAB_MYPROFILE_SRV.fromEducationToPersInfoMetaData" FromRole="FromRole_fromEducationToPersInfoMetaData" ToRole="ToRole_fromEducationToPersInfoMetaData"/>
+            </EntityType>
+            <ComplexType Name="AbsenceDuration">
+                <Property Name="DurationYears" Type="Edm.Decimal" Precision="2" Scale="0" sap:label="Years" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DurationMonths" Type="Edm.Decimal" Precision="2" Scale="0" sap:label="Months" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DurationDays" Type="Edm.Decimal" Precision="2" Scale="0" sap:label="Days" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </ComplexType>
+            <ComplexType Name="PaystubsDuration">
+                <Property Name="DurationYears" Type="Edm.Decimal" Precision="2" Scale="0" sap:label="Years" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DurationMonths" Type="Edm.Decimal" Precision="2" Scale="0" sap:label="Months" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DurationDays" Type="Edm.Decimal" Precision="2" Scale="0" sap:label="Days" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </ComplexType>
+            <ComplexType Name="PerformanceDuration">
+                <Property Name="DurationYears" Type="Edm.Decimal" Precision="2" Scale="0" sap:label="Years" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DurationMonths" Type="Edm.Decimal" Precision="2" Scale="0" sap:label="Months" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DurationDays" Type="Edm.Decimal" Precision="2" Scale="0" sap:label="Days" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </ComplexType>
+            <ComplexType Name="QualificationsDuration">
+                <Property Name="DurationYears" Type="Edm.Decimal" Precision="2" Scale="0" sap:label="Years" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DurationMonths" Type="Edm.Decimal" Precision="2" Scale="0" sap:label="Months" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DurationDays" Type="Edm.Decimal" Precision="2" Scale="0" sap:label="Days" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </ComplexType>
+            <ComplexType Name="SalaryDuration">
+                <Property Name="DurationYears" Type="Edm.Decimal" Precision="2" Scale="0" sap:label="Years" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DurationMonths" Type="Edm.Decimal" Precision="2" Scale="0" sap:label="Months" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DurationDays" Type="Edm.Decimal" Precision="2" Scale="0" sap:label="Days" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </ComplexType>
+            <ComplexType Name="TimerecordingDuration">
+                <Property Name="DurationYears" Type="Edm.Decimal" Precision="2" Scale="0" sap:label="Years" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DurationMonths" Type="Edm.Decimal" Precision="2" Scale="0" sap:label="Months" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DurationDays" Type="Edm.Decimal" Precision="2" Scale="0" sap:label="Days" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </ComplexType>
+            <ComplexType Name="EmployeeName">
+                <Property Name="FormOfAddress" Type="Edm.String" MaxLength="5" sap:label="Form-of-Address" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AcademicTitle" Type="Edm.String" MaxLength="15" sap:label="Title" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="honorific"/>
+                <Property Name="FirstName" Type="Edm.String" MaxLength="40" sap:label="Firstname" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="givenname"/>
+                <Property Name="MiddleName" Type="Edm.String" MaxLength="40" sap:label="Middlename" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="middlename"/>
+                <Property Name="LastName" Type="Edm.String" MaxLength="40" sap:label="Lastname" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="familyname"/>
+                <Property Name="FormattedName" Type="Edm.String" MaxLength="40" sap:label="Employee Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="name"/>
+            </ComplexType>
+            <ComplexType Name="OfficeAddress">
+                <Property Name="OfficeBuilding" Type="Edm.String" MaxLength="6" sap:label="Building Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="pobox"/>
+                <Property Name="OfficeRoom" Type="Edm.String" MaxLength="6" sap:label="Room Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="OfficeStreet" Type="Edm.String" MaxLength="60" sap:label="Street" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="OfficeHouseNumber" Type="Edm.String" MaxLength="10" sap:label="House Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="street"/>
+                <Property Name="OfficeAddressSupplement" Type="Edm.String" MaxLength="40" sap:label="Additional Info" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="OfficeRegion" Type="Edm.String" MaxLength="20" sap:label="Region" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="region"/>
+                <Property Name="OfficePostalCode" Type="Edm.String" MaxLength="10" sap:label="Postal Code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="zip"/>
+                <Property Name="OfficeCity" Type="Edm.String" MaxLength="40" sap:label="City" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="city"/>
+                <Property Name="OfficeCountryKey" Type="Edm.String" MaxLength="3" sap:label="Country Key" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="country"/>
+                <Property Name="OfficeCountryText" Type="Edm.String" MaxLength="50" sap:label="Country" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="country"/>
+                <Property Name="OfficeAddressFormatted" Type="Edm.String" sap:label="Office Address" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </ComplexType>
+            <ComplexType Name="TrainingsDuration">
+                <Property Name="DurationYears" Type="Edm.Decimal" Nullable="false" Precision="2" Scale="0" sap:label="Years" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DurationMonths" Type="Edm.Decimal" Nullable="false" Precision="2" Scale="0" sap:label="Months" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DurationDays" Type="Edm.Decimal" Nullable="false" Precision="2" Scale="0" sap:label="Days" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </ComplexType>
+            <Association Name="fromBankDetailToPersInfoMetaData" sap:content-version="1">
+                <End Type="ZHCMFAB_MYPROFILE_SRV.BankDetail" Multiplicity="1" Role="FromRole_fromBankDetailToPersInfoMetaData"/>
+                <End Type="ZHCMFAB_MYPROFILE_SRV.PersInfoMetaData" Multiplicity="*" Role="ToRole_fromBankDetailToPersInfoMetaData"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_fromBankDetailToPersInfoMetaData">
+                        <PropertyRef Name="EmployeeNumber"/>
+                        <PropertyRef Name="InfotypeId"/>
+                        <PropertyRef Name="SubtypeId"/>
+                        <PropertyRef Name="ObjectId"/>
+                        <PropertyRef Name="LockIndicator"/>
+                        <PropertyRef Name="EndDate"/>
+                        <PropertyRef Name="BeginDate"/>
+                        <PropertyRef Name="SequenceNumber"/>
+                    </Principal>
+                    <Dependent Role="ToRole_fromBankDetailToPersInfoMetaData">
+                        <PropertyRef Name="EmployeeNumber"/>
+                        <PropertyRef Name="InfotypeId"/>
+                        <PropertyRef Name="SubtypeId"/>
+                        <PropertyRef Name="ObjectId"/>
+                        <PropertyRef Name="LockIndicator"/>
+                        <PropertyRef Name="EndDate"/>
+                        <PropertyRef Name="BeginDate"/>
+                        <PropertyRef Name="SequenceNumber"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="fromAddressToPersInfoMetaData" sap:content-version="1">
+                <End Type="ZHCMFAB_MYPROFILE_SRV.Address" Multiplicity="1" Role="FromRole_fromAddressToPersInfoMetaData"/>
+                <End Type="ZHCMFAB_MYPROFILE_SRV.PersInfoMetaData" Multiplicity="*" Role="ToRole_fromAddressToPersInfoMetaData"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_fromAddressToPersInfoMetaData">
+                        <PropertyRef Name="SequenceNumber"/>
+                        <PropertyRef Name="BeginDate"/>
+                        <PropertyRef Name="EndDate"/>
+                        <PropertyRef Name="LockIndicator"/>
+                        <PropertyRef Name="ObjectId"/>
+                        <PropertyRef Name="SubtypeId"/>
+                        <PropertyRef Name="InfotypeId"/>
+                        <PropertyRef Name="EmployeeNumber"/>
+                    </Principal>
+                    <Dependent Role="ToRole_fromAddressToPersInfoMetaData">
+                        <PropertyRef Name="SequenceNumber"/>
+                        <PropertyRef Name="BeginDate"/>
+                        <PropertyRef Name="EndDate"/>
+                        <PropertyRef Name="LockIndicator"/>
+                        <PropertyRef Name="ObjectId"/>
+                        <PropertyRef Name="SubtypeId"/>
+                        <PropertyRef Name="InfotypeId"/>
+                        <PropertyRef Name="EmployeeNumber"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="fromCommunicationDataToPersInfoMetaData" sap:content-version="1">
+                <End Type="ZHCMFAB_MYPROFILE_SRV.Communication" Multiplicity="1" Role="FromRole_fromCommunicationDataToPersInfoMetaData"/>
+                <End Type="ZHCMFAB_MYPROFILE_SRV.PersInfoMetaData" Multiplicity="*" Role="ToRole_fromCommunicationDataToPersInfoMetaData"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_fromCommunicationDataToPersInfoMetaData">
+                        <PropertyRef Name="EmployeeNumber"/>
+                        <PropertyRef Name="InfotypeId"/>
+                        <PropertyRef Name="SubtypeId"/>
+                        <PropertyRef Name="ObjectId"/>
+                        <PropertyRef Name="LockIndicator"/>
+                        <PropertyRef Name="EndDate"/>
+                        <PropertyRef Name="BeginDate"/>
+                        <PropertyRef Name="SequenceNumber"/>
+                    </Principal>
+                    <Dependent Role="ToRole_fromCommunicationDataToPersInfoMetaData">
+                        <PropertyRef Name="EmployeeNumber"/>
+                        <PropertyRef Name="InfotypeId"/>
+                        <PropertyRef Name="SubtypeId"/>
+                        <PropertyRef Name="ObjectId"/>
+                        <PropertyRef Name="LockIndicator"/>
+                        <PropertyRef Name="EndDate"/>
+                        <PropertyRef Name="BeginDate"/>
+                        <PropertyRef Name="SequenceNumber"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="fromPerformanceToScaleProficiency" sap:content-version="1">
+                <End Type="ZHCMFAB_MYPROFILE_SRV.Performance" Multiplicity="0..1" Role="FromRole_fromPerformanceToScaleProficiency"/>
+                <End Type="ZHCMFAB_MYPROFILE_SRV.ScaleProficiency" Multiplicity="*" Role="ToRole_fromPerformanceToScaleProficiency"/>
+            </Association>
+            <Association Name="fromColleagueToEmployeePicture" sap:content-version="1">
+                <End Type="ZHCMFAB_MYPROFILE_SRV.Colleague" Multiplicity="1" Role="FromRole_fromColleagueToEmployeePicture"/>
+                <End Type="ZHCMFAB_MYPROFILE_SRV.EmployeePicture" Multiplicity="0..1" Role="ToRole_fromColleagueToEmployeePicture"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_fromColleagueToEmployeePicture">
+                        <PropertyRef Name="EmployeeNumber"/>
+                    </Principal>
+                    <Dependent Role="ToRole_fromColleagueToEmployeePicture">
+                        <PropertyRef Name="EmployeeNumber"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="fromEmployeeDetailToEmployeePicture" sap:content-version="1">
+                <End Type="ZHCMFAB_MYPROFILE_SRV.EmployeeDetail" Multiplicity="1" Role="FromRole_fromEmployeeDetailToEmployeePicture"/>
+                <End Type="ZHCMFAB_MYPROFILE_SRV.EmployeePicture" Multiplicity="0..1" Role="ToRole_fromEmployeeDetailToEmployeePicture"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_fromEmployeeDetailToEmployeePicture">
+                        <PropertyRef Name="EmployeeNumber"/>
+                    </Principal>
+                    <Dependent Role="ToRole_fromEmployeeDetailToEmployeePicture">
+                        <PropertyRef Name="EmployeeNumber"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="fromEmployeeDetailToManagerDetail" sap:content-version="1">
+                <End Type="ZHCMFAB_MYPROFILE_SRV.EmployeeDetail" Multiplicity="1" Role="FromRole_fromEmployeeDetailToManagerDetail"/>
+                <End Type="ZHCMFAB_MYPROFILE_SRV.EmployeeDetail" Multiplicity="1" Role="ToRole_fromEmployeeDetailToManagerDetail"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_fromEmployeeDetailToManagerDetail">
+                        <PropertyRef Name="EmployeeNumber"/>
+                    </Principal>
+                    <Dependent Role="ToRole_fromEmployeeDetailToManagerDetail">
+                        <PropertyRef Name="ManagerNumber"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="fromEmployeeDetailToAbsence" sap:content-version="1">
+                <End Type="ZHCMFAB_MYPROFILE_SRV.EmployeeDetail" Multiplicity="1" Role="FromRole_fromEmployeeDetailToAbsence"/>
+                <End Type="ZHCMFAB_MYPROFILE_SRV.Absence" Multiplicity="0..1" Role="ToRole_fromEmployeeDetailToAbsence"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_fromEmployeeDetailToAbsence">
+                        <PropertyRef Name="EmployeeNumber"/>
+                    </Principal>
+                    <Dependent Role="ToRole_fromEmployeeDetailToAbsence">
+                        <PropertyRef Name="EmployeeNumber"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="fromEmployeeDetailToCareerProgress" sap:content-version="1">
+                <End Type="ZHCMFAB_MYPROFILE_SRV.EmployeeDetail" Multiplicity="1" Role="FromRole_fromEmployeeDetailToCareerProgress"/>
+                <End Type="ZHCMFAB_MYPROFILE_SRV.CareerProgress" Multiplicity="*" Role="ToRole_fromEmployeeDetailToCareerProgress"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_fromEmployeeDetailToCareerProgress">
+                        <PropertyRef Name="EmployeeNumber"/>
+                    </Principal>
+                    <Dependent Role="ToRole_fromEmployeeDetailToCareerProgress">
+                        <PropertyRef Name="EmployeeNumber"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="fromEmployeeDetailToTimeRecording" sap:content-version="1">
+                <End Type="ZHCMFAB_MYPROFILE_SRV.EmployeeDetail" Multiplicity="1" Role="FromRole_fromEmployeeDetailToTimeRecording"/>
+                <End Type="ZHCMFAB_MYPROFILE_SRV.TimeRecording" Multiplicity="0..1" Role="ToRole_fromEmployeeDetailToTimeRecording"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_fromEmployeeDetailToTimeRecording">
+                        <PropertyRef Name="EmployeeNumber"/>
+                    </Principal>
+                    <Dependent Role="ToRole_fromEmployeeDetailToTimeRecording">
+                        <PropertyRef Name="EmployeeNumber"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="fromEmployeeDetailToTimeBalance" sap:content-version="1">
+                <End Type="ZHCMFAB_MYPROFILE_SRV.EmployeeDetail" Multiplicity="1" Role="FromRole_fromEmployeeDetailToTimeBalance"/>
+                <End Type="ZHCMFAB_MYPROFILE_SRV.TimeBalance" Multiplicity="0..1" Role="ToRole_fromEmployeeDetailToTimeBalance"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_fromEmployeeDetailToTimeBalance">
+                        <PropertyRef Name="EmployeeNumber"/>
+                    </Principal>
+                    <Dependent Role="ToRole_fromEmployeeDetailToTimeBalance">
+                        <PropertyRef Name="EmployeeNumber"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="fromEmployeeDetailToTrainings" sap:content-version="1">
+                <End Type="ZHCMFAB_MYPROFILE_SRV.EmployeeDetail" Multiplicity="1" Role="FromRole_fromEmployeeDetailToTrainings"/>
+                <End Type="ZHCMFAB_MYPROFILE_SRV.Training" Multiplicity="*" Role="ToRole_fromEmployeeDetailToTrainings"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_fromEmployeeDetailToTrainings">
+                        <PropertyRef Name="EmployeeNumber"/>
+                    </Principal>
+                    <Dependent Role="ToRole_fromEmployeeDetailToTrainings">
+                        <PropertyRef Name="EmployeeNumber"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="fromEmployeeDetailToPerformance" sap:content-version="1">
+                <End Type="ZHCMFAB_MYPROFILE_SRV.EmployeeDetail" Multiplicity="1" Role="FromRole_fromEmployeeDetailToPerformance"/>
+                <End Type="ZHCMFAB_MYPROFILE_SRV.Performance" Multiplicity="*" Role="ToRole_fromEmployeeDetailToPerformance"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_fromEmployeeDetailToPerformance">
+                        <PropertyRef Name="EmployeeNumber"/>
+                    </Principal>
+                    <Dependent Role="ToRole_fromEmployeeDetailToPerformance">
+                        <PropertyRef Name="EmployeeNumber"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="fromEmployeeDetailToQualifications" sap:content-version="1">
+                <End Type="ZHCMFAB_MYPROFILE_SRV.EmployeeDetail" Multiplicity="1" Role="FromRole_fromEmployeeDetailToQualifications"/>
+                <End Type="ZHCMFAB_MYPROFILE_SRV.Qualification" Multiplicity="*" Role="ToRole_fromEmployeeDetailToQualifications"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_fromEmployeeDetailToQualifications">
+                        <PropertyRef Name="EmployeeNumber"/>
+                    </Principal>
+                    <Dependent Role="ToRole_fromEmployeeDetailToQualifications">
+                        <PropertyRef Name="EmployeeNumber"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="fromEmployeeDetailToPaystubs" sap:content-version="1">
+                <End Type="ZHCMFAB_MYPROFILE_SRV.EmployeeDetail" Multiplicity="1" Role="FromRole_fromEmployeeDetailToPaystubs"/>
+                <End Type="ZHCMFAB_MYPROFILE_SRV.Paystub" Multiplicity="*" Role="ToRole_fromEmployeeDetailToPaystubs"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_fromEmployeeDetailToPaystubs">
+                        <PropertyRef Name="EmployeeNumber"/>
+                    </Principal>
+                    <Dependent Role="ToRole_fromEmployeeDetailToPaystubs">
+                        <PropertyRef Name="EmployeeNumber"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="fromEmployeeDetailToCompensation" sap:content-version="1">
+                <End Type="ZHCMFAB_MYPROFILE_SRV.EmployeeDetail" Multiplicity="1" Role="FromRole_fromEmployeeDetailToCompensation"/>
+                <End Type="ZHCMFAB_MYPROFILE_SRV.Compensation" Multiplicity="*" Role="ToRole_fromEmployeeDetailToCompensation"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_fromEmployeeDetailToCompensation">
+                        <PropertyRef Name="EmployeeNumber"/>
+                    </Principal>
+                    <Dependent Role="ToRole_fromEmployeeDetailToCompensation">
+                        <PropertyRef Name="EmployeeNumber"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="fromEmployeeDetailToAddresses" sap:content-version="1">
+                <End Type="ZHCMFAB_MYPROFILE_SRV.EmployeeDetail" Multiplicity="1" Role="FromRole_fromEmployeeDetailToAddresses"/>
+                <End Type="ZHCMFAB_MYPROFILE_SRV.Address" Multiplicity="*" Role="ToRole_fromEmployeeDetailToAddresses"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_fromEmployeeDetailToAddresses">
+                        <PropertyRef Name="EmployeeNumber"/>
+                    </Principal>
+                    <Dependent Role="ToRole_fromEmployeeDetailToAddresses">
+                        <PropertyRef Name="EmployeeNumber"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="fromEmployeeDetailToBankDetails" sap:content-version="1">
+                <End Type="ZHCMFAB_MYPROFILE_SRV.EmployeeDetail" Multiplicity="1" Role="FromRole_fromEmployeeDetailToBankDetails"/>
+                <End Type="ZHCMFAB_MYPROFILE_SRV.BankDetail" Multiplicity="*" Role="ToRole_fromEmployeeDetailToBankDetails"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_fromEmployeeDetailToBankDetails">
+                        <PropertyRef Name="EmployeeNumber"/>
+                    </Principal>
+                    <Dependent Role="ToRole_fromEmployeeDetailToBankDetails">
+                        <PropertyRef Name="EmployeeNumber"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="fromEmployeeDetailToPersonalData" sap:content-version="1">
+                <End Type="ZHCMFAB_MYPROFILE_SRV.EmployeeDetail" Multiplicity="1" Role="FromRole_fromEmployeeDetailToPersonalData"/>
+                <End Type="ZHCMFAB_MYPROFILE_SRV.PersonalData" Multiplicity="*" Role="ToRole_fromEmployeeDetailToPersonalData"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_fromEmployeeDetailToPersonalData">
+                        <PropertyRef Name="EmployeeNumber"/>
+                    </Principal>
+                    <Dependent Role="ToRole_fromEmployeeDetailToPersonalData">
+                        <PropertyRef Name="EmployeeNumber"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="fromEmployeeDetailToInternalData" sap:content-version="1">
+                <End Type="ZHCMFAB_MYPROFILE_SRV.EmployeeDetail" Multiplicity="1" Role="FromRole_fromEmployeeDetailToInternalData"/>
+                <End Type="ZHCMFAB_MYPROFILE_SRV.InternalData" Multiplicity="*" Role="ToRole_fromEmployeeDetailToInternalData"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_fromEmployeeDetailToInternalData">
+                        <PropertyRef Name="EmployeeNumber"/>
+                    </Principal>
+                    <Dependent Role="ToRole_fromEmployeeDetailToInternalData">
+                        <PropertyRef Name="EmployeeNumber"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="fromEmployeeDetailToCommunication" sap:content-version="1">
+                <End Type="ZHCMFAB_MYPROFILE_SRV.EmployeeDetail" Multiplicity="1" Role="FromRole_fromEmployeeDetailToCommunication"/>
+                <End Type="ZHCMFAB_MYPROFILE_SRV.Communication" Multiplicity="*" Role="ToRole_fromEmployeeDetailToCommunication"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_fromEmployeeDetailToCommunication">
+                        <PropertyRef Name="EmployeeNumber"/>
+                    </Principal>
+                    <Dependent Role="ToRole_fromEmployeeDetailToCommunication">
+                        <PropertyRef Name="EmployeeNumber"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="fromEmployeeDetailToColleagues" sap:content-version="1">
+                <End Type="ZHCMFAB_MYPROFILE_SRV.EmployeeDetail" Multiplicity="1" Role="FromRole_fromEmployeeDetailToColleagues"/>
+                <End Type="ZHCMFAB_MYPROFILE_SRV.Colleague" Multiplicity="*" Role="ToRole_fromEmployeeDetailToColleagues"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_fromEmployeeDetailToColleagues">
+                        <PropertyRef Name="EmployeeNumber"/>
+                    </Principal>
+                    <Dependent Role="ToRole_fromEmployeeDetailToColleagues">
+                        <PropertyRef Name="RequesterNumber"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="fromEmployeeDetailToFamilyMember" sap:content-version="1">
+                <End Type="ZHCMFAB_MYPROFILE_SRV.EmployeeDetail" Multiplicity="1" Role="FromRole_fromEmployeeDetailToFamilyMember"/>
+                <End Type="ZHCMFAB_MYPROFILE_SRV.FamilyMember" Multiplicity="*" Role="ToRole_fromEmployeeDetailToFamilyMember"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_fromEmployeeDetailToFamilyMember">
+                        <PropertyRef Name="EmployeeNumber"/>
+                    </Principal>
+                    <Dependent Role="ToRole_fromEmployeeDetailToFamilyMember">
+                        <PropertyRef Name="EmployeeNumber"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="fromEmployeeDetailToEducations" sap:content-version="1">
+                <End Type="ZHCMFAB_MYPROFILE_SRV.EmployeeDetail" Multiplicity="1" Role="FromRole_fromEmployeeDetailToEducations"/>
+                <End Type="ZHCMFAB_MYPROFILE_SRV.Education" Multiplicity="*" Role="ToRole_fromEmployeeDetailToEducations"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_fromEmployeeDetailToEducations">
+                        <PropertyRef Name="EmployeeNumber"/>
+                    </Principal>
+                    <Dependent Role="ToRole_fromEmployeeDetailToEducations">
+                        <PropertyRef Name="EmployeeNumber"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="fromEducationToPersInfoMetaData" sap:content-version="1">
+                <End Type="ZHCMFAB_MYPROFILE_SRV.Education" Multiplicity="1" Role="FromRole_fromEducationToPersInfoMetaData"/>
+                <End Type="ZHCMFAB_MYPROFILE_SRV.PersInfoMetaData" Multiplicity="*" Role="ToRole_fromEducationToPersInfoMetaData"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_fromEducationToPersInfoMetaData">
+                        <PropertyRef Name="SequenceNumber"/>
+                        <PropertyRef Name="BeginDate"/>
+                        <PropertyRef Name="EndDate"/>
+                        <PropertyRef Name="LockIndicator"/>
+                        <PropertyRef Name="ObjectId"/>
+                        <PropertyRef Name="SubtypeId"/>
+                        <PropertyRef Name="InfotypeId"/>
+                        <PropertyRef Name="EmployeeNumber"/>
+                    </Principal>
+                    <Dependent Role="ToRole_fromEducationToPersInfoMetaData">
+                        <PropertyRef Name="SequenceNumber"/>
+                        <PropertyRef Name="BeginDate"/>
+                        <PropertyRef Name="EndDate"/>
+                        <PropertyRef Name="LockIndicator"/>
+                        <PropertyRef Name="ObjectId"/>
+                        <PropertyRef Name="SubtypeId"/>
+                        <PropertyRef Name="InfotypeId"/>
+                        <PropertyRef Name="EmployeeNumber"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="fromInternalDataToPersInfoMetaData" sap:content-version="1">
+                <End Type="ZHCMFAB_MYPROFILE_SRV.InternalData" Multiplicity="1" Role="FromRole_fromInternalDataToPersInfoMetaData"/>
+                <End Type="ZHCMFAB_MYPROFILE_SRV.PersInfoMetaData" Multiplicity="*" Role="ToRole_fromInternalDataToPersInfoMetaData"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_fromInternalDataToPersInfoMetaData">
+                        <PropertyRef Name="EmployeeNumber"/>
+                        <PropertyRef Name="InfotypeId"/>
+                        <PropertyRef Name="SubtypeId"/>
+                        <PropertyRef Name="ObjectId"/>
+                        <PropertyRef Name="LockIndicator"/>
+                        <PropertyRef Name="EndDate"/>
+                        <PropertyRef Name="BeginDate"/>
+                        <PropertyRef Name="SequenceNumber"/>
+                    </Principal>
+                    <Dependent Role="ToRole_fromInternalDataToPersInfoMetaData">
+                        <PropertyRef Name="EmployeeNumber"/>
+                        <PropertyRef Name="InfotypeId"/>
+                        <PropertyRef Name="SubtypeId"/>
+                        <PropertyRef Name="ObjectId"/>
+                        <PropertyRef Name="LockIndicator"/>
+                        <PropertyRef Name="EndDate"/>
+                        <PropertyRef Name="BeginDate"/>
+                        <PropertyRef Name="SequenceNumber"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="fromPersonalDataToPersInfoMetaData" sap:content-version="1">
+                <End Type="ZHCMFAB_MYPROFILE_SRV.PersonalData" Multiplicity="1" Role="FromRole_fromPersonalDataToPersInfoMetaData"/>
+                <End Type="ZHCMFAB_MYPROFILE_SRV.PersInfoMetaData" Multiplicity="*" Role="ToRole_fromPersonalDataToPersInfoMetaData"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_fromPersonalDataToPersInfoMetaData">
+                        <PropertyRef Name="EmployeeNumber"/>
+                        <PropertyRef Name="SequenceNumber"/>
+                        <PropertyRef Name="BeginDate"/>
+                        <PropertyRef Name="EndDate"/>
+                        <PropertyRef Name="LockIndicator"/>
+                        <PropertyRef Name="ObjectId"/>
+                        <PropertyRef Name="SubtypeId"/>
+                        <PropertyRef Name="InfotypeId"/>
+                    </Principal>
+                    <Dependent Role="ToRole_fromPersonalDataToPersInfoMetaData">
+                        <PropertyRef Name="EmployeeNumber"/>
+                        <PropertyRef Name="SequenceNumber"/>
+                        <PropertyRef Name="BeginDate"/>
+                        <PropertyRef Name="EndDate"/>
+                        <PropertyRef Name="LockIndicator"/>
+                        <PropertyRef Name="ObjectId"/>
+                        <PropertyRef Name="SubtypeId"/>
+                        <PropertyRef Name="InfotypeId"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="fromFamilyMemberToPersInfoMetaData" sap:content-version="1">
+                <End Type="ZHCMFAB_MYPROFILE_SRV.FamilyMember" Multiplicity="1" Role="FromRole_fromFamilyMemberToPersInfoMetaData"/>
+                <End Type="ZHCMFAB_MYPROFILE_SRV.PersInfoMetaData" Multiplicity="*" Role="ToRole_fromFamilyMemberToPersInfoMetaData"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_fromFamilyMemberToPersInfoMetaData">
+                        <PropertyRef Name="SequenceNumber"/>
+                        <PropertyRef Name="BeginDate"/>
+                        <PropertyRef Name="EndDate"/>
+                        <PropertyRef Name="LockIndicator"/>
+                        <PropertyRef Name="ObjectId"/>
+                        <PropertyRef Name="SubtypeId"/>
+                        <PropertyRef Name="EmployeeNumber"/>
+                        <PropertyRef Name="InfotypeId"/>
+                    </Principal>
+                    <Dependent Role="ToRole_fromFamilyMemberToPersInfoMetaData">
+                        <PropertyRef Name="SequenceNumber"/>
+                        <PropertyRef Name="BeginDate"/>
+                        <PropertyRef Name="EndDate"/>
+                        <PropertyRef Name="LockIndicator"/>
+                        <PropertyRef Name="ObjectId"/>
+                        <PropertyRef Name="SubtypeId"/>
+                        <PropertyRef Name="EmployeeNumber"/>
+                        <PropertyRef Name="InfotypeId"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="ZHCMFAB_MYPROFILE_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="EmployeeDetailSet" EntityType="ZHCMFAB_MYPROFILE_SRV.EmployeeDetail" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="ConfigurationSet" EntityType="ZHCMFAB_MYPROFILE_SRV.Configuration" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="PaystubSet" EntityType="ZHCMFAB_MYPROFILE_SRV.Paystub" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="TimeBalanceSet" EntityType="ZHCMFAB_MYPROFILE_SRV.TimeBalance" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="QualificationSet" EntityType="ZHCMFAB_MYPROFILE_SRV.Qualification" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="ColleagueSet" EntityType="ZHCMFAB_MYPROFILE_SRV.Colleague" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="ScaleProficiencySet" EntityType="ZHCMFAB_MYPROFILE_SRV.ScaleProficiency" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="FamilyMemberSet" EntityType="ZHCMFAB_MYPROFILE_SRV.FamilyMember" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="EducationSet" EntityType="ZHCMFAB_MYPROFILE_SRV.Education" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="EmployeePictureSet" EntityType="ZHCMFAB_MYPROFILE_SRV.EmployeePicture" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="TrainingSet" EntityType="ZHCMFAB_MYPROFILE_SRV.Training" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="TimeRecordingSet" EntityType="ZHCMFAB_MYPROFILE_SRV.TimeRecording" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="CareerProgressSet" EntityType="ZHCMFAB_MYPROFILE_SRV.CareerProgress" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="CompensationSet" EntityType="ZHCMFAB_MYPROFILE_SRV.Compensation" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="PerformanceSet" EntityType="ZHCMFAB_MYPROFILE_SRV.Performance" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="AbsenceSet" EntityType="ZHCMFAB_MYPROFILE_SRV.Absence" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="AddressSet" EntityType="ZHCMFAB_MYPROFILE_SRV.Address" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="BankDetailSet" EntityType="ZHCMFAB_MYPROFILE_SRV.BankDetail" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="PersonalDataSet" EntityType="ZHCMFAB_MYPROFILE_SRV.PersonalData" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="InternalDataSet" EntityType="ZHCMFAB_MYPROFILE_SRV.InternalData" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="CommunicationSet" EntityType="ZHCMFAB_MYPROFILE_SRV.Communication" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="PersInfoMetaDataSet" EntityType="ZHCMFAB_MYPROFILE_SRV.PersInfoMetaData" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <AssociationSet Name="fromEmployeeDetailToAbsenceSet" Association="ZHCMFAB_MYPROFILE_SRV.fromEmployeeDetailToAbsence" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="EmployeeDetailSet" Role="FromRole_fromEmployeeDetailToAbsence"/>
+                    <End EntitySet="AbsenceSet" Role="ToRole_fromEmployeeDetailToAbsence"/>
+                </AssociationSet>
+                <AssociationSet Name="fromAddressToPersInfoMetaDataSet" Association="ZHCMFAB_MYPROFILE_SRV.fromAddressToPersInfoMetaData" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="AddressSet" Role="FromRole_fromAddressToPersInfoMetaData"/>
+                    <End EntitySet="PersInfoMetaDataSet" Role="ToRole_fromAddressToPersInfoMetaData"/>
+                </AssociationSet>
+                <AssociationSet Name="fromEmployeeDetailToColleaguesSet" Association="ZHCMFAB_MYPROFILE_SRV.fromEmployeeDetailToColleagues" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="EmployeeDetailSet" Role="FromRole_fromEmployeeDetailToColleagues"/>
+                    <End EntitySet="ColleagueSet" Role="ToRole_fromEmployeeDetailToColleagues"/>
+                </AssociationSet>
+                <AssociationSet Name="fromEmployeeDetailToCompensationSet" Association="ZHCMFAB_MYPROFILE_SRV.fromEmployeeDetailToCompensation" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="EmployeeDetailSet" Role="FromRole_fromEmployeeDetailToCompensation"/>
+                    <End EntitySet="CompensationSet" Role="ToRole_fromEmployeeDetailToCompensation"/>
+                </AssociationSet>
+                <AssociationSet Name="fromEmployeeDetailToPersonalDataSet" Association="ZHCMFAB_MYPROFILE_SRV.fromEmployeeDetailToPersonalData" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="EmployeeDetailSet" Role="FromRole_fromEmployeeDetailToPersonalData"/>
+                    <End EntitySet="PersonalDataSet" Role="ToRole_fromEmployeeDetailToPersonalData"/>
+                </AssociationSet>
+                <AssociationSet Name="fromEmployeeDetailToEducationsSet" Association="ZHCMFAB_MYPROFILE_SRV.fromEmployeeDetailToEducations" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="EmployeeDetailSet" Role="FromRole_fromEmployeeDetailToEducations"/>
+                    <End EntitySet="EducationSet" Role="ToRole_fromEmployeeDetailToEducations"/>
+                </AssociationSet>
+                <AssociationSet Name="fromEmployeeDetailToPerformanceSet" Association="ZHCMFAB_MYPROFILE_SRV.fromEmployeeDetailToPerformance" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="EmployeeDetailSet" Role="FromRole_fromEmployeeDetailToPerformance"/>
+                    <End EntitySet="PerformanceSet" Role="ToRole_fromEmployeeDetailToPerformance"/>
+                </AssociationSet>
+                <AssociationSet Name="fromPersonalDataToPersInfoMetaDataSet" Association="ZHCMFAB_MYPROFILE_SRV.fromPersonalDataToPersInfoMetaData" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="PersonalDataSet" Role="FromRole_fromPersonalDataToPersInfoMetaData"/>
+                    <End EntitySet="PersInfoMetaDataSet" Role="ToRole_fromPersonalDataToPersInfoMetaData"/>
+                </AssociationSet>
+                <AssociationSet Name="fromEmployeeDetailToAddressesSet" Association="ZHCMFAB_MYPROFILE_SRV.fromEmployeeDetailToAddresses" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="EmployeeDetailSet" Role="FromRole_fromEmployeeDetailToAddresses"/>
+                    <End EntitySet="AddressSet" Role="ToRole_fromEmployeeDetailToAddresses"/>
+                </AssociationSet>
+                <AssociationSet Name="fromEducationToPersInfoMetaDataSet" Association="ZHCMFAB_MYPROFILE_SRV.fromEducationToPersInfoMetaData" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="EducationSet" Role="FromRole_fromEducationToPersInfoMetaData"/>
+                    <End EntitySet="PersInfoMetaDataSet" Role="ToRole_fromEducationToPersInfoMetaData"/>
+                </AssociationSet>
+                <AssociationSet Name="fromEmployeeDetailToFamilyMemberSet" Association="ZHCMFAB_MYPROFILE_SRV.fromEmployeeDetailToFamilyMember" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="EmployeeDetailSet" Role="FromRole_fromEmployeeDetailToFamilyMember"/>
+                    <End EntitySet="FamilyMemberSet" Role="ToRole_fromEmployeeDetailToFamilyMember"/>
+                </AssociationSet>
+                <AssociationSet Name="fromInternalDataToPersInfoMetaDataSet" Association="ZHCMFAB_MYPROFILE_SRV.fromInternalDataToPersInfoMetaData" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="InternalDataSet" Role="FromRole_fromInternalDataToPersInfoMetaData"/>
+                    <End EntitySet="PersInfoMetaDataSet" Role="ToRole_fromInternalDataToPersInfoMetaData"/>
+                </AssociationSet>
+                <AssociationSet Name="fromEmployeeDetailToCareerProgressSet" Association="ZHCMFAB_MYPROFILE_SRV.fromEmployeeDetailToCareerProgress" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="EmployeeDetailSet" Role="FromRole_fromEmployeeDetailToCareerProgress"/>
+                    <End EntitySet="CareerProgressSet" Role="ToRole_fromEmployeeDetailToCareerProgress"/>
+                </AssociationSet>
+                <AssociationSet Name="fromEmployeeDetailToPaystubsSet" Association="ZHCMFAB_MYPROFILE_SRV.fromEmployeeDetailToPaystubs" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="EmployeeDetailSet" Role="FromRole_fromEmployeeDetailToPaystubs"/>
+                    <End EntitySet="PaystubSet" Role="ToRole_fromEmployeeDetailToPaystubs"/>
+                </AssociationSet>
+                <AssociationSet Name="fromEmployeeDetailToTimeBalanceSet" Association="ZHCMFAB_MYPROFILE_SRV.fromEmployeeDetailToTimeBalance" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="EmployeeDetailSet" Role="FromRole_fromEmployeeDetailToTimeBalance"/>
+                    <End EntitySet="TimeBalanceSet" Role="ToRole_fromEmployeeDetailToTimeBalance"/>
+                </AssociationSet>
+                <AssociationSet Name="fromFamilyMemberToPersInfoMetaDataSet" Association="ZHCMFAB_MYPROFILE_SRV.fromFamilyMemberToPersInfoMetaData" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="FamilyMemberSet" Role="FromRole_fromFamilyMemberToPersInfoMetaData"/>
+                    <End EntitySet="PersInfoMetaDataSet" Role="ToRole_fromFamilyMemberToPersInfoMetaData"/>
+                </AssociationSet>
+                <AssociationSet Name="fromEmployeeDetailToQualificationsSet" Association="ZHCMFAB_MYPROFILE_SRV.fromEmployeeDetailToQualifications" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="EmployeeDetailSet" Role="FromRole_fromEmployeeDetailToQualifications"/>
+                    <End EntitySet="QualificationSet" Role="ToRole_fromEmployeeDetailToQualifications"/>
+                </AssociationSet>
+                <AssociationSet Name="fromEmployeeDetailToEmployeePictureSet" Association="ZHCMFAB_MYPROFILE_SRV.fromEmployeeDetailToEmployeePicture" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="EmployeeDetailSet" Role="FromRole_fromEmployeeDetailToEmployeePicture"/>
+                    <End EntitySet="EmployeePictureSet" Role="ToRole_fromEmployeeDetailToEmployeePicture"/>
+                </AssociationSet>
+                <AssociationSet Name="fromEmployeeDetailToManagerDetailSet" Association="ZHCMFAB_MYPROFILE_SRV.fromEmployeeDetailToManagerDetail" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="EmployeeDetailSet" Role="FromRole_fromEmployeeDetailToManagerDetail"/>
+                    <End EntitySet="EmployeeDetailSet" Role="ToRole_fromEmployeeDetailToManagerDetail"/>
+                </AssociationSet>
+                <AssociationSet Name="fromEmployeeDetailToInternalDataSet" Association="ZHCMFAB_MYPROFILE_SRV.fromEmployeeDetailToInternalData" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="EmployeeDetailSet" Role="FromRole_fromEmployeeDetailToInternalData"/>
+                    <End EntitySet="InternalDataSet" Role="ToRole_fromEmployeeDetailToInternalData"/>
+                </AssociationSet>
+                <AssociationSet Name="fromEmployeeDetailToCommunicationSet" Association="ZHCMFAB_MYPROFILE_SRV.fromEmployeeDetailToCommunication" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="EmployeeDetailSet" Role="FromRole_fromEmployeeDetailToCommunication"/>
+                    <End EntitySet="CommunicationSet" Role="ToRole_fromEmployeeDetailToCommunication"/>
+                </AssociationSet>
+                <AssociationSet Name="fromColleagueToEmployeePictureSet" Association="ZHCMFAB_MYPROFILE_SRV.fromColleagueToEmployeePicture" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ColleagueSet" Role="FromRole_fromColleagueToEmployeePicture"/>
+                    <End EntitySet="EmployeePictureSet" Role="ToRole_fromColleagueToEmployeePicture"/>
+                </AssociationSet>
+                <AssociationSet Name="fromEmployeeDetailToTimeRecordingSet" Association="ZHCMFAB_MYPROFILE_SRV.fromEmployeeDetailToTimeRecording" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="EmployeeDetailSet" Role="FromRole_fromEmployeeDetailToTimeRecording"/>
+                    <End EntitySet="TimeRecordingSet" Role="ToRole_fromEmployeeDetailToTimeRecording"/>
+                </AssociationSet>
+                <AssociationSet Name="fromCommunicationDataToPersInfoMetaDaSet" Association="ZHCMFAB_MYPROFILE_SRV.fromCommunicationDataToPersInfoMetaData" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="CommunicationSet" Role="FromRole_fromCommunicationDataToPersInfoMetaData"/>
+                    <End EntitySet="PersInfoMetaDataSet" Role="ToRole_fromCommunicationDataToPersInfoMetaData"/>
+                </AssociationSet>
+                <AssociationSet Name="fromEmployeeDetailToBankDetailsSet" Association="ZHCMFAB_MYPROFILE_SRV.fromEmployeeDetailToBankDetails" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="EmployeeDetailSet" Role="FromRole_fromEmployeeDetailToBankDetails"/>
+                    <End EntitySet="BankDetailSet" Role="ToRole_fromEmployeeDetailToBankDetails"/>
+                </AssociationSet>
+                <AssociationSet Name="fromBankDetailToPersInfoMetaDataSet" Association="ZHCMFAB_MYPROFILE_SRV.fromBankDetailToPersInfoMetaData" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="BankDetailSet" Role="FromRole_fromBankDetailToPersInfoMetaData"/>
+                    <End EntitySet="PersInfoMetaDataSet" Role="ToRole_fromBankDetailToPersInfoMetaData"/>
+                </AssociationSet>
+                <AssociationSet Name="fromEmployeeDetailToTrainingsSet" Association="ZHCMFAB_MYPROFILE_SRV.fromEmployeeDetailToTrainings" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="EmployeeDetailSet" Role="FromRole_fromEmployeeDetailToTrainings"/>
+                    <End EntitySet="TrainingSet" Role="ToRole_fromEmployeeDetailToTrainings"/>
+                </AssociationSet>
+                <AssociationSet Name="fromPerformanceToScaleProficiencySet" Association="ZHCMFAB_MYPROFILE_SRV.fromPerformanceToScaleProficiency" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="PerformanceSet" Role="FromRole_fromPerformanceToScaleProficiency"/>
+                    <End EntitySet="ScaleProficiencySet" Role="ToRole_fromPerformanceToScaleProficiency"/>
+                </AssociationSet>
+            </EntityContainer>
+            <atom:link
+                xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZHCMFAB_MYPROFILE_SRV/$metadata"/>
+                <atom:link
+                    xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZHCMFAB_MYPROFILE_SRV/$metadata"/>
+                </Schema>
+            </edmx:DataServices>
+        </edmx:Edmx>

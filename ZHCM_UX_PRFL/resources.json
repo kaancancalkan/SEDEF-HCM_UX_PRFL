@@ -1,0 +1,383 @@
+{
+    "resources": [
+        {
+            "name": "controller/App.controller.js"
+        },
+        {
+            "name": "controller/ErrorHandler.js"
+        },
+        {
+            "name": "controller/BaseController.js"
+        },
+        {
+            "name": "controller/ProfileOverview.controller.js"
+        },
+        {
+            "name": "controller/Application.js"
+        },
+        {
+            "name": "i18n/i18n_tr.properties",
+            "raw": "i18n/i18n.properties"
+        },
+        {
+            "name": "i18n/i18n.properties",
+            "raw": "i18n/i18n.properties"
+        },
+        {
+            "name": "localService/mockserver.js"
+        },
+        {
+            "name": "localService/metadata.xml"
+        },
+        {
+            "name": "index.html"
+        },
+        {
+            "name": ".project.json"
+        },
+        {
+            "name": "blocks/QualificationsBlockPhone.view.xml"
+        },
+        {
+            "name": "blocks/WorkExperienceBlock.view.xml"
+        },
+        {
+            "name": "blocks/PersInfoCommunicationDataBlockController.controller.js"
+        },
+        {
+            "name": "blocks/TimeRecordingBlock.js"
+        },
+        {
+            "name": "blocks/CourseBlock.view.xml"
+        },
+        {
+            "name": "blocks/EducationBlock.view.xml"
+        },
+        {
+            "name": "blocks/ForeignLanguageBlock.js"
+        },
+        {
+            "name": "blocks/PersInfoBankBlockCollapsed.view.xml"
+        },
+        {
+            "name": "blocks/PaystubsBlock.js"
+        },
+        {
+            "name": "blocks/TrainingsBlock.js"
+        },
+        {
+            "name": "blocks/PersInfoAddressBlockController.controller.js"
+        },
+        {
+            "name": "blocks/ForeignLanguageBlockController.controller.js"
+        },
+        {
+            "name": "blocks/PersInfoInternalDataBlock.js"
+        },
+        {
+            "name": "blocks/CertificateBlock.js"
+        },
+        {
+            "name": "blocks/PersInfoFamilyMembersBlock.js"
+        },
+        {
+            "name": "blocks/PersInfoPersonalDataBlockController.controller.js"
+        },
+        {
+            "name": "blocks/PersInfoFamilyMembersBlockCollapsed.view.xml"
+        },
+        {
+            "name": "blocks/TimeBalanceBlockController.controller.js"
+        },
+        {
+            "name": "blocks/CourseBlockController.controller.js"
+        },
+        {
+            "name": "blocks/PersInfoAddressBlockCollapsed.view.xml"
+        },
+        {
+            "name": "blocks/PersInfoInternalDataBlockController.controller.js"
+        },
+        {
+            "name": "blocks/QualificationsBlock.view.xml"
+        },
+        {
+            "name": "blocks/PerformanceBlock.view.xml"
+        },
+        {
+            "name": "blocks/CertificateBlock.view.xml"
+        },
+        {
+            "name": "blocks/TimeBalanceBlock.view.xml"
+        },
+        {
+            "name": "blocks/PersInfoPersonalDataBlock.js"
+        },
+        {
+            "name": "blocks/AbsenceBlockController.controller.js"
+        },
+        {
+            "name": "blocks/PersInfoFamilyMembersBlockExpanded.view.xml"
+        },
+        {
+            "name": "blocks/ForeignLanguageBlock.view.xml"
+        },
+        {
+            "name": "blocks/MultipleSkillsBlock.view.xml"
+        },
+        {
+            "name": "blocks/WorkExperienceBlock.js"
+        },
+        {
+            "name": "blocks/PersInfoCommunicationDataBlock.view.xml"
+        },
+        {
+            "name": "blocks/PersInfoFamilyMembersBlockController.controller.js"
+        },
+        {
+            "name": "blocks/QualificationsBlockController.controller.js"
+        },
+        {
+            "name": "blocks/TrainingsBlockPhone.view.xml"
+        },
+        {
+            "name": "blocks/PersInfoCommunicationDataBlock.js"
+        },
+        {
+            "name": "blocks/PersInfoBankBlockController.controller.js"
+        },
+        {
+            "name": "blocks/MultipleSkillsBlockController.controller.js"
+        },
+        {
+            "name": "blocks/CareerProgressBlockController.controller.js"
+        },
+        {
+            "name": "blocks/CareerProgressBlock.js"
+        },
+        {
+            "name": "blocks/WorkExperienceBlockController.controller.js"
+        },
+        {
+            "name": "blocks/AbsenceBlock.view.xml"
+        },
+        {
+            "name": "blocks/fragments/PersInfoAddressChangeRequest.fragment.xml"
+        },
+        {
+            "name": "blocks/fragments/CourseChangeRequest.fragment.xml"
+        },
+        {
+            "name": "blocks/fragments/CertificateChangeRequest.fragment.xml"
+        },
+        {
+            "name": "blocks/fragments/WorkExperienceChangeRequest.fragment.xml"
+        },
+        {
+            "name": "blocks/fragments/ForeignLanguageChangeRequest.fragment.xml"
+        },
+        {
+            "name": "blocks/PerformanceBlockController.controller.js"
+        },
+        {
+            "name": "blocks/CareerProgressBlock.view.xml"
+        },
+        {
+            "name": "blocks/TimeBalanceBlock.js"
+        },
+        {
+            "name": "blocks/PaystubsBlockController.controller.js"
+        },
+        {
+            "name": "blocks/CertificateBlockController.controller.js"
+        },
+        {
+            "name": "blocks/PaystubsBlockExpanded.view.xml"
+        },
+        {
+            "name": "blocks/PaystubsBlockExpandedList.view.xml"
+        },
+        {
+            "name": "blocks/PersInfoInternalDataBlock.view.xml"
+        },
+        {
+            "name": "blocks/PersInfoAddressBlockExpanded.view.xml"
+        },
+        {
+            "name": "blocks/PersInfoAddressBlock.js"
+        },
+        {
+            "name": "blocks/TimeRecordingBlockController.controller.js"
+        },
+        {
+            "name": "blocks/TimeRecordingBlock.view.xml"
+        },
+        {
+            "name": "blocks/PaystubsBlockPhone.view.xml"
+        },
+        {
+            "name": "blocks/SalaryBlock.view.xml"
+        },
+        {
+            "name": "blocks/PersInfoBankBlockExpanded.view.xml"
+        },
+        {
+            "name": "blocks/MultipleSkillsBlock.js"
+        },
+        {
+            "name": "blocks/PersInfoPersonalDataBlock.view.xml"
+        },
+        {
+            "name": "blocks/PerformanceBlockV2.view.xml"
+        },
+        {
+            "name": "blocks/PersInfoBankBlock.js"
+        },
+        {
+            "name": "blocks/QualificationsBlock.js"
+        },
+        {
+            "name": "blocks/PaystubsBlockCollapsed.view.xml"
+        },
+        {
+            "name": "blocks/EducationBlock.js"
+        },
+        {
+            "name": "blocks/TrainingsBlock.view.xml"
+        },
+        {
+            "name": "blocks/SalaryBlockController.controller.js"
+        },
+        {
+            "name": "blocks/PerformanceBlock.js"
+        },
+        {
+            "name": "blocks/SalaryBlock.js"
+        },
+        {
+            "name": "blocks/CourseBlock.js"
+        },
+        {
+            "name": "blocks/EducationBlockController.controller.js"
+        },
+        {
+            "name": "blocks/AbsenceBlock.js"
+        },
+        {
+            "name": "blocks/TrainingsBlockController.controller.js"
+        },
+        {
+            "name": ".che/project.json"
+        },
+        {
+            "name": ".user.project.json"
+        },
+        {
+            "name": "resources.json",
+            "merged": true
+        },
+        {
+            "name": "Gruntfile.js"
+        },
+        {
+            "name": "utils/reuseHandler.js"
+        },
+        {
+            "name": "utils/ODataHelper.js"
+        },
+        {
+            "name": "utils/formatter.js"
+        },
+        {
+            "name": "utils/locate-reuse-libs.js"
+        },
+        {
+            "name": "test/flpSandbox.html"
+        },
+        {
+            "name": "test/flpSandboxMockServer.html"
+        },
+        {
+            "name": "package-lock.json"
+        },
+        {
+            "name": "Component.js"
+        },
+        {
+            "name": "ext/ApexCharts.css"
+        },
+        {
+            "name": "ext/lodash.js"
+        },
+        {
+            "name": "ext/customStyles.css"
+        },
+        {
+            "name": "ext/ApexCharts.js"
+        },
+        {
+            "name": "view/ProfileOverview.view.xml"
+        },
+        {
+            "name": "view/App.view.xml"
+        },
+        {
+            "name": "view/fragment/OfficeInfoQuickview.fragment.xml"
+        },
+        {
+            "name": "view/fragment/ManagerQuickview.fragment.xml"
+        },
+        {
+            "name": "view/fragment/ColleaguesList.fragment.xml"
+        },
+        {
+            "name": "view/fragment/ObjectPageSections.fragment.xml"
+        },
+        {
+            "name": "view/fragment/EmployeeSearch.fragment.xml"
+        },
+        {
+            "name": "view/fragment/DirectReportsList.fragment.xml"
+        },
+        {
+            "name": "css/custom.css"
+        },
+        {
+            "name": "css/assets/smodfont.eot"
+        },
+        {
+            "name": "css/assets/smodfont.svg"
+        },
+        {
+            "name": "css/assets/smodfont.ttf"
+        },
+        {
+            "name": "css/assets/smodfont.woff"
+        },
+        {
+            "name": "manifest.json"
+        },
+        {
+            "name": "neo-app.json"
+        },
+        {
+            "name": "controls/ActionCard.css"
+        },
+        {
+            "name": "controls/ActionCard.js"
+        },
+        {
+            "name": "controls/SmodApexChart.js"
+        },
+        {
+            "name": "model/models.js"
+        },
+        {
+            "name": "package.json"
+        },
+        {
+            "name": "Component-preload.js",
+            "merged": true
+        }
+    ]
+}

@@ -1,0 +1,73 @@
+<mvc:View controllerName="com.sedef.hcm.ux.myprofile.blocks.MultipleSkillsBlockController" xmlns="sap.m" xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc" xmlns:m="sap.m" xmlns:l="sap.ui.layout" xmlns:form="sap.ui.layout.form" xmlns:smod="zhcm.ux.myprofile.controls"
+	xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<ComboBox selectedKey="{path: 'multipleSkillModel>/selectedYear'}" items="{ path: 'multipleSkillModel>/yearList' }"
+		selectionChange="onYearChanged" class="sapUiTinyMarginBegin">
+		<core:Item key="{multipleSkillModel>Year}" text="{multipleSkillModel>Year}"/>
+		<layoutData>
+			<l:GridData span="XL4 L4 M4 S12"/>
+		</layoutData>
+	</ComboBox>
+	<Table id="skillsContainer" noDataText="{i18n>NoData}"
+		items="{ path: 'toEmployeeSkills', events: { dataReceived: '.onDataReceived', change: '.onChange', dataRequested: '.onDataRequested'}, sorter: { path: 'Evprd', descending: true}, templateShareable: false }">
+		<columns>
+			<Column>
+				<Text text="{i18n>Skltx}"/>
+				<footer>
+					<Text text="Ortalama"/>
+				</footer>
+			</Column>
+			<Column hAlign="Center">
+				<Text text="{i18n>Avlbl}"/>
+				<footer>
+					<Text text="{multipleSkillModel>/avgAvlbl}"/>
+				</footer>
+			</Column>
+			<Column hAlign="Center">
+				<Text text="{i18n>Trget}"/>
+				<footer>
+					<Text text="{multipleSkillModel>/avgTrget}"/>
+				</footer>
+			</Column>
+			<Column hAlign="Center">
+				<Text text="{i18n>Realz}"/>
+				<footer>
+					<Text text="{multipleSkillModel>/avgRealz}"></Text>
+				</footer>
+			</Column>
+			<Column width="10%">
+			 <Text
+				text="{i18n>Dpexp}"
+				 /> 
+			
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+					<Text text="{path: 'Skltx' }"></Text>
+					<Select selectedKey="{ path: 'Avlbl'}" items="{ path: 'multipleSkillModel>/evaluationList', templateShareable: false}">
+						<core:ListItem key="{multipleSkillModel>Key}" text="{multipleSkillModel>Text}" icon="{multipleSkillModel>Icon}" enabled="false"/>
+					</Select>
+					<Select selectedKey="{ path: 'Trget'}" items="{ path: 'multipleSkillModel>/evaluationList', templateShareable: false}">
+						<core:ListItem key="{multipleSkillModel>Key}" text="{multipleSkillModel>Text}" icon="{multipleSkillModel>Icon}" enabled="false"/>
+					</Select>
+					<Select selectedKey="{ path: 'Realz'}" items="{ path: 'multipleSkillModel>/evaluationList', templateShareable: false}">
+						<core:ListItem key="{multipleSkillModel>Key}" text="{multipleSkillModel>Text}" icon="{multipleSkillModel>Icon}" enabled="false"/>
+					</Select>
+					<Button
+				text="{i18n>Dpexp}"
+				 press="handlePopoverPress" /> 
+				
+			
+			
+					
+					<!-- <Text text="{ path: 'Dpexp' }"></Text> -->
+					
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+	<!--<MessageStrip id="noMultipleSkills" text="{i18n>noMultipleSkillsTxt}" type="Information" showIcon="true"-->
+	<!--	tooltip="{i18n>noMultipleSkillsTxt}" visible="{= !${appEmployeeData>/bMultipleSkillsExist} }" class="sapUiTinyMarginTop"/>-->
+</mvc:View>

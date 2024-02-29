@@ -1,0 +1,117 @@
+<!--
+
+    Copyright (C) 2009-2018 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View controllerName="com.sedef.hcm.ux.myprofile.blocks.PersInfoBankBlockController" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout">
+	<l:Grid id="bankContainer" content="{ path: 'toBankDetails', templateShareable: false }" containerQuery="false" hSpacing="0"
+		defaultSpan="XL3 L4 M6 S12" visible="{appEmployeeData>/bPersInfoBankDataExists}">
+		<l:content>
+			<form:SimpleForm id="bankForm" maxContainerCols="2" editable="false" layout="ResponsiveGridLayout" labelSpanXL="-1" emptySpanXL="-1"
+				columnsXL="-1" labelSpanL="4" emptySpanL="3" columnsL="2" labelSpanM="4" emptySpanM="2" columnsM="2" labelSpanS="12" emptySpanS="0"
+				adjustLabelSpan="false" singleContainerFullSize="false">
+				<form:content>
+					<!-- Subtype -->
+					<core:Title text="{BankDetailsTypeText}"/>
+					<!-- Payee Name -->
+					<Label
+						text="{parts: [ '/#BankDetail/PayeeName/@name', 'toPersInfoMetaData', '/#BankDetail/PayeeName/@sap:label'], formatter: '.getPersinfoLabel'}"
+						id="lblPayeeName" labelFor="txtPayeeName"
+						visible="{parts: [ '/#BankDetail/PayeeName/@name', 'toPersInfoMetaData', 'PayeeName' ], formatter: '.getVisibility'}"/>
+					<Text id="txtPayeeName" text="{PayeeName}"
+						visible="{parts: [ '/#BankDetail/PayeeName/@name', 'toPersInfoMetaData', 'PayeeName' ], formatter: '.getVisibility'}"/>
+					<!--PayeeStreet-->
+					<Label
+						text="{parts: [ '/#BankDetail/PayeeStreet/@name', 'toPersInfoMetaData', '/#BankDetail/PayeeStreet/@sap:label'], formatter: '.getPersinfoLabel'}"
+						id="lblPayeeStreet" labelFor="txtPayeeStreet"
+						visible="{parts: [ '/#BankDetail/PayeeStreet/@name', 'toPersInfoMetaData', 'PayeeStreet' ], formatter: '.getVisibility'}"/>
+					<Text id="txtPayeeStreet" text="{PayeeStreet}"
+						visible="{parts: [ '/#BankDetail/PayeeStreet/@name', 'toPersInfoMetaData', 'PayeeStreet' ], formatter: '.getVisibility'}"/>
+					<!--PayeeStateText-->
+					<Label
+						text="{parts: [ '/#BankDetail/PayeeStateId/@name', 'toPersInfoMetaData', '/#BankDetail/PayeeStateId/@sap:label'], formatter: '.getPersinfoLabel'}"
+						id="lblPayeeState" labelFor="txtPayeeState"
+						visible="{parts: [ '/#BankDetail/PayeeStateId/@name', 'toPersInfoMetaData', 'PayeeStateText' ], formatter: '.getVisibility'}"/>
+					<Text id="txtPayeeState" text="{PayeeStateText}"
+						visible="{parts: [ '/#BankDetail/PayeeStateId/@name', 'toPersInfoMetaData', 'PayeeStateText' ], formatter: '.getVisibility'}"/>
+					<!--Payee PostalCode and City -->
+					<Label id="lblPayeeCity" labelFor="txtPayeeCity"
+						text="{parts: [ 'i18n>postalCodeCityLabel', '/#BankDetail/PayeePostalCode/@name', '/#BankDetail/PayeeCity/@name', 'toPersInfoMetaData' ], formatter: '.formatPostalCodeCityLabel'}"
+						visible="{parts: [ '/#BankDetail/PayeePostalCode/@name', 'toPersInfoMetaData', 'PayeePostalCode' ], formatter: '.getVisibility'}"/>
+					<Text id="txtPayeeCity" text="{parts: [ 'i18n>postalCodeCity', 'PayeePostalCode', 'PayeeCity' ], formatter: 'jQuery.sap.formatMessage'}"
+						visible="{parts: [ '/#BankDetail/PayeePostalCode/@name', 'toPersInfoMetaData', 'PayeePostalCode' ], formatter: '.getVisibility'}"/>
+					<!--Payee Country -->
+					<Label id="lblPayeeCountry"
+						text="{parts: [ '/#BankDetail/PayeeCountryId/@name', 'toPersInfoMetaData', '/#BankDetail/PayeeCountryId/@sap:label'], formatter: '.getPersinfoLabel'}"
+						labelFor="txtPayeeCountry"
+						visible="{parts: [ '/#BankDetail/PayeeCountryId/@name', 'toPersInfoMetaData', 'PayeeCountryText' ], formatter: '.getVisibility'}"/>
+					<Text id="txtPayeeCountry" text="{PayeeCountryText}"
+						visible="{parts: [ '/#BankDetail/PayeeCountryId/@name', 'toPersInfoMetaData', 'PayeeCountryText' ], formatter: '.getVisibility'}"/>
+					<!-- IBAN -->
+					<Label id="lblIban"
+						text="{parts: [ '/#BankDetail/Iban/@name', 'toPersInfoMetaData', '/#BankDetail/Iban/@sap:label'], formatter: '.getPersinfoLabel'}"
+						labelFor="txtIban" visible="{parts: [ '/#BankDetail/Iban/@name', 'toPersInfoMetaData', 'IbanPart1' ], formatter: '.getVisibility'}"/>
+					<Text id="txtIban"
+						text="{parts: [ 'IbanPart1', 'IbanPart2', 'IbanPart3', 'IbanPart4', 'IbanPart5', 'IbanPart6', 'IbanPart7', 'IbanPart8', 'IbanPart9' ], formatter: '.formatter.formatIBAN' }"
+						visible="{parts: [ '/#BankDetail/Iban/@name', 'toPersInfoMetaData', 'IbanPart1' ], formatter: '.getVisibility'}"/>
+					<!-- BankAccountNumber -->
+					<Label id="lblBankAccountNumber"
+						text="{parts: [ '/#BankDetail/BankAccountNumber/@name', 'toPersInfoMetaData', '/#BankDetail/BankAccountNumber/@sap:label'], formatter: '.getPersinfoLabel'}"
+						visible="{= !!${IbanPart1} ? false : ${parts: [ {path: '/#BankDetail/BankAccountNumber/@name'}, {path: 'toPersInfoMetaData'}, {path: 'BankAccountNumber'} ], formatter: '.getVisibility'}}"/>
+					<Text id="txtBankAccountNumber" text="{BankAccountNumber}"
+						visible="{= !!${IbanPart1} ? false : ${parts: [ {path: '/#BankDetail/BankAccountNumber/@name'}, {path: 'toPersInfoMetaData'}, {path: 'BankAccountNumber'} ], formatter: '.getVisibility'}}"/>
+					<!-- BankControlKey -->
+					<Label id="lblBankControlKey" text="{/#BankDetail/BankControlKey/@sap:label}" labelFor="txtBankControlKey"
+						visible="{= !!${IbanPart1} ? false : ${parts: [ {path: '/#BankDetail/BankControlKey/@name'}, {path: 'toPersInfoMetaData'}, {path: 'BankControlKey'} ], formatter: '.getVisibility'}}"/>
+					<Text id="txtBankControlKey" text="{BankControlKey}"
+						visible="{= !!${IbanPart1} ? false : ${parts: [ {path: '/#BankDetail/BankControlKey/@name'}, {path: 'toPersInfoMetaData'}, {path: 'BankControlKey'} ], formatter: '.getVisibility'}}"/>
+					<!-- Bank Name -->
+					<Label
+						text="{parts: [ '/#BankDetail/BankText/@name', 'toPersInfoMetaData', '/#BankDetail/BankText/@sap:label'], formatter: '.getPersinfoLabel'}"
+						id="lblBankText" labelFor="txtBankText"
+						visible="{parts: [ '/#BankDetail/BankId/@name', 'toPersInfoMetaData', 'BankText' ], formatter: '.getVisibility'}"/>
+					<Text id="txtBankText" text="{BankText}"
+						visible="{parts: [ '/#BankDetail/BankId/@name', 'toPersInfoMetaData', 'BankText' ], formatter: '.getVisibility'}"/>
+					<!-- BIC / SwiftCode -->
+					<Label id="lblBIC" text="{/#BankDetail/SwiftCode/@sap:label}" labelFor="txtBIC"
+						visible="{parts: [ '/#BankDetail/SwiftCode/@name', 'toPersInfoMetaData', 'SwiftCode' ], formatter: '.getVisibility'}"/>
+					<Text id="txtBIC" text="{SwiftCode}"
+						visible="{parts: [ '/#BankDetail/SwiftCode/@name', 'toPersInfoMetaData', 'SwiftCode' ], formatter: '.getVisibility'}"/>
+					<!-- Bank Country -->
+					<Label id="lblBankCountry"
+						text="{parts: [ '/#BankDetail/BankCountryId/@name', 'toPersInfoMetaData', '/#BankDetail/BankCountryId/@sap:label'], formatter: '.getPersinfoLabel'}"
+						labelFor="txtBankCountry"
+						visible="{parts: [ '/#BankDetail/BankCountryId/@name', 'toPersInfoMetaData', 'BankCountryText' ], formatter: '.getVisibility'}"/>
+					<Text id="txtBankCountry" text="{BankCountryText}"
+						visible="{parts: [ '/#BankDetail/BankCountryId/@name', 'toPersInfoMetaData', 'BankCountryText' ], formatter: '.getVisibility'}"/>
+					<!-- Payment Method -->
+					<Label id="lblPaymentMethod"
+						text="{parts: [ '/#BankDetail/PaymentMethodId/@name', 'toPersInfoMetaData', '/#BankDetail/PaymentMethodId/@sap:label'], formatter: '.getPersinfoLabel'}"
+						labelFor="txtPaymentMethod"
+						visible="{parts: [ '/#BankDetail/PaymentMethodId/@name', 'toPersInfoMetaData', 'PaymentMethodText' ], formatter: '.getVisibility'}"/>
+					<Text id="txtPaymentMethod" text="{PaymentMethodText}"
+						visible="{parts: [ '/#BankDetail/PaymentMethodId/@name', 'toPersInfoMetaData', 'PaymentMethodText' ], formatter: '.getVisibility'}"/>
+					<!-- Payment Currency -->
+					<Label id="lblPaymentCurrency"
+						text="{parts: [ '/#BankDetail/PaymentCurrency/@name', 'toPersInfoMetaData', '/#BankDetail/PaymentCurrency/@sap:label'], formatter: '.getPersinfoLabel'}"
+						labelFor="txtPaymentCurrency"
+						visible="{parts: [ '/#BankDetail/PaymentCurrency/@name', 'toPersInfoMetaData', 'PaymentCurrency' ], formatter: '.getVisibility'}"/>
+					<Text id="txtPaymentCurrency" text="{PaymentCurrency}"
+						visible="{parts: [ '/#BankDetail/PaymentCurrency/@name', 'toPersInfoMetaData', 'PaymentCurrency' ], formatter: '.getVisibility'}"/>
+					<!-- Purpose -->
+					<Label id="lblBankTransferPurpose" text="{/#BankDetail/BankTransferPurpose/@sap:label}" labelFor="txtBankTransferPurpose"
+						visible="{parts: [ '/#BankDetail/BankTransferPurpose/@name', 'toPersInfoMetaData', 'BankTransferPurpose' ], formatter: '.getVisibility'}"/>
+					<Text id="txtBankTransferPurpose" text="{BankTransferPurpose}"
+						visible="{parts: [ '/#BankDetail/BankTransferPurpose/@name', 'toPersInfoMetaData', 'BankTransferPurpose' ], formatter: '.getVisibility'}"/>
+					<!--Allows you to add additional elements to the bank details form-->
+					<core:ExtensionPoint name="extensionBankDetailForm"/>
+				</form:content>
+			</form:SimpleForm>
+		</l:content>
+	</l:Grid>
+	<MessageStrip id="noBankDataStrip" text="{path: 'i18n>noBankDetailsTxt'}" type="Information" showIcon="true"
+		tooltip="{path: 'i18n>noBankDetailsTxt'}" visible="{= !${appEmployeeData>/bPersInfoBankDataExists}}"/>
+	<Button id="navToBankDetailsBtn" text="{i18n>navToBankDetailsBtn}" type="Emphasized" press="onNavToBankDetailsPress"
+		visible="{appProperties>/isMyBankDetailsAvailable}" class="sapUiTinyMarginTop"/>
+</mvc:View>

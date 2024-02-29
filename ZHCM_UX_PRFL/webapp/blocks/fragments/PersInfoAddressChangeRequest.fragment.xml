@@ -1,0 +1,192 @@
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:f="sap.f" xmlns="sap.m" xmlns:card="sap.f.cards"
+	xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:upload="sap.m.upload">
+	<Dialog showHeader="false" stretch="{device>/system/phone}" id="idAddressChangeRequestDialog"
+		contentWidth="{= ${device>/resize/width} * 0.9 > 700 ? '700px' : String(parseInt(${device>/resize/width} * 0.9)).concat('px') }"
+		class="sapUiNoContentPadding" afterClose=".onAfterCloseAddressDialog" beforeOpen=".onBeforeOpenAddressDialog"
+		busy="{addressChangeModel>/busy}" busyIndicatorDelay="0">
+		<content>
+			<f:Card class="sapUiNoMargin" width="100%">
+				<f:header>
+					<card:Header title="{i18n>addressChangeRequestTitle}" subtitle="{i18n>addressChangeRequestSubtitle}" iconSrc="sap-icon://addresses"/>
+				</f:header>
+				<f:content>
+					<form:SimpleForm id="addressChangeRequestForm" maxContainerCols="2" editable="true" layout="ResponsiveGridLayout" columnsXL="2"
+						labelSpanL="3" emptySpanL="0" columnsL="2" labelSpanM="3" emptySpanM="0" columnsM="2" labelSpanS="12" emptySpanS="0" adjustLabelSpan="false"
+						singleContainerFullSize="true">
+						<form:content>
+							<Toolbar ariaLabelledBy="addressInfoTitle">
+								<Title id="addressCrInfoTitle" text="{i18n>addressInfoTitle}"/>
+								<ToolbarSpacer/>
+							</Toolbar>
+							<MessageStrip id="approvalInProgress"
+								text="{i18n>addressChangeWaitingApproval}" type="Warning" showIcon="true"
+								showCloseButton="true" class="sapUiTinyMarginBottom centeredMessage" 
+								visible="{= !${addressChangeModel>/changeRequest/Initial} &amp;&amp; !${addressChangeModel>/editRequest} }">
+								<layoutData>
+									<l:GridData span="XL12 L12 M12 S12"/>
+								</layoutData>
+							</MessageStrip>
+							<!--ContactName -->
+							<Label id="lblCrContactName"
+								text="{parts: [ '/#Address/ContactName/@name', 'appProperties>/addressInfoMetaData', '/#Address/ContactName/@sap:label'], formatter: '.getPersinfoLabel'}"
+								labelFor="txtCrContactName"
+								visible="{parts: [ '/#Address/ContactName/@name', 'appProperties>/addressInfoMetaData', 'addressChangeModel>/changeRequest/ContactName' ], formatter: '.getVisibility'}"/>
+							<Input id="txtCrContactName" value="{addressChangeModel>/changeRequest/ContactName}"
+								enabled="{= ${addressChangeModel>/changeRequest/Initial} || ${addressChangeModel>/editRequest} }"
+								visible="{parts: [ '/#Address/ContactName/@name', 'appProperties>/addressInfoMetaData', 'addressChangeModel>/changeRequest/ContactName' ], formatter: '.getVisibility'}"/>
+							<!--Street and HouseNumber -->
+							<Label id="lblCrStreet" labelFor="txtCrStreet"
+								text="{parts: [ 'i18n>postalCodeCityLabel', '/#Address/Street/@sap:label', '/#Address/HouseNumber/@sap:label', 'VersionId' ], formatter: '.reuseHandler.getStreetHouseNoLabel'}"
+								visible="true"/>
+							<Input id="txtCrStreet" value="{addressChangeModel>/changeRequest/Street}"
+							maxLength="60"
+								enabled="{= ${addressChangeModel>/changeRequest/Initial} || ${addressChangeModel>/editRequest} }"
+								visible="true"/>
+							<!--ApartmentId-->
+							<Label id="lblCrApartmentId"
+								text="{parts: [ '/#Address/ApartmentId/@name', 'appProperties>/addressInfoMetaData', '/#Address/ApartmentId/@sap:label'], formatter: '.getPersinfoLabel'}"
+								labelFor="txtCrApartmentId"
+								visible="{parts: [ '/#Address/ApartmentId/@name', 'appProperties>/addressInfoMetaData', 'addressChangeModel>/changeRequest/ApartmentId' ], formatter: '.getVisibility'}"/>
+							<Input id="txtCrApartmentId" value="{addressChangeModel>/changeRequest/ApartmentId}"
+								enabled="{= ${addressChangeModel>/changeRequest/Initial} || ${addressChangeModel>/editRequest} }"
+								visible="{parts: [ '/#Address/ApartmentId/@name', 'appProperties>/addressInfoMetaData', 'addressChangeModel>/changeRequest/ApartmentId' ], formatter: '.getVisibility'}"/>
+							<!--SupplementalAddressLine -->
+							<Label
+								text="{parts: [ '/#Address/SupplementalAddressLine/@name', 'appProperties>/addressInfoMetaData', '/#Address/SupplementalAddressLine/@sap:label'], formatter: '.getPersinfoLabel'}"
+								id="lblCrSupplementalAddressLine" labelFor="txtCrSupplementalAddressLine"
+								visible="true"/>
+							<Input id="txtCrSupplementalAddressLine" value="{addressChangeModel>/changeRequest/SupplementalAddressLine}"
+								maxLength="40"
+								enabled="{= ${addressChangeModel>/changeRequest/Initial} || ${addressChangeModel>/editRequest} }"
+								visible="true"/>
+							<!--PostalCode -->
+							<Label id="lblCrPostalCode" labelFor="txtCrPostalCode"
+								text="{parts: [ '/#Address/PostalCode/@name', 'appProperties>/addressInfoMetaData', '/#Address/PostalCode/@sap:label'], formatter: '.getPersinfoLabel'}"
+								visible="true"/>
+							<Input id="txtCrPostalCode" value="{addressChangeModel>/changeRequest/PostalCode}"
+								maxLength="5"
+								enabled="{= ${addressChangeModel>/changeRequest/Initial} || ${addressChangeModel>/editRequest} }"
+								visible="true">
+								<layoutData>
+									<l:GridData span="XL3 L3 M3 S12"/>
+								</layoutData>
+							</Input>
+							<!--City -->
+							<Label id="lblCrCity" labelFor="txtCrCity"
+								text="{parts: [ '/#Address/City/@name', 'appProperties>/addressInfoMetaData', '/#Address/City/@sap:label'], formatter: '.getPersinfoLabel'}"
+								visible="true"/>
+							<Input id="txtCrCity" value="{addressChangeModel>/changeRequest/City}"
+							maxLength="40"
+								enabled="{= ${addressChangeModel>/changeRequest/Initial} || ${addressChangeModel>/editRequest} }"
+								visible="true"/>
+							<!--Country -->
+							<Label
+								text="{parts: [ '/#Address/CountryId/@name', 'appProperties>/addressInfoMetaData', '/#Address/CountryId/@sap:label'], formatter: '.getPersinfoLabel'}"
+								id="lblCrCountryText" labelFor="txtCrCountryText"
+								visible="{parts: [ '/#Address/CountryId/@name', 'appProperties>/addressInfoMetaData', 'addressChangeModel>/changeRequest/CountryId' ], formatter: '.getVisibility'}"/>
+							<Text id="txtCrCountryText" text="{addressChangeModel>/changeRequest/CountryText}"
+								visible="{parts: [ '/#Address/CountryId/@name', 'appProperties>/addressInfoMetaData', 'addressChangeModel>/changeRequest/CountryId' ], formatter: '.getVisibility'}"/>
+							<!--State -->
+							<Label id="lblCrStateId"
+								text="{parts: [ '/#Address/StateId/@name', 'appProperties>/addressInfoMetaData', '/#Address/StateId/@sap:label'], formatter: '.getPersinfoLabel'}"
+								labelFor="txtCrStateId"
+								visible="{parts: [ '/#Address/StateId/@name', 'appProperties>/addressInfoMetaData', 'addressChangeModel>/changeRequest/StateId' ], formatter: '.getVisibility'}"/>
+							<Input id="txtCrStateId" value="{addressChangeModel>/changeRequest/StateId}"
+								enabled="{= ${addressChangeModel>/changeRequest/Initial} || ${addressChangeModel>/editRequest} }"
+								visible="{parts: [ '/#Address/StateId/@name', 'appProperties>/addressInfoMetaData', 'addressChangeModel>/changeRequest/StateId' ], formatter: '.getVisibility'}"/>
+							<!--District-->
+							<Label id="lblCrDistrict"
+								text="{parts: [ '/#Address/District/@name', 'appProperties>/addressInfoMetaData', '/#Address/District/@sap:label'], formatter: '.getPersinfoLabel'}"
+								labelFor="txtCrDistrict"
+								visible="true"/>
+							<Input id="txtCrDistrict" value="{addressChangeModel>/changeRequest/District}"
+								maxLength="40"
+								enabled="{= ${addressChangeModel>/changeRequest/Initial} || ${addressChangeModel>/editRequest} }"
+								visible="true"/>
+							<!--TelephoneNumber -->
+							<Label
+								text="{parts: [ '/#Address/TelephoneNumber/@name', 'appProperties>/addressInfoMetaData', '/#Address/TelephoneNumber/@sap:label'], formatter: '.getPersinfoLabel'}"
+								id="lblCrTelephoneNumber" labelFor="txtCrTelephoneNumber"
+								visible="true"/>
+							<Input id="txtCrTelephoneNumber" value="{addressChangeModel>/changeRequest/TelephoneNumber}"
+								enabled="{= ${addressChangeModel>/changeRequest/Initial} || ${addressChangeModel>/editRequest} }"
+								visible="true"
+								maxLength="14"
+								>
+								<layoutData>
+									<l:GridData span="XL3 L3 M3 S12"/>
+								</layoutData>
+							</Input>
+							<!--MobilePhoneNumber -->
+							<Label
+								text="{parts: [ '/#Address/MobilePhoneNumber/@name', 'appProperties>/addressInfoMetaData', '/#Address/MobilePhoneNumber/@sap:label'], formatter: '.getPersinfoLabel'}"
+								id="lblCrMobilePhoneNumber" labelFor="txtCrMobilePhoneNumber"
+								visible="{parts: [ '/#Address/MobilePhoneNumber/@name', 'appProperties>/addressInfoMetaData', 'addressChangeModel>/changeRequest/MobilePhoneNumber' ], formatter: '.getVisibility'}"/>
+							<Input id="txtCrMobilePhoneNumber" value="{addressChangeModel>/changeRequest/MobilePhoneNumber}"
+								enabled="{= ${addressChangeModel>/changeRequest/Initial} || ${addressChangeModel>/editRequest} }"
+								visible="{parts: [ '/#Address/MobilePhoneNumber/@name', 'appProperties>/addressInfoMetaData', 'addressChangeModel>/changeRequest/MobilePhoneNumber' ], formatter: '.getVisibility'}">
+								<layoutData>
+									<l:GridData span="XL3 L3 M3 S12"/>
+								</layoutData>
+							</Input>
+							<!--Distance-->
+							<Label id="lblCrWorkDistance"
+								text="{parts: [ '/#Address/WorkDistance/@name', 'appProperties>/addressInfoMetaData', '/#Address/WorkDistance/@sap:label'], formatter: '.getPersinfoLabel'}"
+								labelFor="txtCrWorkDistance"
+								visible="{parts: [ '/#Address/WorkDistance/@name', 'appProperties>/addressInfoMetaData', 'addressChangeModel>/changeRequest/WorkDistance' ], formatter: '.getVisibility'}"/>
+							<Input id="txtCrWorkDistance" value="{addressChangeModel>/changeRequest/WorkDistance}"
+								enabled="{= ${addressChangeModel>/changeRequest/Initial} || ${addressChangeModel>/editRequest} }"
+								visible="{parts: [ '/#Address/WorkDistance/@name', 'appProperties>/addressInfoMetaData', 'addressChangeModel>/changeRequest/WorkDistance' ], formatter: '.getVisibility'}"/>
+							<!--Company Housing-->
+							<Label id="lblCrCompanyHousing"
+								text="{parts: [ '/#Address/CompanyHousing/@name', 'appProperties>/addressInfoMetaData', '/#Address/CompanyHousing/@sap:label'], formatter: '.getPersinfoLabel'}"
+								labelFor="txtCrCompanyHousing"
+								visible="{parts: [ '/#Address/CompanyHousing/@name', 'appProperties>/addressInfoMetaData', 'addressChangeModel>/changeRequest/CompanyHousing' ], formatter: '.getVisibility'}"/>
+							<Input id="txtCrCompanyHousing" value="{addressChangeModel>/changeRequest/CompanyHousing}"
+								enabled="{= ${addressChangeModel>/changeRequest/Initial} || ${addressChangeModel>/editRequest} }"
+								visible="{parts: [ '/#Address/CompanyHousing/@name', 'appProperties>/addressInfoMetaData', 'addressChangeModel>/changeRequest/CompanyHousing' ], formatter: '.getVisibility'}"/>
+							<!--Bus Route-->
+							<Label id="lblCrBusRoute"
+								text="{parts: [ '/#Address/BusRoute/@name', 'appProperties>/addressInfoMetaData', '/#Address/BusRoute/@sap:label'], formatter: '.getPersinfoLabel'}"
+								labelFor="txtCrBusRoute"
+								visible="{parts: [ '/#Address/BusRoute/@name', 'appProperties>/addressInfoMetaData', 'addressChangeModel>/changeRequest/BusRoute' ], formatter: '.getVisibility'}"/>
+							<Input id="txtCrBusRoute" value="{addressChangeModel>/changeRequest/BusRoute}"
+								enabled="{= ${addressChangeModel>/changeRequest/Initial} || ${addressChangeModel>/editRequest} }"
+								visible="{parts: [ '/#Address/BusRoute/@name', 'appProperties>/addressInfoMetaData', 'addressChangeModel>/changeRequest/BusRoute' ], formatter: '.getVisibility'}"/>
+							<upload:UploadSet id="idUploadAddresAttachment" instantUpload="false" showIcons="false" terminationEnabled="false" fileTypes="pdf,doc"
+								maxFileNameLength="255" maxFileSize="5" mediaTypes="application/pdf" beforeUploadStarts=".onBeforeUploadStarts"
+								uploadUrl="/sap/opu/odata/sap/ZHCMFAB_MYPROFILE_SRV/ChangeRequestAttachmentSet"
+								items="{path: 'addressChangeModel>/attachments', templateShareable: false}"
+								noDataDescription="İkametgah belgenizi ekledikten sonra onaya gönderebilirsiniz" noDataText="Belge eklemelisiniz"
+								uploadCompleted=".onUploadCompleted" uploadEnabled="{= ${addressChangeModel>/attachments}.length === 0 }">
+								<upload:items>
+									<upload:UploadSetItem fileName="{addressChangeModel>FileName}" mediaType="{addressChangeModel>MimeType}"
+										url="{addressChangeModel>DownloadUrl}" uploadState="{addressChangeModel>UploadState}"
+										visibleRemove="{addressChangeModel>/changeRequest/Initial}" visibleEdit="{addressChangeModel>/changeRequest/Initial}"
+										removePressed=".onItemRemoved">
+										<upload:attributes>
+											<ObjectAttribute text="{addressChangeModel>Description}" active="{addressChangeModel>Active}"/>
+										</upload:attributes>
+									</upload:UploadSetItem>
+								</upload:items>
+								<upload:layoutData>
+									<l:GridData span="XL12 L12 M12 S12"/>
+								</upload:layoutData>
+							</upload:UploadSet>
+						</form:content>
+					</form:SimpleForm>
+				</f:content>
+			</f:Card>
+		</content>
+		<buttons>
+			<Button text="{i18n>deleteAction}" press=".onDeleteAddressChange" type="Reject"
+				visible="{= !${addressChangeModel>/changeRequest/Initial} &amp;&amp; ${addressChangeModel>/editRequest} }"/>
+			<Button text="{i18n>reviseAction}" press=".onSendAddressChange" type="Emphasized"
+				visible="{= !${addressChangeModel>/changeRequest/Initial} &amp;&amp; ${addressChangeModel>/editRequest} }"/>
+			<Button text="{i18n>editAction}" press=".onActivateEditRequest" type="Emphasized"
+				visible="{= !${addressChangeModel>/changeRequest/Initial} &amp;&amp; !${addressChangeModel>/editRequest} }"/>
+			<Button text="{i18n>sendAction}" press=".onSendAddressChange" type="Accept" visible="{addressChangeModel>/changeRequest/Initial}"/>
+			<Button text="{i18n>cancelAction}" press=".onCloseAddressDialog" type="Back"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

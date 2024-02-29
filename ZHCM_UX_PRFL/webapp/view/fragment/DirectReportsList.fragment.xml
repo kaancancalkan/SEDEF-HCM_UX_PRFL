@@ -1,0 +1,18 @@
+<!--
+
+    Copyright (C) 2009-2018 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<ResponsivePopover id="DirectReportsPopover" title="{i18n>employeeListTitle}" placement="Bottom" showHeader="{= ${device>/system/phone} ? true : false}" horizontalScrolling="false">
+		<content>
+			<List id="DirectReportsList" mode="None" headerText="" items="{ path: 'toDirectReports', 
+			sorter: [ { path: 'EmployeeCategory', group: '._groupByEmployeeCategory', descending: false },{ path: 'EmployeeNumber', descending: false, group: false } ], templateShareable: false }">
+				<items>
+					<StandardListItem title="{parts: [{path: 'EmployeeName'},{path: 'EmployeeNumber'}], formatter:'.formatter.formatObjectTitle'}" description="" info="" icon="{path: 'toEmployeePicture/__metadata/media_src', formatter: '.formatter.formatImageURL'}" iconDensityAware="false" iconInset="false" type="{= ${appProperties>/isEmployeeLookupAvailable} ? 'Navigation' : 'Inactive' }" press="onDirectReportsPress"/>
+				</items>
+			</List>
+		</content>
+	</ResponsivePopover>
+</core:FragmentDefinition>

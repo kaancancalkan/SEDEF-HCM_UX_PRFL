@@ -1,0 +1,69 @@
+<c:FragmentDefinition
+ xmlns="sap.m"
+ xmlns:c="sap.ui.core"
+    xmlns:core="sap.ui.core"
+>
+<Table id="skillsContainerFr" noDataText="{i18n>NoData}"
+		items="{ path: 'toEmployeeSkills', events: { dataReceived: '.onDataReceived', change: '.onChange', dataRequested: '.onDataRequested'}, sorter: { path: 'Evprd', descending: true}, templateShareable: false }">
+		<columns>
+			<Column>
+				<Text text="{i18n>Skltx}"/>
+				<footer>
+					<Text text="Ortalama"/>
+				</footer>
+			</Column>
+			<Column hAlign="Center">
+				<Text text="{i18n>Avlbl}"/>
+				<footer>
+					<Text text="{multipleSkillModel>/avgAvlbl}"/>
+				</footer>
+			</Column>
+			<Column hAlign="Center">
+				<Text text="{i18n>Trget}"/>
+				<footer>
+					<Text text="{multipleSkillModel>/avgTrget}"/>
+				</footer>
+			</Column>
+			<Column hAlign="Center">
+				<Text text="{i18n>Realz}"/>
+				<footer>
+					<Text text="{multipleSkillModel>/avgRealz}"></Text>
+				</footer>
+			</Column>
+			<Column width="10%">
+			 <!-- <Button
+				text="{i18n>Dpexp}"
+				press="handlePopoverPress" /> 
+			 -->
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+					<Text text="{path: 'Skltx' }"></Text>
+					<Select selectedKey="{ path: 'Avlbl'}" items="{ path: 'multipleSkillModel>/evaluationList', templateShareable: false}">
+						<core:ListItem key="{multipleSkillModel>Key}" text="{multipleSkillModel>Text}" icon="{multipleSkillModel>Icon}" enabled="false"/>
+					</Select>
+					<Select selectedKey="{ path: 'Trget'}" items="{ path: 'multipleSkillModel>/evaluationList', templateShareable: false}">
+						<core:ListItem key="{multipleSkillModel>Key}" text="{multipleSkillModel>Text}" icon="{multipleSkillModel>Icon}" enabled="false"/>
+					</Select>
+					<Select selectedKey="{ path: 'Realz'}" items="{ path: 'multipleSkillModel>/evaluationList', templateShareable: false}">
+						<core:ListItem key="{multipleSkillModel>Key}" text="{multipleSkillModel>Text}" icon="{multipleSkillModel>Icon}" enabled="false"/>
+					</Select>
+					<Button
+				text="{i18n>Dpexp}"
+				press="handlePopoverPress" /> 
+			<Button
+				text="{i18n>Dpexp}"
+				press="handlePopoverPress" /> 
+			
+					
+					<!-- <Text text="{ path: 'Dpexp' }"></Text> -->
+					<Text text="{  toEmployeeSkills> Dpexp }"></Text>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+
+ 
+</c:FragmentDefinition>

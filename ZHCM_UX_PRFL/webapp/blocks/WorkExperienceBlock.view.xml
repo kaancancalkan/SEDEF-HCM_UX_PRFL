@@ -1,0 +1,62 @@
+<!--
+
+    Copyright (C) 2009-2018 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View controllerName="com.sedef.hcm.ux.myprofile.blocks.WorkExperienceBlockController" xmlns="sap.m" xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc" xmlns:m="sap.m" xmlns:l="sap.ui.layout" xmlns:form="sap.ui.layout.form"
+	xmlns:smod="com.sedef.hcm.ux.myprofile.controls"
+	xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<l:Grid id="WorkExperienceDataContainer" content="{ path: 'toWorkExperiences', templateShareable: false }" containerQuery="false"
+		hSpacing="0" defaultSpan="XL3 L4 M6 S12" visible="{appEmployeeData>/bWorkExperienceExist}">
+		<l:content>
+			<smod:ActionCard>
+				<smod:face>
+					<form:SimpleForm id="WorkExperienceDataForm" maxContainerCols="2" editable="false" layout="ResponsiveGridLayout" labelSpanXL="-1"
+						emptySpanXL="-1" columnsXL="-1" labelSpanL="4" emptySpanL="3" columnsL="2" labelSpanM="4" emptySpanM="2" columnsM="2" labelSpanS="12"
+						emptySpanS="0" adjustLabelSpan="false" singleContainerFullSize="false">
+						<form:content>
+							<!-- Subtype -->
+							<core:Title level="H3" text="{CompanyName}"/>
+							<!-- Sector -->
+							<Label text="{/#WorkExperience/SectorName/@sap:label}" id="lblWorkExperienceSectorName" labelFor="txtSectorName"/>
+							<Text id="txtWorkExperienceSectorName" text="{SectorName}"/>
+							<!-- Position -->
+							<Label text="{/#WorkExperience/Position/@sap:label}" id="lblWorkExperiencePosition" labelFor="txtWorkExperiencePosition"/>
+							<Text id="txtWorkExperiencePosition" text="{Position}"/>
+							<!-- Working Type  -->
+							<Label text="{/#WorkExperience/WorkingTypeText/@sap:label}" id="lblWorkExperienceWorkingTypeText"
+								labelFor="txtWorkExperienceWorkingTypeText"/>
+							<Text id="txtWorkExperienceWorkingTypeText" text="{WorkingTypeText}"/>
+							<!-- Dates -->
+							<Label
+								text="{i18n>workingTimeDuration}"
+								id="lblWorkExperienceHireDate" labelFor="txtWorkExperienceHireDate"/>
+							<HBox>
+								<Text id="txtWorkExperienceHireDate"
+									text="{path:'HireDate', type: 'sap.ui.model.odata.type.DateTime', formatOptions: { UTC: true }, constraints: { displayFormat: 'Date' }}"/>
+								<Text text="-" class="sapUiTinyMarginBeginEnd"/>
+								<Text id="txtWorkExperienceFireDate"
+									text="{path:'FireDate', type: 'sap.ui.model.odata.type.DateTime', formatOptions: { UTC: true }, constraints: { displayFormat: 'Date' }}"/>
+							</HBox>
+							<!-- Duration -->
+							<HBox alignContent="Center" alignItems="Center" justifyContent="Center" class="smodBoxIndicator">
+								<ObjectNumber id="txtWorkExperienceDuration"
+									number="{path:'DurationText'}"
+									state="Success"/>
+							</HBox>
+						</form:content>
+					</form:SimpleForm>
+				</smod:face>
+				<smod:actionBar>
+					<FlexBox width="100%" height="100%" alignContent="Stretch" alignItems="Center" justifyContent="Center">
+						<Button icon="sap-icon://delete" type="Reject" class="sapUiTinyMarginEnd" press=".onDeleteRecord" />
+						<Button icon="sap-icon://edit" type="Accept" class="sapUiTinyMarginEnd" press=".onEditRecord" />
+					</FlexBox>
+				</smod:actionBar>
+			</smod:ActionCard>
+		</l:content>
+	</l:Grid>
+	<MessageStrip id="noWorkExperienceStrip" text="{i18n>noWorkExperienceTxt}" type="Information" showIcon="true"
+		tooltip="{i18n>noWorkExperienceTxt}" visible="{= !${appEmployeeData>/bWorkExperienceExist}}"/>
+</mvc:View>

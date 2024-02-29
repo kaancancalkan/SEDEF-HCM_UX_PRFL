@@ -1,0 +1,62 @@
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns:f="sap.f"
+	xmlns="sap.m"
+	xmlns:card="sap.f.cards"
+	xmlns:form="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout"
+	xmlns:upload="sap.m.upload">
+	<Dialog showHeader="false" stretch="{device>/system/phone}" id="idCertificateChangeRequestDialog" contentWidth="{= ${device>/resize/width} * 0.9 > 700 ? '700px' : String(parseInt(${device>/resize/width} * 0.9)).concat('px') }" class="sapUiNoContentPadding" afterClose=".onAfterDialogClose" beforeOpen=".onBeforeDialogOpen" busy="{certificateModel>/busy}" busyIndicatorDelay="0">
+		<content>
+			<f:Card class="sapUiNoMargin" width="100%">
+				<f:header>
+					<card:Header title="{i18n>certificateChangeRequestTitle}" subtitle="{i18n>certificateChangeRequestSubtitle}" iconSrc="sap-icon://documents"/>
+				</f:header>
+				<f:content>
+					<form:SimpleForm id="CertificateChangeRequestForm" maxContainerCols="2" editable="true" layout="ResponsiveGridLayout" columnsXL="2" labelSpanL="3" emptySpanL="0" columnsL="2" labelSpanM="3" emptySpanM="0" columnsM="2" labelSpanS="12" emptySpanS="0" adjustLabelSpan="false" singleContainerFullSize="true">
+						<form:content>
+							<Toolbar ariaLabelledBy="certificateInfoTitle">
+								<Title id="certificateInfoTitle" text="{i18n>certificateInfoTitle}"/>
+								<ToolbarSpacer/>
+							</Toolbar>
+							<!-- Certificate Name -->
+							<Label text="{/#Certificate/CertificateName/@sap:label}" id="lblCertificateCertificateName" labelFor="inpCertificateCertificateName"/>
+							<Input id="inpCertificateCertificateName" value="{certificateModel>/changeRequest/CertificateName}" maxLength="50"/>
+							<!-- Institute -->
+							<Label text="{/#Certificate/InstituteName/@sap:label}" id="lblCertificateInstituteName" labelFor="inpCertificateInstituteName"/>
+							<Input id="inpCertificateInstituteName" value="{certificateModel>/changeRequest/InstituteName}" maxLength="60"/>
+
+							<!-- Date begin -->
+							<Label text="{/#Certificate/CertificateDate/@sap:label}" id="lblCertificateCertificateDate" labelFor="inpCertificateCertificateDate"/>
+							<DatePicker id="inpCertificateCertificateDate" dateValue="{path:'certificateModel>/changeRequest/CertificateDate', formatOptions: {UTC:true}}" displayFormat="dd.MM.yyyy">
+								<layoutData>
+									<l:GridData span="XL3 L3 M3 S12"/>
+								</layoutData>
+							</DatePicker>
+							<Label text="{i18n>certificateIndefinite}" id="lblCertificateCertificateEndless" labelFor="switchCertificateCertificateEndless"/>
+							<Switch id="switchCertificateCertificateEndless" type="AcceptReject" state="{certificateModel>/changeRequest/CertificateIndefinite}">
+								<layoutData>
+									<l:GridData span="XL3 L4 M6 S12"/>
+								</layoutData>
+							</Switch>
+							<!-- Date end -->
+							<Label text="{/#Certificate/CertificateEnd/@sap:label}" id="lblCertificateCertificateEnd" labelFor="inpCertificateCertificateEnd" visible="{= ${certificateModel>/changeRequest/CertificateIndefinite} === false }"/>
+							<DatePicker id="inpCertificateCertificateEnd" dateValue="{path:'certificateModel>/changeRequest/CertificateEnd', formatOptions: {UTC:true}}" displayFormat="dd.MM.yyyy" visible="{= ${certificateModel>/changeRequest/CertificateIndefinite} === false }">
+								<layoutData>
+									<l:GridData span="XL3 L3 M3 S12"/>
+								</layoutData>
+							</DatePicker>
+							<!-- Description -->
+							<Label text="{/#Certificate/CertificateDescription/@sap:label}" id="lblCertificateCertificateDescription" labelFor="inpCertificateCertificateDescription"/>
+							<TextArea id="inpCertificateCertificateDescription" value="{path:'certificateModel>/changeRequest/CertificateDescription'}" maxLength="255" showExceededText="false" rows="4"/>
+						</form:content>
+					</form:SimpleForm>
+				</f:content>
+			</f:Card>
+		</content>
+		<buttons>
+			<Button text="{i18n>saveAction}" press=".onSaveChange" type="Accept"/>
+			<Button text="{i18n>cancelAction}" press=".onCloseDialog" type="Reject"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

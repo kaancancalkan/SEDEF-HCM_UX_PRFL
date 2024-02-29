@@ -1,0 +1,87 @@
+<!--
+
+    Copyright (C) 2009-2018 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View controllerName="com.sedef.hcm.ux.myprofile.blocks.PersInfoFamilyMembersBlockController" xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout">
+	<l:Grid id="familyMembersContainer" content="{ path: 'toFamilyMember', templateShareable: false }" containerQuery="false" hSpacing="0"
+		defaultSpan="XL3 L4 M6 S12" visible="{appEmployeeData>/bPersInfoFamilyMembersExists}">
+		<l:content>
+			<form:SimpleForm id="familyMembersForm" maxContainerCols="2" editable="false" layout="ResponsiveGridLayout" labelSpanXL="-1"
+				emptySpanXL="-1" columnsXL="-1" labelSpanL="4" emptySpanL="3" columnsL="2" labelSpanM="4" emptySpanM="2" columnsM="2" labelSpanS="12"
+				emptySpanS="0" adjustLabelSpan="false" singleContainerFullSize="false">
+				<form:content>
+					<!-- Subtype -->
+					<core:Title text="{FamilyMemberTypeText}"/>
+					<!-- FormattedName-->
+					<Label
+						text="{parts: [ '/#FamilyMember/FormattedName/@name', 'toPersInfoMetaData', '/#FamilyMember/FormattedName/@sap:label'], formatter: '.getPersinfoLabel'}"
+						id="lblFormattedName" labelFor="txtFormattedName" visible="{= !!${FormattedName}}"/>
+					<Text id="txtFormattedName" text="{FormattedName}" visible="{= !!${FormattedName}}"/>
+					<!-- Date of birth -->
+					<Label
+						text="{parts: [ '/#FamilyMember/DateOfBirth/@name', 'toPersInfoMetaData', '/#FamilyMember/DateOfBirth/@sap:label'], formatter: '.getPersinfoLabel'}"
+						id="lblDateOfBirth" labelFor="txtDateOfBirth"
+						visible="{parts: [ '/#FamilyMember/DateOfBirth/@name', 'toPersInfoMetaData', 'DateOfBirth' ], formatter: '.getVisibility'}"/>
+					<Text id="txtDateOfBirth"
+						text="{ path: 'DateOfBirth', type: 'sap.ui.model.odata.type.DateTime', formatOptions: { UTC: true, style: 'medium', relative: true }, constraints: { displayFormat: 'Date' } }"
+						visible="{parts: [ '/#FamilyMember/DateOfBirth/@name', 'toPersInfoMetaData', 'DateOfBirth' ], formatter: '.getVisibility'}"/>
+					<!-- Birthplace -->
+					<Label
+						text="{parts: [ '/#FamilyMember/CityOfBirth/@name', 'toPersInfoMetaData', '/#FamilyMember/CityOfBirth/@sap:label'], formatter: '.getPersinfoLabel'}"
+						id="lblCityOfBirth" labelFor="txtCityOfBirth"
+						visible="{parts: [ '/#FamilyMember/CityOfBirth/@name', 'toPersInfoMetaData', 'CityOfBirth' ], formatter: '.getVisibility'}"/>
+					<Text id="txtCityOfBirth" text="{CityOfBirth}"
+						visible="{parts: [ '/#FamilyMember/CityOfBirth/@name', 'toPersInfoMetaData', 'CityOfBirth' ], formatter: '.getVisibility'}"/>
+					<!-- Country of Birth -->
+					<Label text="{/#FamilyMember/CountryOfBirthId/@sap:label}" id="lblCountryOfBirth" labelFor="txtCountryOfBirth"
+						visible="{parts: [ '/#FamilyMember/CountryOfBirthId/@name', 'toPersInfoMetaData', 'CountryOfBirthText' ], formatter: '.getVisibility'}"/>
+					<Text id="txtCountryOfBirth" text="{CountryOfBirthText}"
+						visible="{parts: [ '/#FamilyMember/CountryOfBirthId/@name', 'toPersInfoMetaData', 'CountryOfBirthText' ], formatter: '.getVisibility'}"/>
+					<!-- Name at birth -->
+					<Label
+						text="{parts: [ '/#FamilyMember/NameAtBirth/@name', 'toPersInfoMetaData', '/#FamilyMember/NameAtBirth/@sap:label'], formatter: '.getPersinfoLabel'}"
+						id="lblNameAtBirth" labelFor="txtNameAtBirth"
+						visible="{parts: [ '/#FamilyMember/NameAtBirth/@name', 'toPersInfoMetaData', 'NameAtBirth' ], formatter: '.getVisibility'}"/>
+					<Text id="txtNameAtBirth" text="{NameAtBirth}"
+						visible="{parts: [ '/#FamilyMember/NameAtBirth/@name', 'toPersInfoMetaData', 'NameAtBirth' ], formatter: '.getVisibility'}"/>
+					<!-- Gender -->
+					<Label
+						text="{parts: [ '/#FamilyMember/GenderId/@name', 'toPersInfoMetaData', '/#FamilyMember/GenderId/@sap:label'], formatter: '.getPersinfoLabel'}"
+						id="lblGender" labelFor="txtGender"
+						visible="{parts: [ '/#FamilyMember/GenderId/@name', 'toPersInfoMetaData', 'GenderText' ], formatter: '.getVisibility'}"/>
+					<Text id="txtGender" text="{GenderText}"
+						visible="{parts: [ '/#FamilyMember/GenderId/@name', 'toPersInfoMetaData', 'GenderText' ], formatter: '.getVisibility'}"/>
+					<!-- Nationality -->
+					<Label
+						text="{parts: [ '/#FamilyMember/NationalityId/@name', 'toPersInfoMetaData', '/#FamilyMember/NationalityId/@sap:label'], formatter: '.getPersinfoLabel'}"
+						id="lblNationality" labelFor="txtNationality"
+						visible="{parts: [ '/#FamilyMember/NationalityId/@name', 'toPersInfoMetaData', 'NationalityText' ], formatter: '.getVisibility'}"/>
+					<Text id="txtNationality" text="{NationalityText}"
+						visible="{parts: [ '/#FamilyMember/NationalityId/@name', 'toPersInfoMetaData', 'NationalityText' ], formatter: '.getVisibility'}"/>
+					<!-- Second Nationality -->
+					<Label
+						text="{parts: [ '/#FamilyMember/SecondNationalityId/@name', 'toPersInfoMetaData', '/#FamilyMember/SecondNationalityId/@sap:label'], formatter: '.getPersinfoLabel'}"
+						id="lblSecondNationality" labelFor="txtSecondNationality"
+						visible="{parts: [ '/#FamilyMember/SecondNationalityId/@name', 'toPersInfoMetaData', 'SecondNationalityText' ], formatter: '.getVisibility'}"/>
+					<Text id="txtSecondNationality" text="{SecondNationalityText}"
+						visible="{parts: [ '/#FamilyMember/SecondNationalityId/@name', 'toPersInfoMetaData', 'SecondNationalityText' ], formatter: '.getVisibility'}"/>
+					<!-- Third Nationality -->
+					<Label
+						text="{parts: [ '/#FamilyMember/ThirdNationalityId/@name', 'toPersInfoMetaData', '/#FamilyMember/ThirdNationalityId/@sap:label'], formatter: '.getPersinfoLabel'}"
+						id="lblThirdNationality" labelFor="txtThirdNationality"
+						visible="{parts: [ '/#FamilyMember/ThirdNationalityId/@name', 'toPersInfoMetaData', 'ThirdNationalityText' ], formatter: '.getVisibility'}"/>
+					<Text id="txtThirdNationality" text="{ThirdNationalityText}"
+						visible="{parts: [ '/#FamilyMember/ThirdNationalityId/@name', 'toPersInfoMetaData', 'ThirdNationalityText' ], formatter: '.getVisibility'}"/>
+					<!--Allows you to add additional elements to the family members form-->
+					<core:ExtensionPoint name="extensionFamilyMembersForm"/>
+				</form:content>
+			</form:SimpleForm>
+		</l:content>
+	</l:Grid>
+	<MessageStrip id="noFamilyMemeberStrip" text="{path: 'i18n>noFamilyMembersTxt'}" type="Information" showIcon="true"
+		tooltip="{path: 'i18n>noFamilyMembersTxt'}" visible="{= !${appEmployeeData>/bPersInfoFamilyMembersExists}}"/>
+	<Button id="navToFamilyMembersBtn" text="{i18n>navToFamilyMembersBtn}" type="Emphasized" press="onNavToFamilyMembersPress"
+		visible="{appProperties>/isMyFamilyMembersAvailable}" class="sapUiTinyMarginTop"/>
+</mvc:View>

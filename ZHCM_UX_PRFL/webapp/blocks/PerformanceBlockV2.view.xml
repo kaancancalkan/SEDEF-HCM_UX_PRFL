@@ -1,0 +1,13 @@
+<!--
+
+    Copyright (C) 2009-2018 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View controllerName="com.sedef.hcm.ux.myprofile.blocks.PerformanceBlockController"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:layout="sap.ui.layout"
+	xmlns:smod="com.sedef.hcm.ux.myprofile.controls">
+	<smod:SmodApexChart id="idPerformanceGraph" options="{PerformanceView>/chartOptions}" class="sapUiSmallMargin" visible="{appEmployeeData>/bPerformanceExist}" />
+	<MessageStrip id="noPerformanceStrip" text="{i18n>noPerformanceTxt}" type="Information" showIcon="true" tooltip="{i18n>noPerformanceTxt}" visible="{= !${appEmployeeData>/bPerformanceExist}}"/>
+</mvc:View>

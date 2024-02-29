@@ -1,0 +1,54 @@
+<!--
+
+    Copyright (C) 2009-2018 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View controllerName="com.sedef.hcm.ux.myprofile.blocks.EducationBlockController" xmlns="sap.m" xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc" xmlns:m="sap.m" xmlns:l="sap.ui.layout" xmlns:form="sap.ui.layout.form" >
+	<l:Grid id="educationDataContainer" content="{ path: 'toEducations', templateShareable: false }" containerQuery="false" hSpacing="0"
+		defaultSpan="XL3 L4 M6 S12" visible="{appEmployeeData>/bEducationExist}">
+		<l:content>
+			<form:SimpleForm id="EducationDataForm" maxContainerCols="2" editable="false" layout="ResponsiveGridLayout" labelSpanXL="-1"
+				emptySpanXL="-1" columnsXL="-1" labelSpanL="4" emptySpanL="3" columnsL="2" labelSpanM="4" emptySpanM="2" columnsM="2" labelSpanS="12"
+				emptySpanS="0" adjustLabelSpan="false" singleContainerFullSize="false">
+				<form:content>
+					<!-- Subtype -->
+					<core:Title text="{SchoolTypeText}"/>
+					<!-- Institution -->
+					<Label text="{/#Education/InstitutionName/@sap:label}" id="lblInstitutionName" labelFor="txtInstitution"
+						visible="{parts: [ '/#Education/InstitutionName/@name', 'toPersInfoMetaData', 'InstitutionName' ], formatter: '.getVisibility'}"/>
+					<Text id="txtInstitution" text="{InstitutionName}"
+						visible="{parts: [ '/#Education/InstitutionName/@name', 'toPersInfoMetaData', 'InstitutionName' ], formatter: '.getVisibility'}"/>
+						
+					<!-- Department -->
+					<Label text="{/#Education/DepartmentName/@sap:label}" id="lblDepartmentName" labelFor="txtDepartment"
+						visible="{parts: [ '/#Education/DepartmentName/@name', 'toPersInfoMetaData', 'DepartmentName' ], formatter: '.getVisibility'}"/>
+					<Text id="txtDepartment" text="{DepartmentName}"
+						visible="{parts: [ '/#Education/DepartmentName/@name', 'toPersInfoMetaData', 'DepartmentName' ], formatter: '.getVisibility'}"/>
+						
+					<!-- Faculty -->
+					<Label text="{/#Education/FacultyName/@sap:label}" id="lblFacultyName" labelFor="txtFaculty"
+						visible="{parts: [ '/#Education/FacultyName/@name', 'toPersInfoMetaData', 'FacultyName' ], formatter: '.getVisibility'}"/>
+					<Text id="txtFaculty" text="{FacultyName}"
+						visible="{parts: [ '/#Education/FacultyName/@name', 'toPersInfoMetaData', 'FacultyName' ], formatter: '.getVisibility'}"/>
+						
+					<!-- Dates -->
+					<Label text="{/#Education/SchoolBeginDate/@sap:label}" id="lblSchoolBeginDate" labelFor="txtSchoolBeginDate"
+						visible="{parts: [ '/#Education/SchoolBeginDate/@name', 'toPersInfoMetaData', 'SchoolBeginDate' ], formatter: '.getVisibility'}"/>
+					<Text id="txtSchoolBeginDate" text="{path:'SchoolBeginDate', type: 'sap.ui.model.odata.type.DateTime', formatOptions: { UTC: true }, constraints: { displayFormat: 'Date' }}"
+						visible="{parts: [ '/#Education/SchoolBeginDate/@name', 'toPersInfoMetaData', 'SchoolBeginDate' ], formatter: '.getVisibility'}"/>
+						
+					<Label text="{/#Education/SchoolEndDate/@sap:label}" id="lblSchoolEndDate" labelFor="txtSchoolEndDate"
+						visible="{parts: [ '/#Education/SchoolEndDate/@name', 'toPersInfoMetaData', 'SchoolEndDate' ], formatter: '.getVisibility'}"/>
+					<Text id="txtSchoolEndDate" text="{path:'SchoolEndDate', type: 'sap.ui.model.odata.type.DateTime', formatOptions: { UTC: true }, constraints: { displayFormat: 'Date' }}"
+						visible="{parts: [ '/#Education/SchoolEndDate/@name', 'toPersInfoMetaData', 'SchoolEndDate' ], formatter: '.getVisibility'}"/>
+				
+				
+				</form:content>
+			</form:SimpleForm>
+		</l:content>
+	</l:Grid>
+	
+	<MessageStrip id="noEducationStrip" text="{i18n>noEducationTxt}" type="Information" showIcon="true"
+		tooltip="{i18n>noEducationTxt}" visible="{= !${appEmployeeData>/bEducationExist}}"/>
+</mvc:View>
