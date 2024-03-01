@@ -146,7 +146,7 @@ sap.ui.define(["com/sedef/hcm/ux/myprofile/controller/BaseController",
                      textAlign:'Center',
                      wrapping:true,
                      text: sText
-					})
+					}).addStyleClass("sapUiMediumMargin") 
 				
 				});
 
