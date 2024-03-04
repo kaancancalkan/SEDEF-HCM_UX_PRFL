@@ -20,6 +20,6 @@ builder:
           name: ZHCM_UX_PRFL
           description: Profil Beceri Listesi
           package: ZHR
-          transport: SFDK900333
+          transport: SFDK900331
         exclude:
           - /test/
